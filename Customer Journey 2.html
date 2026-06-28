@@ -66,6 +66,12 @@
 
   h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; letter-spacing: -0.3px; margin-bottom: 8px; color: var(--text); }
   h2 .num { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 4px; }
+  .process-label {
+    display: inline-block; font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); background: var(--accent-soft);
+    padding: 3px 12px; border-radius: 20px; margin-bottom: 10px;
+  }
   h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 700; margin: 32px 0 8px; color: var(--text); }
   h4 { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 700; margin: 20px 0 6px; color: var(--text); }
   p { color: var(--text-secondary); margin-bottom: 12px; max-width: 680px; }
@@ -233,7 +239,8 @@
 
 <!-- ═══════════ PHASE 0: OPEN KCB APP ══════════════════ -->
 <section class="section" id="p0">
-  <h2><span class="num">Phase 0 · DISCOVERY</span>Open KCB Bank App</h2>
+  <div class="process-label">Phase 0 · DISCOVERY</div>
+  <h2>Open KCB Bank App</h2>
   <p class="lead">Jane opens the KCB app. Her savings dashboard loads — KSh 150,000 balance, recent transactions, quick actions. But today there's something new: a gold-bordered card.</p>
 
   <div class="showcase">
@@ -253,7 +260,8 @@
 
 <!-- ═══════════ PHASE 1: DISCOVER BATO ══════════════════ -->
 <section class="section-alt" id="p1">
-  <h2><span class="num">Phase 1 · FIRST-RUN EXPERIENCE</span>Discover Bato — First Run</h2>
+  <div class="process-label">Phase 1 · FIRST-RUN EXPERIENCE</div>
+  <h2>Discover Bato — First Run</h2>
   <p class="text-muted">First time in the Bato wallet. Jane sees ₿, "Your Digital Wallet," and an empty balance. "Get Started" is the primary CTA. She taps it.</p>
 
   <div class="showcase">
@@ -272,7 +280,8 @@
 
 <!-- ═══════════ PHASE 2: REGISTER ══════════════════════ -->
 <section class="section" id="p2">
-  <h2><span class="num">Phase 2 · ACCOUNT CREATION</span>Register — 3 Screens, Zero SMS</h2>
+  <div class="process-label">Phase 2 · ACCOUNT CREATION</div>
+  <h2>Register — 3 Screens, Zero SMS</h2>
   <p class="lead">Registration is a one-time flow. Phone number (pre-filled from KCB profile), detail confirmation, and authenticator enrollment. Device key generated in Secure Enclave. No SMS. No email.</p>
 
   <div class="screen-flow">
@@ -293,7 +302,8 @@
 
 <!-- ═══════════ PHASE 3: LOAD WALLET ═══════════════════ -->
 <section class="section-alt" id="p3">
-  <h2><span class="num">Phase 3 · WALLET FUNDING</span>Load Wallet — KES to USDT</h2>
+  <div class="process-label">Phase 3 · WALLET FUNDING</div>
+  <h2>Load Wallet — KES to USDT</h2>
   <p class="text-muted">Jane loads KSh 29,580 worth of USDT from her KCB savings account. Three screens: enter amount, confirm with rate lock, success.</p>
 
   <div class="screen-flow">
@@ -312,7 +322,8 @@
 
 <!-- ═══════════ PHASE 4: SEND P2P ══════════════════════ -->
 <section class="section" id="p4">
-  <h2><span class="num">Phase 4 · P2P TRANSFER</span>Send USDT — Peer to Peer</h2>
+  <div class="process-label">Phase 4 · P2P TRANSFER</div>
+  <h2>Send USDT — Peer to Peer</h2>
   <p class="lead">Jane sends 50 USDT to Sarah. She enters Sarah's address, sees the dual-currency breakdown, confirms via the Authenticator, and Sarah receives instantly.</p>
 
   <div class="screen-flow">
@@ -333,7 +344,8 @@
 
 <!-- ═══════════ PHASE 5: SCAN TO PAY ═══════════════════ -->
 <section class="section-alt" id="p5">
-  <h2><span class="num">Phase 5 · IN-STORE POS PAYMENT</span>Scan to Pay — Merchant POS</h2>
+  <div class="process-label">Phase 5 · IN-STORE POS PAYMENT</div>
+  <h2>Scan to Pay — Merchant POS</h2>
   <p class="text-muted">Jane at Naivas Supermarket. The cashier rings KSh 650. QR code appears on the POS with a shared verification code. Jane scans, verifies the code matches on both screens, authenticates, and payment settles in under 3 seconds.</p>
 
   <div class="screen-flow">
@@ -364,7 +376,8 @@
 
 <!-- ═══════════ PHASE 6: WITHDRAW ══════════════════════ -->
 <section class="section" id="p6">
-  <h2><span class="num">Phase 6 · CASH-OUT TO BANK</span>Withdraw — USDT to KES</h2>
+  <div class="process-label">Phase 6 · CASH-OUT TO BANK</div>
+  <h2>Withdraw — USDT to KES</h2>
   <p class="lead">Jane wants KSh 72,500 back in her savings account. She cashes out 500 USDT, confirms via the Authenticator, and the funds credit her KCB savings account.</p>
 
   <div class="showcase">
@@ -384,7 +397,8 @@
 
 <!-- ═══════════ PHASE 7: PAYBAND ═══════════════════════ -->
 <section class="section-alt" id="p7">
-  <h2><span class="num">Phase 7 · WEARABLE NFC INTERACTION</span>PayBand — NFC Bracelet</h2>
+  <div class="process-label">Phase 7 · WEARABLE NFC INTERACTION</div>
+  <h2>PayBand — NFC Bracelet</h2>
   <p class="text-muted">Jane loads 50 USDT onto her PayBand — an NFC silicone bracelet with secure element and E-ink display. She taps it at the Naivas POS to pay. The Authenticator confirms every transaction.</p>
 
   <div class="showcase">
