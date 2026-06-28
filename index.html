@@ -84,16 +84,38 @@
   .scene-badge { position: fixed; top: 20px; right: 24px; z-index: 100; background: rgba(10,15,30,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 6px 16px; font-size: 0.7rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; transition: all 0.4s; }
 
   /* ═══════════ NAV DOTS ══════════════════ */
-  .nav-dots { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 8px; }
-  .nav-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; border: none; }
-  .nav-dots .dot.active { background: var(--gold); width: 24px; border-radius: 4px; }
-  .nav-dots .dot.scene-start { width: 12px; height: 12px; border: 2px solid rgba(255,255,255,0.3); }
+  .nav-dots { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 10px; }
+  .nav-dots .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
+  .nav-dots .dot.active { background: var(--gold); width: 28px; border-radius: 5px; }
+  .nav-dots .dot.scene-start { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.4); }
   .nav-dots .dot.scene-start.active { border-color: var(--gold); background: var(--gold); }
 
-  /* ═══════════ PAUSE BUTTON ══════════════ */
-  .pause-btn { display: none; }
+  /* ═══════════ NAV ARROWS ═════════════════ */
+  .nav-arrow { position: fixed; top: 50%; transform: translateY(-50%); z-index: 100; background: rgba(10,15,30,0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--white); font-size: 1.4rem; transition: all 0.3s; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+  .nav-arrow:hover, .nav-arrow:active { background: rgba(30,40,55,0.9); border-color: var(--gold); }
+  .nav-arrow.left { left: 16px; }
+  .nav-arrow.right { right: 16px; }
 
-  /* ═══════════ FADE-IN TEXT ANIMATION ═════ */
+  /* ═══════════ TAP ZONES ═════════════════ */
+  .slide.active { pointer-events: auto; }
+
+  /* ═══════════ MOBILE-FIRST NAV ══════════ */
+  @media (max-width: 900px) {
+    .nav-arrow { width: 40px; height: 40px; font-size: 1.1rem; }
+    .nav-arrow.left { left: 8px; }
+    .nav-arrow.right { right: 8px; }
+    .nav-dots { bottom: 28px; gap: 8px; }
+    .nav-dots .dot { width: 12px; height: 12px; }
+    .nav-dots .dot.active { width: 32px; }
+    .nav-dots .dot.scene-start { width: 16px; height: 16px; }
+    .slide { padding: 20px 16px; }
+    .slide-split { flex-direction: column; gap: 16px; padding: 20px 16px; }
+    .slide-center h2 { font-size: 1.3rem; }
+    .slide-center img { max-width: 95%; max-height: 35vh; border-radius: 12px; }
+    .slide-grid .grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .slide-comparison .row { flex-direction: column; }
+    .scene-badge { top: 10px; right: 10px; font-size: 0.6rem; padding: 4px 10px; }
+  }
   @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .anim-up { animation: fadeInUp 0.6s ease-out forwards; }
   .anim-up-d1 { animation-delay: 0.15s; opacity: 0; }
@@ -105,14 +127,8 @@
   @keyframes shimmer { 0% { background-position: -200px 0; } 100% { background-position: 200px 0; } }
   .shimmer { background: linear-gradient(90deg, transparent, rgba(245,158,11,0.1), transparent); background-size: 200px 100%; animation: shimmer 2s infinite; }
 
-  @media (max-width: 900px) {
-    .slide { padding: 30px 20px; }
-    .slide-split { flex-direction: column; gap: 20px; padding: 20px; }
-    .slide-center h2 { font-size: 1.4rem; }
-    .slide-center img { max-width: 95%; max-height: 35vh; }
-    .slide-grid .grid { grid-template-columns: 1fr 1fr; }
-    .slide-comparison .row { flex-direction: column; }
-  }
+  /* Override old mobile query — all mobile styles now in nav section above */
+  @media (max-width: 900px) { }
 </style>
 </head>
 <body>
@@ -120,7 +136,8 @@
 <div class="progress-container"><div class="progress" id="progressBar"></div></div>
 <div class="scene-badge" id="sceneBadge">SCENE 1 / 7</div>
 
-<button class="pause-btn" id="pauseBtn" title="Pause/Play">⏸</button>
+<div class="nav-arrow left" id="prevBtn" onclick="goToSlide(currentSlide - 1)">‹</div>
+<div class="nav-arrow right" id="nextBtn" onclick="goToSlide(currentSlide + 1)">›</div>
 
 <div class="nav-dots" id="navDots"></div>
 
@@ -444,7 +461,6 @@ function goToSlide(index) {
   if (oldEl) oldEl.classList.remove('active');
   if (newEl) {
     newEl.classList.add('active');
-    // Reset animations on child elements
     newEl.querySelectorAll('.anim-up, .anim-up-d1, .anim-up-d2').forEach(el => {
       el.style.animation = 'none';
       el.offsetHeight;
@@ -455,25 +471,50 @@ function goToSlide(index) {
   currentSlide = index;
   updateProgress();
   renderNavDots();
+  updateArrows();
 }
 
-// Keyboard navigation
+function updateArrows() {
+  document.getElementById('prevBtn').style.opacity = currentSlide === 0 ? '0.2' : '1';
+  document.getElementById('nextBtn').style.opacity = currentSlide === ALL_SLIDES.length - 1 ? '0.2' : '1';
+}
+
+// Keyboard + click on slide to advance
+const deckEl = document.getElementById('deck');
+deckEl.addEventListener('click', (e) => {
+  if (currentSlide < ALL_SLIDES.length - 1) goToSlide(currentSlide + 1);
+});
+
 document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight' || e.key === ' ') {
     e.preventDefault();
-    if (currentSlide < ALL_SLIDES.length - 1) {
-      goToSlide(currentSlide + 1);
-    }
+    if (currentSlide < ALL_SLIDES.length - 1) goToSlide(currentSlide + 1);
   } else if (e.key === 'ArrowLeft') {
     e.preventDefault();
-    if (currentSlide > 0) {
-      goToSlide(currentSlide - 1);
-    }
+    if (currentSlide > 0) goToSlide(currentSlide - 1);
+  }
+});
+
+// Swipe support for mobile
+let touchStartX = 0;
+let touchStartY = 0;
+deckEl.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+deckEl.addEventListener('touchend', (e) => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+    if (dx < 0 && currentSlide < ALL_SLIDES.length - 1) goToSlide(currentSlide + 1);
+    else if (dx > 0 && currentSlide > 0) goToSlide(currentSlide - 1);
   }
 });
 
 // Start
 renderDeck();
+updateArrows();
 </script>
 </body>
 </html>
