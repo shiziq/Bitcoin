@@ -7,78 +7,76 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
-  :root {
-    --primary: #4f46e5; --accent: #f59e0b; --emerald: #059669;
-    --dark: #0a0f1e; --dark-surface: #1e2837; --text: #ffffff; --text-secondary: rgba(255,255,255,0.7); --text-muted: rgba(255,255,255,0.45);
-    --radius: 14px; --radius-lg: 20px;
-    --shadow-sm: 0 2px 8px rgba(0,0,0,0.2); --shadow-lg: 0 8px 32px rgba(0,0,0,0.3);
-  }
+  :root { --accent: #f59e0b; --emerald: #059669; --dark: #0a0f1e; --dark-surface: #1e2837; --text: #ffffff; --text-secondary: rgba(255,255,255,0.7); --text-muted: rgba(255,255,255,0.45); --radius: 14px; --radius-lg: 20px; --shadow-lg: 0 8px 32px rgba(0,0,0,0.3); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--dark); color: var(--text); overflow: hidden; height: 100vh; width: 100vw; }
   .deck { width: 100vw; height: 100vh; position: relative; }
 
-  /* ═══════════ SLIDE ═════════════════════ */
-  .slide {
-    position: absolute; inset: 0; opacity: 0; pointer-events: none;
-    transition: opacity 0.6s ease, transform 0.6s ease; transform: scale(0.97);
-    display: flex; flex-direction: column; padding: 32px 56px 28px;
-  }
+  .slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.7s ease, transform 0.7s ease; transform: scale(0.97); }
   .slide.active { opacity: 1; pointer-events: auto; transform: scale(1); }
 
-  /* ═══════════ BADGE ═════════════════════ */
-  .phase-badge { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: rgba(245,158,11,0.12); padding: 3px 14px; border-radius: 20px; margin-bottom: 6px; width: fit-content; }
-  h1 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; letter-spacing: -0.3px; margin-bottom: 6px; }
-  h1 em { font-style: italic; color: var(--accent); }
-  .desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; max-width: 700px; }
+  /* ═══════════ SPLIT LAYOUT (index.html style) ═══════ */
+  .slide-split { display: flex; flex-direction: row; gap: 40px; padding: 52px 56px; align-items: center; }
+  .slide-split .img-panel { flex: 1; display: flex; align-items: center; justify-content: center; max-height: 85vh; min-width: 0; }
+  .slide-split .img-panel img { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); background: #0d1117; }
+  .slide-split .text-panel { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
 
-  /* ═══════════ CONTENT AREAS ════════════ */
-  .content { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
-  .img-panel { flex: 1; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: nowrap; }
-  .img-panel img { max-height: 72vh; max-width: 100%; min-width: 0; object-fit: contain; border-radius: var(--radius); box-shadow: var(--shadow-lg); background: #0d1117; }
-  .img-panel .img-stack { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
-  .img-panel .img-stack img { max-height: 62vh; }
-  .img-panel .img-stack .cap { font-size: 0.56rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-top: 2px; }
-  .img-panel .img-row { display: flex; gap: 16px; align-items: center; flex: 1; justify-content: center; }
-  .img-panel .img-row img { max-height: 68vh; max-width: 32%; }
-  .img-panel .arrow { font-size: 1.4rem; color: var(--accent); font-weight: 300; flex-shrink: 0; }
+  .phase-badge { display: inline-block; font-size: 0.55rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: rgba(245,158,11,0.12); padding: 3px 12px; border-radius: 20px; width: fit-content; }
+  .text-panel h1 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; letter-spacing: -0.3px; line-height: 1.1; }
+  .text-panel h1 em { font-style: italic; color: var(--accent); }
+  .text-panel p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+  .text-panel .steps { display: flex; flex-direction: column; gap: 5px; margin-top: 4px; }
+  .text-panel .s { display: flex; gap: 8px; align-items: flex-start; }
+  .text-panel .s .n { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: #0a0f1e; font-size: 0.6rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .text-panel .s .t { font-size: 0.78rem; color: var(--text-secondary); padding-top: 1px; }
 
-  .text-panel { display: flex; flex-direction: column; gap: 4px; max-height: 16vh; overflow-y: auto; flex-shrink: 0; }
-  .text-panel h3 { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--text); margin: 0; }
-  .text-panel p { font-size: 0.68rem; color: var(--text-secondary); line-height: 1.4; margin: 0; }
-  .text-panel .steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
-  .text-panel .s { display: flex; gap: 6px; align-items: flex-start; }
-  .text-panel .s .n { width: 18px; height: 18px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 0.55rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .text-panel .s .t { font-size: 0.7rem; color: var(--text-secondary); padding-top: 1px; }
+  /* ═══════════ GRID + CENTER + COMPARISON ═══════ */
+  .slide-grid { flex-direction: column; gap: 16px; padding: 48px 56px; }
+  .slide-grid h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 500; text-align: center; letter-spacing: -0.3px; }
+  .slide-grid h1 em { font-style: italic; color: var(--accent); }
+  .slide-grid .grid { display: flex; gap: 16px; justify-content: center; align-items: flex-start; flex-wrap: wrap; flex: 1; }
+  .slide-grid .grid .g-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .slide-grid .grid img { max-height: 55vh; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+  .slide-grid .grid .cap { font-size: 0.56rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+  .slide-grid .arrow { font-size: 1.4rem; color: var(--accent); align-self: center; }
 
-  /* ═══════════ COMPARISON SLIDE ══════════ */
-  .comp-row { display: flex; gap: 20px; flex: 1; }
-  .comp-col { flex: 1; background: var(--dark-surface); border-radius: var(--radius-lg); padding: 24px 26px; display: flex; flex-direction: column; justify-content: center; }
-  .comp-col.bad { border-left: 3px solid #e11d48; }
-  .comp-col.good { border-left: 3px solid var(--emerald); }
-  .comp-col h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
-  .comp-col.bad h3 { color: #e11d48; }
-  .comp-col.good h3 { color: var(--emerald); }
-  .comp-col .amt { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; margin: 6px 0; }
-  .comp-col .sub { font-size: 0.75rem; color: var(--text-secondary); }
+  .slide-center { flex-direction: column; gap: 16px; padding: 60px 80px; text-align: center; justify-content: center; }
+  .slide-center h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 500; }
+  .slide-center h1 em { font-style: italic; color: var(--accent); }
+  .slide-center p { font-size: 0.95rem; color: var(--text-secondary); max-width: 550px; margin: 0 auto; }
+  .slide-center img { max-height: 40vh; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+
+  .slide-comparison { flex-direction: column; gap: 16px; padding: 52px 56px; }
+  .slide-comparison h1 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; letter-spacing: -0.3px; }
+  .slide-comparison h1 em { font-style: italic; color: var(--accent); }
+  .slide-comparison .comp-row { display: flex; gap: 20px; flex: 1; }
+  .slide-comparison .comp-col { flex: 1; background: var(--dark-surface); border-radius: var(--radius-lg); padding: 28px 30px; display: flex; flex-direction: column; justify-content: center; }
+  .slide-comparison .comp-col.bad { border-left: 3px solid #e11d48; }
+  .slide-comparison .comp-col.good { border-left: 3px solid var(--emerald); }
+  .slide-comparison .comp-col h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+  .slide-comparison .comp-col.bad h3 { color: #e11d48; }
+  .slide-comparison .comp-col.good h3 { color: var(--emerald); }
+  .slide-comparison .comp-col .amt { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; margin: 6px 0; }
+  .slide-comparison .comp-col .sub { font-size: 0.8rem; color: var(--text-secondary); }
 
   /* ═══════════ COVER ═════════════════════ */
-  .cover-slide { text-align: center; justify-content: center; align-items: center; }
-  .cover-slide .logos { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .cover-slide { flex-direction: column; gap: 20px; padding: 60px 80px; justify-content: center; align-items: center; text-align: center; }
+  .cover-slide .logos { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
   .cover-slide .logos img { height: 34px; }
   .cover-slide .logos .plus { font-size: 18px; color: var(--accent); }
-  .cover-slide h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
-  .cover-slide p { font-size: 0.9rem; color: var(--text-secondary); max-width: 550px; margin: 0 auto; }
 
-  .summary-slide .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
-  .summary-slide .stat { background: var(--dark-surface); border-radius: var(--radius); padding: 16px; text-align: center; border-top: 3px solid var(--primary); }
-  .summary-slide .stat.gold { border-top-color: var(--accent); }
-  .summary-slide .stat.emerald { border-top-color: var(--emerald); }
-  .summary-slide .stat .val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; }
-  .summary-slide .stat .lbl { font-size: 0.55rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+  /* ═══════════ SUMMARY ═══════════════════ */
+  .slide-summary { flex-direction: column; gap: 16px; padding: 48px 56px; }
+  .slide-summary .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 4px; }
+  .slide-summary .stat { background: var(--dark-surface); border-radius: var(--radius); padding: 18px; text-align: center; border-top: 3px solid var(--accent); }
+  .slide-summary .stat.emerald { border-top-color: var(--emerald); }
+  .slide-summary .stat .val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; }
+  .slide-summary .stat .lbl { font-size: 0.55rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+  .slide-summary .img-row { display: flex; gap: 20px; justify-content: center; flex: 1; }
+  .slide-summary .img-row img { max-height: 50vh; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
 
   /* ═══════════ NAV ═══════════════════════ */
-  .scene-badge { position: fixed; top: 16px; right: 20px; z-index: 100; background: rgba(10,15,30,0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 4px 14px; font-family: 'DM Sans', sans-serif; font-size: 0.58rem; font-weight: 700; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; }
-  .scene-badge .label { font-size: 0.5rem; color: var(--text-muted); letter-spacing: 1px; display: block; }
+  .scene-badge { position: fixed; top: 16px; right: 20px; z-index: 100; background: rgba(10,15,30,0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 4px 14px; font-size: 0.58rem; font-weight: 700; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; }
   .nav-dots { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 8px; }
   .nav-dots .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; border: none; padding: 0; transition: all 0.3s; }
   .nav-dots .dot.active { background: var(--accent); width: 26px; border-radius: 5px; }
@@ -88,17 +86,20 @@
   .nav-arrow.right { right: 14px; }
 
   @media (max-width: 900px) {
-    .slide { padding: 16px 12px 12px; }
-    h1 { font-size: 1.2rem; }
-    .desc { font-size: 0.7rem; }
-    .img-panel img { max-height: 30vh; }
-    .img-panel .img-row img { max-height: 24vh; max-width: 28%; }
-    .img-panel .img-stack img { max-height: 24vh; }
-    .text-panel { max-height: 28vh; }
+    .slide-split { flex-direction: column; gap: 14px; padding: 20px 16px; }
+    .slide-split .img-panel { max-height: 42vh; }
+    .slide-split .img-panel img { max-height: 40vh; }
+    .text-panel h1 { font-size: 1.3rem; }
+    .slide-grid { padding: 24px 16px; }
+    .slide-grid .grid img { max-height: 30vh; }
+    .slide-center { padding: 32px 20px; }
+    .slide-center h1 { font-size: 1.5rem; }
+    .slide-comparison .comp-row { flex-direction: column; }
+    .slide-summary .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .slide-summary .img-row { flex-direction: column; align-items: center; }
+    .slide-summary .img-row img { max-height: 30vh; }
     .nav-arrow { width: 34px; height: 34px; font-size: 1rem; }
     .nav-arrow.left { left: 6px; } .nav-arrow.right { right: 6px; }
-    .comp-row { flex-direction: column; }
-    .summary-slide .stat-row { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
@@ -108,72 +109,63 @@
 <div class="nav-arrow left" onclick="goToSlide(currentSlide - 1)">‹</div>
 <div class="nav-arrow right" onclick="goToSlide(currentSlide + 1)">›</div>
 <div class="nav-dots" id="navDots"></div>
-
 <div class="deck" id="deck"></div>
 
 <script>
 const SLIDES = [
-  // 0 — Cover
-  `<div class="slide cover-slide active"><div class="logos"><img src="assets/KCB Logo.png" alt="KCB"><span class="plus">+</span><img src="assets/Bato Logo.png" alt="Bato"></div><h1>End-to-End<br><em>Customer Journey</em></h1><p>Follow Jane's complete experience — from opening the KCB Bank app to tapping her PayBand bracelet. Every screen, every tap, every confirmation. Zero SMS. All in-app. <strong style="color:var(--accent);">Flat KSh 0.15 per transaction — not M-Pesa's 1–3%.</strong></p></div>`,
+  // 0 - Cover
+  `<div class="slide cover-slide active"><div class="logos"><img src="assets/KCB Logo.png"><span class="plus">+</span><img src="assets/Bato Logo.png"></div><h1>End-to-End<br><em>Customer Journey</em></h1><p>Follow Jane's complete experience — KCB app to PayBand. Zero SMS. All in-app. <strong style="color:var(--accent);">KSh 0.15 flat fee — not M-Pesa's 1-3%.</strong></p></div>`,
 
-  // 1 — M-Pesa Comparison
-  `<div class="slide"><span class="phase-badge">COMPETITIVE CONTEXT</span><h1>Rivaling <em>M-Pesa</em></h1><p class="desc">M-Pesa charges a percentage. Bato charges KSh 0.15 — flat. Same for KSh 500 or KSh 50,000.</p><div class="comp-row"><div class="comp-col bad"><h3>M-Pesa — Percentage</h3><p class="amt" style="color:#e11d48;">KSh 500–1,500</p><p class="sub">To send KSh 50,000</p><p class="sub" style="margin-top:4px;"><strong style="color:#e11d48;">Fee type: 1–3%</strong></p></div><div class="comp-col good"><h3>Bato (KCB) — Flat Fee</h3><p class="amt" style="color:var(--emerald);">KSh 0.15</p><p class="sub">To send any amount — KSh 500 or KSh 50,000</p><p class="sub" style="margin-top:4px;"><strong style="color:var(--emerald);">Fee type: FLAT</strong></p></div></div><p style="font-size:0.76rem;color:var(--text-muted);margin-top:12px;">A Kenyan business processing KSh 500K/month through M-Pesa pays ~KSh 5K–15K in fees. On Bato: ~KSh 500 — commercially transformative.</p></div>`,
+  // 1 - M-Pesa Comparison
+  `<div class="slide slide-comparison"><span class="phase-badge">COMPETITIVE CONTEXT</span><h1>Rivaling <em>M-Pesa</em></h1><div class="comp-row"><div class="comp-col bad"><h3>M-Pesa — Percentage</h3><p class="amt" style="color:#e11d48;">KSh 500–1,500</p><p class="sub">To send KSh 50,000</p><p class="sub" style="margin-top:4px;color:#e11d48;font-weight:700;">Fee type: 1–3%</p></div><div class="comp-col good"><h3>Bato (KCB) — Flat Fee</h3><p class="amt" style="color:var(--emerald);">KSh 0.15</p><p class="sub">Send any amount — same fee</p><p class="sub" style="margin-top:4px;color:var(--emerald);font-weight:700;">Fee type: FLAT</p></div></div><p style="font-size:0.76rem;color:var(--text-muted);">KSh 500K/mo on M-Pesa = ~KSh 5K–15K fees. On Bato: ~KSh 500. Commercially transformative.</p></div>`,
 
-  // 2 — Phase 0: Open KCB App
-  `<div class="slide"><span class="phase-badge">Phase 0 · DISCOVERY</span><h1>Open <em>KCB Bank App</em></h1><p class="desc">Jane opens the KCB app. Savings dashboard — KSh 150,000 balance, recent transactions. But today there's something new: a gold-bordered card.</p><div class="content"><div class="img-panel"><div class="img-stack"><img src="assets/CJ — KCB Bank App Home Dashboard.svg" alt="Dashboard"><span class="cap">KCB Home Dashboard</span></div></div><div class="text-panel"><h3>What Jane Sees</h3><p>The familiar KCB dashboard with a new card: <strong style="color:var(--accent);">"Bato — Digital Wallet."</strong> Gold border. Next to Accounts, Transfers, Cards. No separate app download.</p><div class="steps"><div class="s"><div class="n">1</div><div class="t">Jane unlocks phone and opens KCB Bank app</div></div><div class="s"><div class="n">2</div><div class="t">Dashboard shows savings + recent transactions</div></div><div class="s"><div class="n">3</div><div class="t">She notices the gold-bordered Bato card</div></div><div class="s"><div class="n">4</div><div class="t">She taps it</div></div></div></div></div></div>`,
+  // 2 - Phase 0
+  `<div class="slide slide-split"><div class="img-panel"><img src="assets/CJ — KCB Bank App Home Dashboard.svg" alt="KCB Dashboard"></div><div class="text-panel"><span class="phase-badge">Phase 0 · DISCOVERY</span><h1>Open <em>KCB Bank App</em></h1><p>Jane opens KCB. Savings — KSh 150,000. But a <strong style="color:var(--accent);">gold-bordered card</strong> catches her eye: "Bato — Digital Wallet."</p><div class="steps"><div class="s"><div class="n">1</div><div class="t">Jane unlocks phone, opens KCB app</div></div><div class="s"><div class="n">2</div><div class="t">Dashboard: savings + transactions</div></div><div class="s"><div class="n">3</div><div class="t">Notices "Bato — Digital Wallet" card</div></div><div class="s"><div class="n">4</div><div class="t">Taps it</div></div></div></div></div>`,
 
-  // 3 — Phase 1: Discover Bato
-  `<div class="slide"><span class="phase-badge">Phase 1 · FIRST-RUN EXPERIENCE</span><h1>Discover <em>Bato</em> — First Run</h1><p class="desc">First time in the Bato wallet. Jane sees ₿, "Your Digital Wallet," and an empty balance. "Get Started" is the primary CTA.</p><div class="content"><div class="img-panel"><div class="img-stack"><img src="assets/CJ — Bato Wallet Empty State.svg" alt="Empty"><span class="cap">First View</span></div></div><div class="text-panel"><h3>Empty Wallet</h3><p>Zero USDT. Zero KSh. Two buttons: "Get Started" and "Learn More." Jane is already a KCB customer — the app knows her phone number from her banking profile. No re-verification needed.</p><div class="steps"><div class="s"><div class="n">1</div><div class="t">Bato wallet opens — 0.00 USDT, ≈ KSh 0.00</div></div><div class="s"><div class="n">2</div><div class="t">Jane sees ₿ icon and "Your Digital Wallet"</div></div><div class="s"><div class="n">3</div><div class="t">She taps "Get Started"</div></div></div></div></div></div>`,
+  // 3 - Phase 1
+  `<div class="slide slide-split"><div class="img-panel"><img src="assets/CJ — Bato Wallet Empty State.svg" alt="Bato Empty"></div><div class="text-panel"><span class="phase-badge">Phase 1 · FIRST-RUN EXPERIENCE</span><h1>Discover <em>Bato</em></h1><p>First time. ₿ icon. "Your Digital Wallet." <strong style="color:var(--accent);">Get Started</strong> is the primary CTA.</p><div class="steps"><div class="s"><div class="n">1</div><div class="t">Wallet opens: 0.00 USDT, ≈ KSh 0.00</div></div><div class="s"><div class="n">2</div><div class="t">Jane sees "Get Started" button</div></div><div class="s"><div class="n">3</div><div class="t">She taps — already known as KCB customer</div></div></div></div></div>`,
 
-  // 4 — Phase 2: Register
-  `<div class="slide"><span class="phase-badge">Phase 2 · ACCOUNT CREATION</span><h1>Register — <em>3 Screens, Zero SMS</em></h1><p class="desc">One-time flow. Phone (pre-filled from KCB), confirmation, authenticator enrollment. Device key in Secure Enclave. No SMS. No email.</p><div class="content"><div class="img-panel"><div class="img-row"><div class="img-stack"><img src="assets/Registration — Phone Number Entry.png" alt="Phone"><span class="cap">Screen 1/3</span></div><span class="arrow">→</span><div class="img-stack"><img src="assets/Registration — Confirmation.png" alt="Confirm"><span class="cap">Screen 2/3</span></div><span class="arrow">→</span><div class="img-stack"><img src="assets/Registration — Authenticator Enrollment.png" alt="Auth"><span class="cap">Screen 3/3</span></div><span class="arrow">→</span><div class="img-stack"><img src="assets/2.2.1 Use Case User Views Wallet Balance.png" alt="Balance"><span class="cap">Wallet Created</span></div></div></div><div class="text-panel"><h3>What Happens</h3><p>Phone pre-filled as <strong>+254 712 345 678</strong>. KCB core banking matches customer profile. HD wallet address created on Polygon. Device key generated — public key stored on Bato backend. All future payments confirmed via this key.</p><div class="steps"><div class="s"><div class="n">1</div><div class="t">Jane enters/confirms phone number</div></div><div class="s"><div class="n">2</div><div class="t">Confirms her details — name, bank account, wallet address</div></div><div class="s"><div class="n">3</div><div class="t">Authenticator enrolled — device key bound to account</div></div><div class="s"><div class="n">4</div><div class="t">Wallet created — lands on balance screen</div></div></div></div></div></div>`,
+  // 4 - Phase 2
+  `<div class="slide slide-grid"><span class="phase-badge" style="align-self:center;">Phase 2 · ACCOUNT CREATION</span><h1>Register — <em>3 Screens, Zero SMS</em></h1><div class="grid"><div class="g-item"><img src="assets/Registration — Phone Number Entry.png" alt="Phone"><span class="cap">Phone Number</span></div><span class="arrow">→</span><div class="g-item"><img src="assets/Registration — Confirmation.png" alt="Confirm"><span class="cap">Confirm Details</span></div><span class="arrow">→</span><div class="g-item"><img src="assets/Registration — Authenticator Enrollment.png" alt="Auth"><span class="cap">Set Up Authenticator</span></div><span class="arrow">→</span><div class="g-item"><img src="assets/2.2.1 Use Case User Views Wallet Balance.png" alt="Balance"><span class="cap">Wallet Created</span></div></div><p style="text-align:center;font-size:0.78rem;color:var(--text-secondary);">Phone pre-filled from KCB profile. Device key generated in Secure Enclave. HD wallet on Polygon. <strong>No SMS. No email.</strong></p></div>`,
 
-  // 5 — Phase 3: Load Wallet
-  `<div class="slide"><span class="phase-badge">Phase 3 · WALLET FUNDING</span><h1>Load Wallet — <em>KES to USDT</em></h1><p class="desc">Jane loads KSh 29,580 worth of USDT from her KCB savings account. Three screens: enter, confirm with rate lock, success.</p><div class="content"><div class="img-panel"><div class="img-row"><div class="img-stack"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 1.png" alt="Step 1"><span class="cap">Enter Amount</span></div><span class="arrow">→</span><div class="img-stack"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 2.png" alt="Step 2"><span class="cap">Confirm</span></div><span class="arrow">→</span><div class="img-stack"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 3.png" alt="Step 3"><span class="cap">Success</span></div></div></div><div class="text-panel"><h3>Dual-Currency Preview</h3><p>Enter 200 USDT. KES cost: <strong>KSh 29,580.00</strong> at 147.90/USDT (2% spread). Fee: KSh 580 conversion + ~KSh 1.45 network. Rate locked for 30 seconds.</p><p style="margin-top:8px;"><strong>Behind the Scenes:</strong> Authenticator push → Jane approves → device key signs → backend calls <code style="color:var(--accent);">bridgeMint()</code> → 200 USDT minted → balance updates. All in-app. No SMS.</p></div></div></div>`,
+  // 5 - Phase 3
+  `<div class="slide slide-grid"><span class="phase-badge" style="align-self:center;">Phase 3 · WALLET FUNDING</span><h1>Load Wallet — <em>KES to USDT</em></h1><div class="grid"><div class="g-item"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 1.png" alt="Step 1"><span class="cap">Enter Amount</span></div><span class="arrow">→</span><div class="g-item"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 2.png" alt="Step 2"><span class="cap">Confirm Rate Lock</span></div><span class="arrow">→</span><div class="g-item"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 3.png" alt="Step 3"><span class="cap">Success</span></div></div><p style="text-align:center;font-size:0.78rem;color:var(--text-secondary);">200 USDT loaded. KES cost: KSh 29,580 at 147.90/USDT (2% spread). Authenticator confirms. <code style="color:var(--accent);">bridgeMint()</code> on Polygon.</p></div>`,
 
-  // 6 — Phase 4: Send P2P
-  `<div class="slide"><span class="phase-badge">Phase 4 · P2P TRANSFER</span><h1>Send USDT — <em>Peer to Peer</em></h1><p class="desc">Jane sends 50 USDT to Sarah. Dual-currency preview. Authenticator confirms. Sarah receives instantly.</p><div class="content"><div class="img-panel"><div class="img-row"><div class="img-stack"><img src="assets/CJ — P2P Send Enter Recipient.svg" alt="Recipient"><span class="cap">Enter Recipient</span></div><span class="arrow">→</span><div class="img-stack"><img src="assets/Authenticator — P2P Transfer Confirmation.svg" alt="Auth"><span class="cap">Authenticator</span></div><span class="arrow">→</span><div class="img-stack"><img src="assets/P2P Transfer — Jane Sends to Sarah Confirmation.png" alt="Sent"><span class="cap">Sent</span></div></div></div><div class="text-panel"><h3>Jane (Sender)</h3><p>Enters address → 50 USDT → sees ≈ KSh 7,250. Fee: 0.50 USDT (KSh 72.50). Total: 50.50 USDT (KSh 7,322.50). Authenticator push → approves → confirmed in ~2s. In-app receipt.</p><h3 style="margin-top:12px;">Sarah (Recipient)</h3><p>Receives in-app notification: "+50.00 USDT from Jane K." ≈ +KSh 7,250.00. No SMS. Tapping opens her Bato wallet. Historical rate preserved in transaction record.</p></div></div></div>`,
+  // 6 - Phase 4
+  `<div class="slide slide-grid"><span class="phase-badge" style="align-self:center;">Phase 4 · P2P TRANSFER</span><h1>Send USDT — <em>Peer to Peer</em></h1><div class="grid"><div class="g-item"><img src="assets/CJ — P2P Send Enter Recipient.svg" alt="Send"><span class="cap">Enter Recipient</span></div><span class="arrow">→</span><div class="g-item"><img src="assets/Authenticator — P2P Transfer Confirmation.svg" alt="Auth"><span class="cap">Authenticator</span></div><span class="arrow">→</span><div class="g-item"><img src="assets/P2P Transfer — Jane Sends to Sarah Confirmation.png" alt="Sent"><span class="cap">Confirmation</span></div></div><p style="text-align:center;font-size:0.78rem;color:var(--text-secondary);">50 USDT → ≈ KSh 7,250. Fee: 0.50 USDT. Authenticator approves. ~2s settlement. Sarah gets in-app notification — no SMS.</p></div>`,
 
-  // 7 — Phase 5: Scan to Pay
-  `<div class="slide"><span class="phase-badge">Phase 5 · IN-STORE POS PAYMENT</span><h1>Scan to Pay — <em>Merchant POS</em></h1><p class="desc">Jane at Naivas Supermarket. Cashier rings KSh 650. QR + shared code appears. Jane scans, verifies codes match, authenticates. Payment settles in &lt;3 seconds.</p><div class="content"><div class="img-panel"><div class="img-row"><div class="img-stack"><img src="assets/CJ — POS Scan QR Camera View.svg" alt="Scan"><span class="cap">Scan QR</span></div><span class="arrow">→</span><div class="img-stack"><img src="assets/CJ — Authenticator Shared Code Entry.svg" alt="Code"><span class="cap">Verify Code</span></div><span class="arrow">→</span><div class="img-stack"><img src="assets/CJ — POS Payment Success Receipt.svg" alt="Success"><span class="cap">Success</span></div></div></div><div class="text-panel"><h3>Shared Code — Mode B</h3><p>The POS displays a 6-character code <strong style="color:var(--accent);">A7K3M9</strong>. Jane verifies the code on BOTH screens — POS and Authenticator — enters it, and approves. 60s TTL, 3 attempts max. This prevents MITM attacks.</p><div class="steps"><div class="s"><div class="n">1</div><div class="t">POS displays KSh 650 QR + shared code A7K3M9</div></div><div class="s"><div class="n">2</div><div class="t">Jane scans → sees Naivas, KSh 650, ≈ 4.48 USDT</div></div><div class="s"><div class="n">3</div><div class="t">Authenticator push: "Pay KSh 650 to Naivas? Code: A7K3M9"</div></div><div class="s"><div class="n">4</div><div class="t">Jane verifies codes match → enters code → approves</div></div><div class="s"><div class="n">5</div><div class="t">POS confirms: "Payment Received ✓" — 2-second settlement</div></div></div></div></div></div>`,
+  // 7 - Phase 5
+  `<div class="slide slide-grid"><span class="phase-badge" style="align-self:center;">Phase 5 · IN-STORE POS PAYMENT</span><h1>Scan to Pay — <em>Merchant POS</em></h1><div class="grid"><div class="g-item"><img src="assets/CJ — POS Scan QR Camera View.svg" alt="Scan"><span class="cap">Scan QR</span></div><span class="arrow">→</span><div class="g-item"><img src="assets/CJ — Authenticator Shared Code Entry.svg" alt="Code"><span class="cap">Verify Code</span></div><span class="arrow">→</span><div class="g-item"><img src="assets/CJ — POS Payment Success Receipt.svg" alt="Success"><span class="cap">Payment Success</span></div></div><p style="text-align:center;font-size:0.78rem;color:var(--text-secondary);">Naivas KSh 650 ≈ 4.48 USDT. Shared code <strong style="color:var(--accent);">A7K3M9</strong> on both screens. Jane verifies match, enters code, approves. &lt;3s settlement.</p></div>`,
 
-  // 8 — Phase 6: Withdraw
-  `<div class="slide"><span class="phase-badge">Phase 6 · CASH-OUT TO BANK</span><h1>Withdraw — <em>USDT to KES</em></h1><p class="desc">Jane wants KSh 72,500 back in her savings. She cashes out 500 USDT, authenticates, and funds arrive in her KCB account.</p><div class="content"><div class="img-panel"><div class="img-stack"><img src="assets/Authenticator — Withdrawal Cash Out Screen.svg" alt="Cash Out"><span class="cap">Withdrawal Screen</span></div></div><div class="text-panel"><h3>Cash Out Flow</h3><p>Jane enters 500 USDT → KSh 72,500 receivable at 145 KES/USDT (less 2% spread). Destination: KCB Savings (...4521). Authenticator confirms. Backend calls <code style="color:var(--accent);">bridgeBurn()</code> — USDT burned, KES credited. In-app receipt. No SMS trail.</p><div class="steps"><div class="s"><div class="n">1</div><div class="t">Tap "Cash Out" on wallet balance</div></div><div class="s"><div class="n">2</div><div class="t">Enter 500 USDT → see KSh 72,500 receivable</div></div><div class="s"><div class="n">3</div><div class="t">Authenticator confirms: "Cash Out 500 USDT to Savings?"</div></div><div class="s"><div class="n">4</div><div class="t">bridgeBurn() → KCB core banking credits account</div></div></div></div></div></div>`,
+  // 8 - Phase 6
+  `<div class="slide slide-split"><div class="img-panel"><img src="assets/Authenticator — Withdrawal Cash Out Screen.svg" alt="Cash Out"></div><div class="text-panel"><span class="phase-badge">Phase 6 · CASH-OUT TO BANK</span><h1>Withdraw — <em>USDT to KES</em></h1><p>Jane cashes out 500 USDT to her KCB savings. KSh 72,500 receivable at 145 KES/USDT (less 2% spread). Authenticator confirms. <code style="color:var(--accent);">bridgeBurn()</code> executed — USDT burned, KES credited.</p><div class="steps"><div class="s"><div class="n">1</div><div class="t">Tap "Cash Out" on wallet balance</div></div><div class="s"><div class="n">2</div><div class="t">Enter 500 USDT → KSh 72,500 receivable</div></div><div class="s"><div class="n">3</div><div class="t">Authenticator: "Cash Out to Savings?" → Approve</div></div><div class="s"><div class="n">4</div><div class="t">bridgeBurn() → KCB core banking credits account</div></div></div></div></div>`,
 
-  // 9 — Phase 7: PayBand + Summary
-  `<div class="slide summary-slide"><span class="phase-badge">Phase 7 · WEARABLE NFC INTERACTION</span><h1>The <em>PayBand</em> — NFC Bracelet</h1><p class="desc">Jane loads 50 USDT onto her PayBand. Taps it at POS. Authenticator confirms every transaction. Factory-provisioned device key — same security model as the phone.</p><div class="img-row" style="display:flex;gap:16px;justify-content:center;margin:12px 0;"><img src="assets/CJ — Load Bracelet Screen.svg" alt="Load" style="max-height:28vh;border-radius:var(--radius);"><img src="assets/CJ — Bracelet Tap at POS.svg" alt="Tap" style="max-height:28vh;border-radius:var(--radius);"></div><div class="stat-row"><div class="stat gold"><div class="val">8 screens</div><div class="lbl">Total Touchpoints</div></div><div class="stat"><div class="val">5 confirms</div><div class="lbl">Authenticator Interactions</div></div><div class="stat emerald"><div class="val">&lt; 90 sec</div><div class="lbl">Time to First Value</div></div><div class="stat"><div class="val">0 SMS</div><div class="lbl">Zero External Trail</div></div></div></div>`,
+  // 9 - Phase 7 + Summary
+  `<div class="slide slide-summary"><span class="phase-badge">Phase 7 · WEARABLE NFC INTERACTION</span><h1>The <em>PayBand</em> — NFC Bracelet</h1><div class="img-row"><img src="assets/CJ — Load Bracelet Screen.svg" alt="Load"><img src="assets/CJ — Bracelet Tap at POS.svg" alt="Tap"></div><div class="stat-row"><div class="stat"><div class="val">8 screens</div><div class="lbl">Touchpoints</div></div><div class="stat"><div class="val">5 confirms</div><div class="lbl">Authenticator</div></div><div class="stat emerald"><div class="val">&lt; 90 sec</div><div class="lbl">First Value</div></div><div class="stat"><div class="val">0 SMS</div><div class="lbl">Zero Trail</div></div></div></div>`,
 ];
 
 let currentSlide = 0;
 
 function renderDeck() {
   const deck = document.getElementById('deck'); deck.innerHTML = '';
-  SLIDES.forEach((html, i) => {
-    const temp = document.createElement('div'); temp.innerHTML = html;
-    const slideEl = temp.firstElementChild;
-    slideEl.className = slideEl.className.replace(' active', '');
-    if (i === currentSlide) slideEl.classList.add('active');
-    deck.appendChild(slideEl);
-  });
+  SLIDES.forEach((html, i) => { const temp = document.createElement('div'); temp.innerHTML = html; const el = temp.firstElementChild; el.classList.toggle('active', i === currentSlide); deck.appendChild(el); });
   renderNavDots(); updateBadge(); updateArrows();
 }
 function renderNavDots() {
   const c = document.getElementById('navDots'); c.innerHTML = '';
-  SLIDES.forEach((_, i) => { const d = document.createElement('button'); d.className = 'dot'; if (i === currentSlide) d.classList.add('active'); d.onclick = () => goToSlide(i); c.appendChild(d); });
+  SLIDES.forEach((_, i) => { const d = document.createElement('button'); d.className = 'dot'; d.classList.toggle('active', i === currentSlide); d.onclick = () => goToSlide(i); c.appendChild(d); });
 }
-function updateBadge() { document.getElementById('sceneBadge').innerHTML = `SLIDE ${currentSlide + 1} / ${SLIDES.length}`; }
+function updateBadge() { document.getElementById('sceneBadge').textContent = `SLIDE ${currentSlide + 1} / ${SLIDES.length}`; }
 function updateArrows() {
   document.querySelector('.nav-arrow.left').style.opacity = currentSlide === 0 ? '0.2' : '1';
   document.querySelector('.nav-arrow.right').style.opacity = currentSlide === SLIDES.length - 1 ? '0.2' : '1';
 }
 function goToSlide(index) {
   if (index < 0 || index >= SLIDES.length) return;
-  const old = document.querySelector('.slide.active'), neu = document.querySelectorAll('.slide')[index];
-  if (old) old.classList.remove('active');
-  if (neu) neu.classList.add('active');
+  document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === index));
   currentSlide = index; updateBadge(); renderNavDots(); updateArrows();
 }
-document.getElementById('deck').addEventListener('click', e => { if (currentSlide < SLIDES.length - 1) goToSlide(currentSlide + 1); });
+document.getElementById('deck').addEventListener('click', () => { if (currentSlide < SLIDES.length - 1) goToSlide(currentSlide + 1); });
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); if (currentSlide < SLIDES.length - 1) goToSlide(currentSlide + 1); }
   else if (e.key === 'ArrowLeft') { e.preventDefault(); if (currentSlide > 0) goToSlide(currentSlide - 1); }
