@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560">
+  <defs>
+    <style>
+      .t { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 10px; fill: #94a3b8; }
+      .th { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 11px; fill: #ffffff; font-weight: 700; text-anchor: middle; }
+      .tc { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 9px; fill: #cbd5e1; text-anchor: middle; }
+      .tl { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; fill: #ffffff; font-weight: 800; text-anchor: middle; }
+      .tm { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; font-size: 11px; fill: #cbd5e1; text-anchor: middle; font-weight: 700; }
+    </style>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e2837"/><stop offset="100%" style="stop-color:#0a0f1e"/></linearGradient>
+  </defs>
+  <rect width="800" height="560" fill="url(#bg)" rx="16"/>
+
+  <text x="400" y="32" class="tl" font-size="15" fill="#f59e0b">Shared Code Verification — Mode B (Enhanced POS Security)</text>
+
+  <!-- Merchant Side -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#0d1117" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="210" y="82" class="tl" fill="#2563eb" font-size="14">🏪 Merchant POS Terminal</text>
+  <line x1="50" y1="94" x2="370" y2="94" stroke="#2d3a4f" stroke-width="1"/>
+
+  <!-- POS Screen Mockup -->
+  <rect x="60" y="110" width="300" height="200" rx="8" fill="#1a2744" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="210" y="136" class="th">Naivas Supermarket — Moi Avenue</text>
+  <text x="210" y="156" class="t">Invoice: INV-20260127-1432</text>
+
+  <rect x="100" y="170" width="220" height="50" rx="6" fill="#0d1117" stroke="#059669" stroke-width="1.5"/>
+  <text x="210" y="188" class="t">Amount: KSh 650.00</text>
+  <text x="210" y="204" class="tc">≈ 4.48 USDT</text>
+
+  <rect x="130" y="232" width="160" height="36" rx="8" fill="url(#bg)" stroke="#f59e0b" stroke-width="2"/>
+  <text x="210" y="255" class="tm" font-size="20" fill="#f59e0b">A7K3M9</text>
+
+  <text x="210" y="290" class="tc">Shared Verification Code</text>
+  <text x="210" y="306" class="t">Expires in 60 seconds</text>
+
+  <!-- Text below POS -->
+  <text x="210" y="350" class="tc">1. Cashier rings up KSh 650</text>
+  <text x="210" y="370" class="tc">2. Backend generates shared code</text>
+  <text x="210" y="390" class="tc">3. Code appears on POS screen</text>
+  <text x="210" y="410" class="tc">4. Also pushed to user's Authenticator</text>
+  <text x="210" y="430" class="tc">5. User visually verifies codes match</text>
+  <text x="210" y="450" class="tc">6. User enters code in Authenticator</text>
+  <text x="210" y="474" class="tc">7. Backend validates + executes TX</text>
+  <text x="210" y="498" class="t">Code: 6-char alpha-numeric | 3 attempts | TTL 60s</text>
+
+  <!-- User Side -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#0d1117" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="590" y="82" class="tl" fill="#f59e0b" font-size="14">📱 User Authenticator App</text>
+  <line x1="430" y1="94" x2="750" y2="94" stroke="#2d3a4f" stroke-width="1"/>
+
+  <!-- Authenticator Screen Mockup -->
+  <rect x="440" y="110" width="300" height="200" rx="8" fill="#1a2744" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="590" y="136" class="th">Confirm Payment</text>
+  <text x="590" y="156" class="t">Naivas Supermarket — Moi Avenue</text>
+
+  <rect x="480" y="170" width="220" height="50" rx="6" fill="#0d1117" stroke="#059669" stroke-width="1.5"/>
+  <text x="590" y="188" class="t">KSh 650.00 (≈ 4.48 USDT)</text>
+  <text x="590" y="204" class="tc">Rate: 1 USDT = KSh 145.00</text>
+
+  <rect x="510" y="232" width="160" height="36" rx="8" fill="url(#bg)" stroke="#f59e0b" stroke-width="2"/>
+  <text x="590" y="248" class="tc">Enter code from POS:</text>
+  <text x="590" y="263" class="tm" font-size="14" fill="#f59e0b">[ _ _ _ _ _ _ ]</text>
+
+  <text x="590" y="290" class="tc">Code must match POS screen</text>
+  <text x="590" y="306" class="t">3 attempts remaining | 60s TTL</text>
+
+  <!-- Text below Authenticator -->
+  <text x="590" y="350" class="tc">1. Authenticator receives push</text>
+  <text x="590" y="370" class="tc">2. Opens confirmation screen</text>
+  <text x="590" y="390" class="tc">3. Shows shared code on POS →</text>
+  <text x="590" y="410" class="tc">4. Verifies against POS display</text>
+  <text x="590" y="430" class="tc">5. User enters matching code</text>
+  <text x="590" y="450" class="tc">6. App signs challenge with device key</text>
+  <text x="590" y="474" class="tc">7. Backend validates code + signature</text>
+  <text x="590" y="498" class="tc">8. Blockchain TX executed</text>
+
+  <!-- Bottom legends -->
+  <rect x="30" y="445" width="360" height="28" rx="4" fill="rgba(37,99,235,0.1)"/>
+  <text x="210" y="463" class="tc">Mode B — activated when risk score exceeds threshold OR merchant requests enhanced verification</text>
+
+  <rect x="410" y="445" width="360" height="28" rx="4" fill="rgba(245,158,11,0.1)"/>
+  <text x="590" y="463" class="tc">Shared code prevents MITM attacks — both parties verify the same code on screen</text>
+</svg>

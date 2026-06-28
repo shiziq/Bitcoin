@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560">
+  <defs>
+    <style>
+      .t { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 10px; fill: #94a3b8; }
+      .th { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 11px; fill: #ffffff; font-weight: 700; text-anchor: middle; }
+      .tc { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 9px; fill: #cbd5e1; text-anchor: middle; }
+      .tm { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; font-size: 10px; fill: #ff7b72; }
+      .tl { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; fill: #ffffff; font-weight: 800; text-anchor: middle; }
+    </style>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e2837"/><stop offset="100%" style="stop-color:#0a0f1e"/></linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f59e0b"/><stop offset="100%" style="stop-color:#d97706"/></linearGradient>
+  </defs>
+  <rect width="800" height="560" fill="url(#bg)" rx="16"/>
+
+  <!-- Title -->
+  <text x="400" y="32" class="tl" font-size="16">Authenticator App — Message-Based Confirmation Architecture</text>
+
+  <!-- Step 1 -->
+  <rect x="30" y="52" width="230" height="130" rx="10" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="145" y="78" class="th">Step 1 — Transaction Initiated</text>
+  <text x="145" y="100" class="tc">User scans QR or taps Send</text>
+  <text x="145" y="120" class="tc">Dual-currency preview appears</text>
+  <text x="145" y="140" class="tc">on bank app screen</text>
+  <text x="145" y="168" class="tm">POST /transfer/execute</text>
+
+  <!-- Arrow 1→2 -->
+  <text x="278" y="125" class="tl" fill="#f59e0b" font-size="22">→</text>
+
+  <!-- Step 2 -->
+  <rect x="300" y="52" width="230" height="130" rx="10" fill="#0d1117" stroke="#059669" stroke-width="1.5"/>
+  <text x="415" y="78" class="th">Step 2 — Authenticator Push</text>
+  <text x="415" y="100" class="tc">Bank backend sends confirmation</text>
+  <text x="415" y="120" class="tc">request to Authenticator App</text>
+  <text x="415" y="140" class="tc">via FCM/APNs push notification</text>
+  <text x="415" y="168" class="tm">FCM data: {txId,amount,merchant}</text>
+
+  <!-- Arrow 2→3 -->
+  <text x="548" y="125" class="tl" fill="#f59e0b" font-size="22">→</text>
+
+  <!-- Step 3 -->
+  <rect x="570" y="52" width="200" height="130" rx="10" fill="#0d1117" stroke="#2563eb" stroke-width="1"/>
+  <text x="670" y="78" class="th">Step 3 — User Confirms</text>
+  <text x="670" y="100" class="tc">Authenticator displays:</text>
+  <text x="670" y="120" class="tc">Amount, Recipient, Rate</text>
+  <text x="670" y="140" class="tc">User taps Approve/Reject</text>
+
+  <!-- Lower section: Verification modes -->
+  <rect x="30" y="210" width="350" height="180" rx="10" fill="#0d1117" stroke="#f59e0b" stroke-width="1"/>
+  <text x="205" y="238" class="tl" fill="#f59e0b" font-size="13">Verification Mode A — Tap to Approve</text>
+  <text x="205" y="262" class="tc">Authenticator shows dual-currency preview</text>
+  <text x="205" y="282" class="tc">User sees amount + counterparty + rate</text>
+  <text x="205" y="302" class="tc">User taps "Approve" or "Reject"</text>
+  <text x="205" y="322" class="tc">Authenticator signs challenge with device key</text>
+  <text x="205" y="342" class="tc">Confirmation sent back to bank backend</text>
+  <text x="205" y="370" class="tm">Challenge: sign(nonce + txId + amount)</text>
+
+  <rect x="410" y="210" width="360" height="180" rx="10" fill="#0d1117" stroke="#059669" stroke-width="1"/>
+  <text x="590" y="238" class="tl" fill="#059669" font-size="13">Verification Mode B — Shared Code</text>
+  <text x="590" y="262" class="tc">Backend generates 6-character alpha-numeric</text>
+  <text x="590" y="282" class="tc">code, displayed on BOTH:</text>
+  <text x="590" y="302" class="tc">• Merchant POS terminal screen</text>
+  <text x="590" y="322" class="tc">• User's Authenticator App</text>
+  <text x="590" y="342" class="tc">User visually verifies codes match</text>
+  <text x="590" y="362" class="tc">User enters code in Authenticator to confirm</text>
+  <text x="590" y="390" class="tm">Code: A7K3M9 | TTL: 60s | 3 attempts</text>
+
+  <!-- Processing row -->
+  <rect x="30" y="420" width="740" height="45" rx="8" fill="#1a2744" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="400" y="435" class="tc">Authenticator App stores all confirmation requests in local encrypted log — NO SMS trail</text>
+  <text x="400" y="452" class="tc">Device key signature verified by bank backend → blockchain TX submitted → in-app receipt generated</text>
+
+  <!-- Labels -->
+  <rect x="30" y="480" width="200" height="50" rx="6" fill="rgba(245,158,11,0.1)" stroke="#f59e0b" stroke-width="1"/>
+  <text x="130" y="502" class="tc">No SMS • No Email • No OTP</text>
+  <text x="130" y="518" class="tc">All confirmations inside the app</text>
+
+  <rect x="260" y="480" width="200" height="50" rx="6" fill="rgba(5,150,105,0.1)" stroke="#059669" stroke-width="1"/>
+  <text x="360" y="502" class="tc">Device Key Signature</text>
+  <text x="360" y="518" class="tc">Secure Enclave / TEE</text>
+
+  <rect x="490" y="480" width="200" height="50" rx="6" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="1"/>
+  <text x="590" y="502" class="tc">Shared Code Matching</text>
+  <text x="590" y="518" class="tc">User + Merchant screens</text>
+</svg>

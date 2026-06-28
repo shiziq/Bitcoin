@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" width="800" height="540">
+  <defs>
+    <style>
+      .ui { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .mono { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; }
+      .th { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 11px; fill: #ffffff; font-weight: 700; text-anchor: middle; }
+      .tl { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; fill: #ffffff; font-weight: 800; text-anchor: middle; }
+      .t { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 9px; fill: #94a3b8; }
+      .tc { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 10px; fill: #cbd5e1; text-anchor: middle; }
+      .ts { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 8px; fill: #94a3b8; text-anchor: middle; }
+      .tm { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; font-size: 20px; fill: #4facfe; text-anchor: middle; font-weight: 700; }
+      .tmg { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; font-size: 32px; fill: #059669; font-weight: 900; }
+    </style>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e2837"/><stop offset="100%" style="stop-color:#0a0f1e"/></linearGradient>
+    <linearGradient id="posHeader" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#667eea"/><stop offset="100%" style="stop-color:#764ba2"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="shadow"><feDropShadow dx="2" dy="4" stdDeviation="8" flood-opacity="0.25"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#4facfe"/></marker>
+  </defs>
+
+  <rect width="800" height="540" fill="url(#bg)" rx="16"/>
+
+  <!-- Title -->
+  <text x="400" y="32" class="tl" font-size="16" fill="#f59e0b">⌚ PayBand Bracelet — Tap at POS</text>
+
+  <!-- ===== LEFT: NFC FIELD + BRACELET ===== -->
+  <rect x="28" y="60" width="320" height="440" rx="14" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+
+  <!-- NFC Field -->
+  <rect x="48" y="80" width="280" height="240" rx="12" fill="none" stroke="#4facfe" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="188" y="108" class="th" font-size="12" fill="#4facfe">NFC READER FIELD</text>
+
+  <!-- NFC waves -->
+  <path d="M 108 150 Q 148 120 188 150 Q 228 120 268 150" fill="none" stroke="#4facfe" stroke-width="1" opacity="0.3"/>
+  <path d="M 98 170 Q 148 132 188 170 Q 228 132 278 170" fill="none" stroke="#4facfe" stroke-width="1" opacity="0.2"/>
+  <path d="M 88 190 Q 148 144 188 190 Q 228 144 288 190" fill="none" stroke="#4facfe" stroke-width="1" opacity="0.1"/>
+
+  <!-- Bracelet illustration -->
+  <rect x="108" y="260" width="160" height="40" rx="20" fill="url(#posHeader)" filter="url(#shadow)"/>
+  <rect x="118" y="268" width="140" height="24" rx="12" fill="#0d1117" opacity="0.3"/>
+
+  <!-- Bracelet display screen -->
+  <rect x="148" y="255" width="80" height="50" rx="8" fill="#0d1117" stroke="#4facfe" stroke-width="1.5"/>
+  <text x="188" y="278" class="ui" font-size="16" fill="#059669" text-anchor="middle">⌚</text>
+  <text x="188" y="294" class="ui" font-size="7" fill="#4facfe" text-anchor="middle" font-weight="700">#A3K9</text>
+
+  <!-- Tap label -->
+  <rect x="138" y="330" width="100" height="24" rx="12" fill="rgba(5,150,105,0.15)" stroke="#059669" stroke-width="1"/>
+  <text x="188" y="347" class="tc" font-size="10" fill="#059669" font-weight="700">📱 TAP HERE</text>
+
+  <!-- Hand label -->
+  <text x="188" y="380" class="t" text-anchor="middle">Customer brings bracelet</text>
+  <text x="188" y="396" class="t" text-anchor="middle">to NFC reader on POS terminal</text>
+
+  <!-- Bracelet detail -->
+  <rect x="68" y="420" width="240" height="65" rx="10" fill="#1a2744" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="188" y="442" class="tc" font-weight="700" fill="#f59e0b">Bracelet Sends via NFC</text>
+  <text x="188" y="460" class="ts">NDEF: {bandId, nonce}</text>
+  <text x="188" y="475" class="ts">Signed with factory device key</text>
+
+  <!-- Arrow from bracelet to POS -->
+  <line x1="345" y1="280" x2="388" y2="280" stroke="#4facfe" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="368" y="270" class="ts" fill="#4facfe" font-size="8">NFC</text>
+
+  <!-- ===== RIGHT: POS TERMINAL ===== -->
+  <rect x="410" y="60" width="362" height="440" rx="14" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+
+  <!-- POS Header -->
+  <rect x="424" y="72" width="334" height="40" rx="10" fill="url(#posHeader)"/>
+  <text x="591" y="97" class="th" font-size="13">🛒 POS TERMINAL</text>
+
+  <!-- POS screen -->
+  <rect x="436" y="124" width="310" height="220" rx="8" fill="#1a2744" stroke="#2d3a4f" stroke-width="1"/>
+
+  <text x="456" y="148" class="t" text-anchor="start">Merchant</text>
+  <text x="456" y="168" class="th" font-size="13" text-anchor="start">🏪 Naivas Supermarket</text>
+  <text x="456" y="186" class="t" text-anchor="start">Moi Avenue · POS #03</text>
+
+  <line x1="456" y1="196" x2="730" y2="196" stroke="#2d3a4f" stroke-width="0.5"/>
+
+  <text x="456" y="216" class="t" text-anchor="start">Total Amount</text>
+  <text x="456" y="248" class="ui" font-size="30" fill="#059669" font-weight="900">KSh 650.00</text>
+  <text x="720" y="248" class="ui" font-size="14" fill="#4facfe" font-weight="700" text-anchor="end">4.48 USDT</text>
+
+  <text x="456" y="278" class="t" text-anchor="start">Rate: 1 USDT = KSh 145.00</text>
+
+  <!-- Shared code -->
+  <rect x="500" y="296" width="170" height="40" rx="8" fill="#0d1117" stroke="#f59e0b" stroke-width="2" filter="url(#glow)"/>
+  <text x="585" y="322" class="tm" fill="#f59e0b">A7K3M9</text>
+
+  <text x="585" y="354" class="tc" font-size="9" font-weight="700" fill="#f59e0b">⏱ 52s remaining</text>
+
+  <!-- POS status -->
+  <rect x="436" y="380" width="310" height="30" rx="6" fill="#1a2744" stroke="#2d3a4f" stroke-width="0.5"/>
+  <text x="591" y="400" class="t" text-anchor="middle" fill="#059669">● Awaiting bracelet tap...</text>
+
+  <!-- POS footer notes -->
+  <rect x="436" y="430" width="310" height="56" rx="8" fill="#1a2744" stroke="#2d3a4f" stroke-width="0.5"/>
+  <text x="591" y="452" class="tc" font-size="9" font-weight="700">How It Works</text>
+  <text x="591" y="468" class="ts">1. Customer taps bracelet on NFC reader</text>
+  <text x="591" y="480" class="ts">2. Shared code appears on both screens</text>
+</svg>

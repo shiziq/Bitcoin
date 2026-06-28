@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <style>
+      .ui { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .mono { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; }
+    </style>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e2837"/><stop offset="100%" style="stop-color:#0a0f1e"/></linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f59e0b"/><stop offset="100%" style="stop-color:#d97706"/></linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg)" rx="16"/>
+  <rect x="280" y="40" width="240" height="440" rx="24" fill="#2d3a4f" stroke="#4a5568" stroke-width="2"/>
+  <rect x="292" y="56" width="216" height="408" rx="8" fill="#0d1117"/>
+  <rect x="300" y="68" width="200" height="28" rx="6" fill="#1e2837"/>
+  <text x="400" y="87" class="ui" font-size="11" fill="#94a3b8" text-anchor="middle" font-weight="600">Cash Out USDT</text>
+  <text x="400" y="118" class="ui" font-size="10" fill="#64748b" text-anchor="middle">Wallet Balance: 800.00 USDT (≈ KSh 116,000)</text>
+  <rect x="308" y="132" width="184" height="48" rx="8" fill="#1a2744" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="360" y="162" class="mono" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="800">500.00</text>
+  <text x="440" y="162" class="ui" font-size="11" fill="#64748b" text-anchor="middle">USDT</text>
+  <rect x="308" y="192" width="184" height="80" rx="8" fill="#1a2744"/>
+  <text x="400" y="212" class="ui" font-size="10" fill="#94a3b8" text-anchor="middle">You will receive in your bank account</text>
+  <text x="400" y="232" class="ui" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="700">KSh 72,500.00</text>
+  <text x="400" y="252" class="ui" font-size="10" fill="#059669" text-anchor="middle">≈ 500.00 USDT</text>
+  <text x="400" y="266" class="ui" font-size="8" fill="#64748b" text-anchor="middle">Rate: 1 USDT = KSh 145.00 | Conversion fee: 2%</text>
+  <text x="400" y="294" class="ui" font-size="10" fill="#94a3b8" text-anchor="middle">TO BANK ACCOUNT</text>
+  <text x="400" y="312" class="ui" font-size="11" fill="#cbd5e1" text-anchor="middle" font-weight="600">Savings Account (...4521)</text>
+  <rect x="320" y="328" width="160" height="36" rx="18" fill="#059669" opacity="0.15"/>
+  <text x="400" y="351" class="ui" font-size="10" fill="#059669" text-anchor="middle" font-weight="700">AUTHENTICATOR CONFIRMATION</text>
+  <rect x="320" y="378" width="160" height="40" rx="10" fill="url(#gold)"/>
+  <text x="400" y="403" class="ui" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="800">Cash Out to Bank</text>
+  <text x="400" y="440" class="ui" font-size="10" fill="#64748b" text-anchor="middle">Cancel</text>
+  <rect x="50" y="160" width="170" height="180" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1"/>
+  <text x="135" y="200" class="ui" font-size="30" fill="#2563eb" text-anchor="middle">🏦</text>
+  <text x="135" y="232" class="ui" font-size="13" fill="#1e3a5f" text-anchor="middle" font-weight="700">Withdrawal</text>
+  <text x="135" y="254" class="ui" font-size="11" fill="#1e3a5f" text-anchor="middle" font-weight="600">USDT → KES</text>
+  <text x="135" y="276" class="ui" font-size="10" fill="#64748b" text-anchor="middle">Back to bank account</text>
+  <text x="135" y="296" class="ui" font-size="10" fill="#64748b" text-anchor="middle">Same rate engine</text>
+  <text x="135" y="316" class="ui" font-size="10" fill="#64748b" text-anchor="middle">In-app authenticator</text>
+  <rect x="600" y="170" width="140" height="120" rx="8" fill="rgba(5,150,105,0.08)" stroke="#059669" stroke-width="1"/>
+  <text x="670" y="200" class="ui" font-size="11" fill="#059669" text-anchor="middle" font-weight="700">Sale Rate</text>
+  <text x="670" y="222" class="mono" font-size="14" fill="#cbd5e1" text-anchor="middle" font-weight="900">KSh 145.00</text>
+  <text x="670" y="242" class="ui" font-size="10" fill="#64748b" text-anchor="middle">Per USDT</text>
+  <text x="670" y="266" class="ui" font-size="10" fill="#64748b" text-anchor="middle">-2% bank spread</text>
+</svg>

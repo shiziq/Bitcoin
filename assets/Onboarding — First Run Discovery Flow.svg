@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <style>
+      .ui { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .mono { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; }
+    </style>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e2837"/><stop offset="100%" style="stop-color:#0a0f1e"/></linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f59e0b"/><stop offset="100%" style="stop-color:#d97706"/></linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg)" rx="16"/>
+  <rect x="40" y="40" width="220" height="440" rx="20" fill="#2d3a4f" stroke="#4a5568" stroke-width="2"/>
+  <rect x="52" y="56" width="196" height="408" rx="8" fill="#0d1117"/>
+  <rect x="60" y="68" width="180" height="28" rx="6" fill="#1e2837"/>
+  <text x="150" y="87" class="ui" font-size="10" fill="#94a3b8" text-anchor="middle" font-weight="600">Bank App</text>
+  <rect x="68" y="108" width="164" height="60" rx="8" fill="#1a2744" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="150" y="130" class="ui" font-size="11" fill="#f59e0b" text-anchor="middle" font-weight="700">✦ Digital Wallet</text>
+  <text x="150" y="150" class="ui" font-size="9" fill="#94a3b8" text-anchor="middle">Send, receive &amp; pay with USDT</text>
+  <rect x="68" y="178" width="164" height="50" rx="6" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="150" y="200" class="ui" font-size="10" fill="#94a3b8" text-anchor="middle">Accounts</text>
+  <text x="150" y="218" class="ui" font-size="9" fill="#64748b" text-anchor="middle">Savings · Current · Loans</text>
+  <rect x="68" y="238" width="164" height="50" rx="6" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="150" y="260" class="ui" font-size="10" fill="#94a3b8" text-anchor="middle">Transfers</text>
+  <text x="150" y="278" class="ui" font-size="9" fill="#64748b" text-anchor="middle">Send money · Pay bills</text>
+  <rect x="68" y="300" width="164" height="50" rx="6" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="150" y="322" class="ui" font-size="10" fill="#94a3b8" text-anchor="middle">Cards</text>
+  <text x="150" y="340" class="ui" font-size="9" fill="#64748b" text-anchor="middle">Manage debit &amp; credit cards</text>
+  <text x="285" y="260" class="ui" font-size="28" fill="#f59e0b" text-anchor="middle">→</text>
+
+  <rect x="310" y="40" width="220" height="440" rx="20" fill="#2d3a4f" stroke="#4a5568" stroke-width="2"/>
+  <rect x="322" y="56" width="196" height="408" rx="8" fill="#0d1117"/>
+  <rect x="330" y="68" width="180" height="28" rx="6" fill="#1e2837"/>
+  <text x="420" y="87" class="ui" font-size="10" fill="#94a3b8" text-anchor="middle" font-weight="600">Digital Wallet</text>
+  <rect x="338" y="108" width="164" height="80" rx="8" fill="#1a2744" stroke="#f59e0b" stroke-width="1"/>
+  <text x="420" y="130" class="ui" font-size="10" fill="#94a3b8" text-anchor="middle">Welcome to your Digital Wallet</text>
+  <text x="420" y="152" class="ui" font-size="9" fill="#64748b" text-anchor="middle">Create your wallet in 3 steps:</text>
+  <text x="420" y="172" class="ui" font-size="9" fill="#64748b" text-anchor="middle">Phone → Confirm → Authenticate</text>
+  <rect x="350" y="210" width="140" height="34" rx="8" fill="url(#gold)"/>
+  <text x="420" y="233" class="ui" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="700">Get Started</text>
+  <text x="420" y="285" class="ui" font-size="20" fill="#f59e0b" text-anchor="middle">↓</text>
+  <rect x="310" y="300" width="220" height="180" rx="20" fill="#2d3a4f" stroke="#4a5568" stroke-width="2" opacity="0.5"/>
+  <rect x="322" y="316" width="196" height="148" rx="8" fill="#0d1117" opacity="0.5"/>
+  <text x="420" y="390" class="ui" font-size="12" fill="#64748b" text-anchor="middle">Registration flow</text>
+  <text x="420" y="410" class="ui" font-size="10" fill="#64748b" text-anchor="middle">(See Section 5)</text>
+
+  <rect x="560" y="120" width="200" height="260" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1"/>
+  <text x="660" y="160" class="ui" font-size="30" fill="#2563eb" text-anchor="middle">🏦</text>
+  <text x="660" y="195" class="ui" font-size="14" fill="#1e3a5f" text-anchor="middle" font-weight="700">First-Run</text>
+  <text x="660" y="215" class="ui" font-size="14" fill="#1e3a5f" text-anchor="middle" font-weight="700">Onboarding Flow</text>
+  <text x="660" y="250" class="ui" font-size="11" fill="#64748b" text-anchor="middle">1. Open bank app</text>
+  <text x="660" y="270" class="ui" font-size="11" fill="#64748b" text-anchor="middle">2. Tap Digital Wallet card</text>
+  <text x="660" y="290" class="ui" font-size="11" fill="#64748b" text-anchor="middle">3. Tap "Get Started"</text>
+  <text x="660" y="310" class="ui" font-size="11" fill="#64748b" text-anchor="middle">4. Enter phone number</text>
+  <text x="660" y="330" class="ui" font-size="11" fill="#64748b" text-anchor="middle">5. Confirm + Authenticate</text>
+  <text x="660" y="355" class="ui" font-size="10" fill="#059669" text-anchor="middle" font-weight="600">No SMS. One-time only.</text>
+</svg>

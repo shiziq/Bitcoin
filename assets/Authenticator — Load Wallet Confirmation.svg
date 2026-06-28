@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <style>
+      .ui { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .mono { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; }
+    </style>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e2837"/><stop offset="100%" style="stop-color:#0a0f1e"/></linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f59e0b"/><stop offset="100%" style="stop-color:#d97706"/></linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg)" rx="16"/>
+  <rect x="280" y="40" width="240" height="440" rx="24" fill="#2d3a4f" stroke="#4a5568" stroke-width="2"/>
+  <rect x="292" y="56" width="216" height="408" rx="8" fill="#0d1117"/>
+  <rect x="300" y="68" width="200" height="28" rx="6" fill="#1e2837"/>
+  <text x="400" y="87" class="ui" font-size="11" fill="#94a3b8" text-anchor="middle" font-weight="600">Load Wallet</text>
+  <rect x="308" y="108" width="184" height="48" rx="8" fill="#1a2744" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="360" y="138" class="mono" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="800">200.00</text>
+  <text x="440" y="138" class="ui" font-size="11" fill="#64748b" text-anchor="middle">USDT</text>
+  <rect x="308" y="168" width="184" height="80" rx="8" fill="#1a2744"/>
+  <text x="400" y="188" class="ui" font-size="10" fill="#94a3b8" text-anchor="middle">You will receive</text>
+  <text x="400" y="208" class="mono" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="700">200.00 USDT</text>
+  <text x="400" y="228" class="ui" font-size="10" fill="#059669" text-anchor="middle">≈ KSh 29,580.00</text>
+  <text x="400" y="244" class="ui" font-size="8" fill="#64748b" text-anchor="middle">Rate: 1 USDT = KSh 147.90 (2% spread)</text>
+  <text x="400" y="268" class="ui" font-size="9" fill="#64748b" text-anchor="middle">Conversion fee: KSh 580.00 | Network: ≈ KSh 1.45</text>
+  <rect x="320" y="290" width="160" height="36" rx="18" fill="#059669" opacity="0.15"/>
+  <text x="400" y="313" class="ui" font-size="10" fill="#059669" text-anchor="middle" font-weight="700">AUTHENTICATOR CONFIRMATION</text>
+  <rect x="320" y="340" width="160" height="40" rx="10" fill="url(#gold)"/>
+  <text x="400" y="365" class="ui" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="800">Load USDT</text>
+  <text x="400" y="406" class="ui" font-size="10" fill="#64748b" text-anchor="middle">Cancel</text>
+  <rect x="60" y="180" width="160" height="140" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="140" y="220" class="ui" font-size="30" fill="#f59e0b" text-anchor="middle">🔐</text>
+  <text x="140" y="252" class="ui" font-size="12" fill="#1a2744" text-anchor="middle" font-weight="700">Rate Locked</text>
+  <text x="140" y="274" class="ui" font-size="10" fill="#4a5568" text-anchor="middle">30-second lock</text>
+  <text x="140" y="294" class="ui" font-size="10" fill="#4a5568" text-anchor="middle">Authenticate to confirm</text>
+  <rect x="600" y="190" width="140" height="120" rx="8" fill="rgba(229,62,62,0.08)" stroke="#e11d48" stroke-width="1"/>
+  <text x="670" y="230" class="ui" font-size="11" fill="#e11d48" text-anchor="middle" font-weight="700">From Bank</text>
+  <text x="670" y="250" class="ui" font-size="11" fill="#e11d48" text-anchor="middle" font-weight="700">Savings (...4521)</text>
+  <text x="670" y="272" class="ui" font-size="10" fill="#64748b" text-anchor="middle">Available:</text>
+  <text x="670" y="290" class="ui" font-size="12" fill="#cbd5e1" text-anchor="middle" font-weight="700">KSh 150,000</text>
+</svg>

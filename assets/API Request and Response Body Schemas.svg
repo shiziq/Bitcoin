@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <style>
+      .ui { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .mono { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; }
+    </style>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e2837"/><stop offset="100%" style="stop-color:#0a0f1e"/></linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg)" rx="16"/>
+  <text x="400" y="36" class="ui" font-size="16" fill="#f59e0b" text-anchor="middle" font-weight="800">API REQUEST &amp; RESPONSE BODY SCHEMAS</text>
+
+  <rect x="20" y="56" width="370" height="210" rx="10" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="40" y="78" class="mono" font-size="12" fill="#79c0ff" font-weight="700">POST /api/v1/auth/register</text>
+  <line x1="30" y1="86" x2="380" y2="86" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="40" y="106" class="mono" font-size="9" fill="#94a3b8">REQUEST</text>
+  <text x="50" y="130" class="mono" font-size="8" fill="#cbd5e1">{ "phoneNumber": "0712345678",</text>
+  <text x="60" y="146" class="mono" font-size="8" fill="#cbd5e1">"devicePublicKey": "-----BEGIN PUBLIC KEY-----...",</text>
+  <text x="60" y="162" class="mono" font-size="8" fill="#64748b">"deviceFingerprint": { ... },</text>
+  <text x="60" y="178" class="mono" font-size="8" fill="#64748b">"appInstanceId": "uuid"</text>
+  <text x="50" y="194" class="mono" font-size="8" fill="#cbd5e1">}</text>
+  <text x="40" y="218" class="mono" font-size="9" fill="#94a3b8">RESPONSE 201</text>
+  <text x="50" y="238" class="mono" font-size="8" fill="#cbd5e1">{ "userId": "...", "walletAddress": "0x...",</text>
+  <text x="60" y="254" class="mono" font-size="8" fill="#cbd5e1">"phoneNumberNormalized": "+254...",</text>
+  <text x="60" y="270" class="mono" font-size="8" fill="#64748b">"deviceKeyConfirmed": true }</text>
+
+  <rect x="410" y="56" width="370" height="210" rx="10" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="430" y="78" class="mono" font-size="12" fill="#79c0ff" font-weight="700">POST /api/v1/pos/scan</text>
+  <line x1="420" y1="86" x2="770" y2="86" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="430" y="106" class="mono" font-size="9" fill="#94a3b8">REQUEST</text>
+  <text x="440" y="130" class="mono" font-size="8" fill="#cbd5e1">{ "qrData": "{...bankpay-ke-v1...}" }</text>
+  <text x="430" y="158" class="mono" font-size="9" fill="#94a3b8">RESPONSE 200</text>
+  <text x="440" y="180" class="mono" font-size="8" fill="#cbd5e1">{ "merchant": { "name": "Naivas",</text>
+  <text x="450" y="196" class="mono" font-size="8" fill="#cbd5e1">"branch": "Moi Avenue" },</text>
+  <text x="450" y="212" class="mono" font-size="8" fill="#cbd5e1">"payment": { "amountKES": 650,</text>
+  <text x="460" y="228" class="mono" font-size="8" fill="#cbd5e1">"amountUSDT": 4.48,</text>
+  <text x="460" y="244" class="mono" font-size="8" fill="#cbd5e1">"displayKES": "KSh 650.00",</text>
+  <text x="460" y="260" class="mono" font-size="8" fill="#cbd5e1">"displayUSDT": "≈ 4.48 USDT" },</text>
+  <text x="450" y="276" class="mono" font-size="8" fill="#64748b">"rate": { ... }, "customer": { ... } }</text>
+
+  <rect x="20" y="280" width="370" height="155" rx="10" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="40" y="302" class="mono" font-size="12" fill="#79c0ff" font-weight="700">GET /api/v1/wallet/balance</text>
+  <line x1="30" y1="310" x2="380" y2="310" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="40" y="330" class="mono" font-size="9" fill="#94a3b8">RESPONSE 200</text>
+  <text x="50" y="354" class="mono" font-size="8" fill="#cbd5e1">{ "usdt": { "amount": "600.00", "raw": 600 },</text>
+  <text x="60" y="370" class="mono" font-size="8" fill="#cbd5e1">"kes": { "amount": "87,000.00", "raw": 87000 },</text>
+  <text x="60" y="386" class="mono" font-size="8" fill="#cbd5e1">"rate": { "usdtToKes": 145, "spread": 1.02,</text>
+  <text x="70" y="402" class="mono" font-size="8" fill="#64748b">"effectiveRate": 147.90, "source": "CBK+Binance",</text>
+  <text x="70" y="418" class="mono" font-size="8" fill="#64748b">"timestamp": 1737995520, "ttl": 15000 },</text>
+  <text x="60" y="434" class="mono" font-size="8" fill="#cbd5e1">"display": { "primary": "600.00 USDT",</text>
+  <text x="70" y="450" class="mono" font-size="8" fill="#cbd5e1">"secondary": "≈ KSh 87,000.00",</text>
+  <text x="70" y="466" class="mono" font-size="8" fill="#64748b">"freshness": "Updated just now" } }</text>
+
+  <rect x="410" y="280" width="370" height="220" rx="10" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="430" y="302" class="mono" font-size="12" fill="#79c0ff" font-weight="700">POST /api/v1/transfer/preview</text>
+  <line x1="420" y1="310" x2="770" y2="310" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="430" y="330" class="mono" font-size="9" fill="#94a3b8">REQUEST</text>
+  <text x="440" y="352" class="mono" font-size="8" fill="#cbd5e1">{ "amountInUSDT": 50,</text>
+  <text x="450" y="368" class="mono" font-size="8" fill="#cbd5e1">"recipientIdentifier": "0xa1b2..." }</text>
+  <text x="430" y="396" class="mono" font-size="9" fill="#94a3b8">RESPONSE 200</text>
+  <text x="440" y="420" class="mono" font-size="8" fill="#cbd5e1">{ "transfer": {</text>
+  <text x="450" y="436" class="mono" font-size="8" fill="#cbd5e1">"sendAmount": { "usdt": 50, "kes": 7250,</text>
+  <text x="460" y="452" class="mono" font-size="8" fill="#cbd5e1">"display": "50.00 USDT" },</text>
+  <text x="450" y="468" class="mono" font-size="8" fill="#cbd5e1">"fee": { "usdt": 0.50, "kes": 72.50 },</text>
+  <text x="450" y="484" class="mono" font-size="8" fill="#cbd5e1">"totalCost": { "usdt": 50.50, "kes": 7322.50 },</text>
+  <text x="450" y="500" class="mono" font-size="8" fill="#64748b">"recipientReceives": { ... }, "rate": { ... } }</text>
+</svg>

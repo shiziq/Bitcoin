@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560">
+  <defs>
+    <style>
+      .t { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 10px; fill: #94a3b8; }
+      .th { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 11px; fill: #ffffff; font-weight: 700; text-anchor: middle; }
+      .tc { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 9px; fill: #cbd5e1; text-anchor: middle; }
+      .tl { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; fill: #ffffff; font-weight: 800; text-anchor: middle; }
+      .tm { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; font-size: 10px; fill: #cbd5e1; text-anchor: middle; font-weight: 700; }
+    </style>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e2837"/><stop offset="100%" style="stop-color:#0a0f1e"/></linearGradient>
+  </defs>
+  <rect width="800" height="560" fill="url(#bg)" rx="16"/>
+  <text x="400" y="32" class="tl" font-size="16" fill="#f59e0b">PayBand — NFC Wearable Payment Bracelet (Hardware Vision)</text>
+
+  <!-- Step flow: horizontal -->
+  <rect x="30" y="55" width="170" height="140" rx="10" fill="#0d1117" stroke="#2563eb" stroke-width="1"/>
+  <text x="115" y="82" class="th">Step 1 — Load Bracelet</text>
+  <text x="115" y="104" class="tc">User opens bank app</text>
+  <text x="115" y="122" class="tc">Selects "Send to Bracelet"</text>
+  <text x="115" y="140" class="tc">App generates scannable</text>
+  <text x="115" y="158" class="tc">QR code with amount</text>
+  <text x="115" y="180" class="tm">QR: {bandId, amountUSDT}</text>
+
+  <text x="218" y="130" class="tl" fill="#f59e0b" font-size="22">→</text>
+
+  <rect x="240" y="55" width="170" height="140" rx="10" fill="#0d1117" stroke="#059669" stroke-width="1"/>
+  <text x="325" y="82" class="th">Step 2 — Tap to Pair</text>
+  <text x="325" y="104" class="tc">User brings bracelet</text>
+  <text x="325" y="122" class="tc">near phone NFC reader</text>
+  <text x="325" y="140" class="tc">Bracelet reads QR data</text>
+  <text x="325" y="158" class="tc">via NFC beam</text>
+  <text x="325" y="180" class="tm">NDEF: {bandId, amount, txSig}</text>
+
+  <text x="428" y="130" class="tl" fill="#f59e0b" font-size="22">→</text>
+
+  <rect x="450" y="55" width="170" height="140" rx="10" fill="#0d1117" stroke="#f59e0b" stroke-width="1"/>
+  <text x="535" y="82" class="th">Step 3 — Confirm in App</text>
+  <text x="535" y="104" class="tc">Authenticator push</text>
+  <text x="535" y="122" class="tc">received on phone:</text>
+  <text x="535" y="140" class="tc">"Load 50 USDT</text>
+  <text x="535" y="158" class="tc">to Bracelet #A3K9?"</text>
+  <text x="535" y="180" class="tm">Approve / Reject</text>
+
+  <text x="638" y="130" class="tl" fill="#f59e0b" font-size="22">→</text>
+
+  <rect x="660" y="55" width="110" height="140" rx="10" fill="#0d1117" stroke="#0a7e4a" stroke-width="1"/>
+  <text x="715" y="100" class="th">Bracelet</text>
+  <text x="715" y="118" class="th">Loaded</text>
+  <text x="715" y="142" class="tc">50 USDT</text>
+  <text x="715" y="160" class="tc">ready to pay</text>
+
+  <!-- Payment flow -->
+  <rect x="30" y="230" width="170" height="130" rx="10" fill="#0d1117" stroke="#2563eb" stroke-width="1"/>
+  <text x="115" y="258" class="th">At Checkout</text>
+  <text x="115" y="280" class="tc">Cashier rings KSh 650</text>
+  <text x="115" y="300" class="tc">POS displays QR code</text>
+  <text x="115" y="320" class="tc">+ shared code A7K3M9</text>
+  <text x="115" y="344" class="tm">bankpay-ke-v1 QR</text>
+
+  <text x="218" y="300" class="tl" fill="#f59e0b" font-size="22">→</text>
+
+  <rect x="240" y="230" width="170" height="130" rx="10" fill="#0d1117" stroke="#059669" stroke-width="1"/>
+  <text x="325" y="258" class="th">Tap Bracelet</text>
+  <text x="325" y="280" class="tc">User taps bracelet</text>
+  <text x="325" y="300" class="tc">to NFC reader on POS</text>
+  <text x="325" y="320" class="tc">Bracelet beams payment</text>
+  <text x="325" y="344" class="tm">NFC NDEF: {bandId, nonce}</text>
+
+  <text x="428" y="300" class="tl" fill="#f59e0b" font-size="22">→</text>
+
+  <rect x="445" y="230" width="175" height="130" rx="10" fill="#0d1117" stroke="#f59e0b" stroke-width="1"/>
+  <text x="532" y="258" class="th">Authenticate</text>
+  <text x="532" y="282" class="tc">Authenticator push to phone:</text>
+  <text x="532" y="302" class="tc">"Pay KSh 650 (4.48 USDT)</text>
+  <text x="532" y="322" class="tc">to Naivas?</text>
+  <text x="532" y="346" class="tm">Code: A7K3M9 → Enter</text>
+
+  <text x="638" y="300" class="tl" fill="#f59e0b" font-size="22">→</text>
+
+  <rect x="660" y="230" width="110" height="130" rx="10" fill="#0d1117" stroke="#0a7e4a" stroke-width="1"/>
+  <text x="715" y="278" class="th">Payment</text>
+  <text x="715" y="296" class="th">Done ✓</text>
+  <text x="715" y="320" class="tc">2s settlement</text>
+  <text x="715" y="340" class="tc">Receipt in-app</text>
+
+  <!-- Tech specs -->
+  <rect x="30" y="385" width="370" height="155" rx="10" fill="#1a2744" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="215" y="412" class="tl" font-size="12" fill="#f59e0b">Bracelet Hardware Spec</text>
+  <text x="215" y="436" class="tc">NFC NTAG 424 DNA (AES-128 authenticated)</text>
+  <text x="215" y="456" class="tc">Secure element stores bandId + device key</text>
+  <text x="215" y="476" class="tc">E-ink display for balance + shared code</text>
+  <text x="215" y="496" class="tc">Battery: CR2032 coin cell (12-month life)</text>
+  <text x="215" y="516" class="tc">Water resistant IP67 | Silicone band</text>
+  <text x="215" y="536" class="tm">NDEF records: bandId + encrypted payload</text>
+
+  <rect x="420" y="385" width="350" height="155" rx="10" fill="#1a2744" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="595" y="412" class="tl" font-size="12" fill="#059669">Security Model</text>
+  <text x="595" y="436" class="tc">Bracelet device key generated at factory</text>
+  <text x="595" y="456" class="tc">Bound to user's bank account at pairing</text>
+  <text x="595" y="476" class="tc">Every NFC transmission signed with device key</text>
+  <text x="595" y="496" class="tc">Backend verifies bracelet signature + user auth</text>
+  <text x="595" y="516" class="tc">No private key ever leaves secure element</text>
+  <text x="595" y="536" class="tm">Same auth model as phone: device key + authenticator</text>
+</svg>

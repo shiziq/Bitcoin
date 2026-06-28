@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <style>
+      .ui { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .mono { font-family: 'Courier New', Courier, 'Liberation Mono', monospace; }
+    </style>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e2837"/><stop offset="100%" style="stop-color:#0a0f1e"/></linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg)" rx="16"/>
+
+  <rect x="40" y="40" width="340" height="440" rx="12" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="210" y="72" class="mono" font-size="14" fill="#f59e0b" text-anchor="middle" font-weight="800">IUSDT (Bank USDT Token)</text>
+  <line x1="60" y1="84" x2="360" y2="84" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="60" y="110" class="mono" font-size="11" fill="#79c0ff" font-weight="600">bridgeMint(address to, uint256 amount)</text>
+  <text x="80" y="130" class="ui" font-size="10" fill="#94a3b8">Bank mints USDT to user wallet on Polygon</text>
+  <text x="60" y="160" class="mono" font-size="11" fill="#79c0ff" font-weight="600">bridgeBurn(address from, uint256 amount)</text>
+  <text x="80" y="180" class="ui" font-size="10" fill="#94a3b8">Bank burns USDT when user withdraws to KES</text>
+  <text x="60" y="210" class="mono" font-size="11" fill="#79c0ff" font-weight="600">transfer(address to, uint256 amount)</text>
+  <text x="80" y="230" class="ui" font-size="10" fill="#94a3b8">Standard ERC-20 P2P transfer</text>
+  <text x="60" y="260" class="mono" font-size="11" fill="#79c0ff" font-weight="600">balanceOf(address) → uint256</text>
+  <text x="80" y="280" class="ui" font-size="10" fill="#94a3b8">Query USDT balance for any address</text>
+  <text x="60" y="310" class="mono" font-size="11" fill="#79c0ff" font-weight="600">allowance / approve (ERC-20)</text>
+  <text x="80" y="330" class="ui" font-size="10" fill="#94a3b8">Standard ERC-20 approval for merchant payments</text>
+  <line x1="60" y1="350" x2="360" y2="350" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="210" y="374" class="mono" font-size="12" fill="#f59e0b" text-anchor="middle" font-weight="700">EVENTS</text>
+  <text x="60" y="398" class="mono" font-size="10" fill="#ff7b72">BridgeMint(indexed address to, uint256 amount)</text>
+  <text x="60" y="418" class="mono" font-size="10" fill="#ff7b72">BridgeBurn(indexed address from, uint256 amount)</text>
+  <text x="60" y="438" class="mono" font-size="10" fill="#ff7b72">Transfer(indexed from, indexed to, uint256)</text>
+
+  <rect x="420" y="40" width="340" height="440" rx="12" fill="#0d1117" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="590" y="72" class="mono" font-size="14" fill="#059669" text-anchor="middle" font-weight="800">MerchantRegistry</text>
+  <line x1="440" y1="84" x2="740" y2="84" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="440" y="110" class="mono" font-size="11" fill="#79c0ff" font-weight="600">registerMerchant(id, address, name, branch)</text>
+  <text x="460" y="130" class="ui" font-size="10" fill="#94a3b8">Bank onboards a merchant with wallet address</text>
+  <text x="440" y="160" class="mono" font-size="11" fill="#79c0ff" font-weight="600">getMerchant(id) → Merchant</text>
+  <text x="460" y="180" class="ui" font-size="10" fill="#94a3b8">Look up merchant by ID (verified by QR signature)</text>
+  <text x="440" y="210" class="mono" font-size="11" fill="#79c0ff" font-weight="600">verifySignature(payload, sig, key) → bool</text>
+  <text x="460" y="230" class="ui" font-size="10" fill="#94a3b8">Validate QR code came from registered merchant</text>
+  <text x="440" y="260" class="mono" font-size="11" fill="#79c0ff" font-weight="600">updateMerchant(id, newAddr, newName)</text>
+  <text x="460" y="280" class="ui" font-size="10" fill="#94a3b8">Bank updates merchant details (admin only)</text>
+  <text x="440" y="310" class="mono" font-size="11" fill="#79c0ff" font-weight="600">deactivateMerchant(id)</text>
+  <text x="460" y="330" class="ui" font-size="10" fill="#94a3b8">Suspend a merchant (admin only)</text>
+  <line x1="440" y1="350" x2="740" y2="350" stroke="#2d3a4f" stroke-width="1"/>
+  <text x="590" y="374" class="mono" font-size="12" fill="#059669" text-anchor="middle" font-weight="700">EVENTS</text>
+  <text x="440" y="398" class="mono" font-size="10" fill="#ff7b72">MerchantRegistered( id, address, name)</text>
+  <text x="440" y="418" class="mono" font-size="10" fill="#ff7b72">MerchantUpdated( id, newAddress)</text>
+  <text x="440" y="438" class="mono" font-size="10" fill="#ff7b72">MerchantDeactivated( id)</text>
+</svg>
