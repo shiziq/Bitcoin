@@ -17,14 +17,18 @@
   }
 
   .page {
-    width: 210mm; height: 297mm; margin: 12px auto; position: relative;
-    background: var(--surface); box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden;
+    width: 210mm; min-height: 297mm; margin: 12px auto; position: relative;
+    background: var(--surface); box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
   .page.dark {
     background: linear-gradient(155deg, #fef3c7 0%, #fef9e7 40%, #fef3c7 100%); color: var(--ink);
     display: flex; flex-direction: column; padding: 28mm 24mm;
+    height: 297mm; overflow: hidden;
   }
-  .page.dark::after { content: ''; position: absolute; top: -80px; right: -40px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(181,69,9,0.08), transparent 60%); z-index: 0; }
+  .page.light { padding: 1in; height: auto; min-height: 297mm; }
+  .page.light p, .page.light li, .page.light td { font-family: 'Times New Roman', Times, serif; font-size: 10pt; line-height: 1.6; }
+  .page.light h3 { font-family: 'Times New Roman', Times, serif; font-size: 12pt; font-weight: 700; margin: 16px 0 6px; color: var(--gold-dark); }
+  .page.light h4 { font-family: 'Times New Roman', Times, serif; font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gold); margin: 12px 0 5px; }
 
   .doc-type { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 10px; position: relative; z-index: 1; }
   .cover-title { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 500; line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 8px; position: relative; z-index: 1; max-width: 480px; color: var(--ink); }
@@ -33,6 +37,9 @@
   .parties strong { color: var(--ink); font-weight: 700; }
   .meta { position: absolute; bottom: 24mm; left: 24mm; font-size: 0.62rem; color: var(--text-secondary); z-index: 1; font-family: 'DM Sans', sans-serif; }
   .page.dark .page-num { color: var(--text-secondary); }
+  .page.dark .orb { position: absolute; border-radius: 50%; z-index: 0; }
+  .page.dark .orb-tr { top: 0; right: 0; width: 220px; height: 220px; background: radial-gradient(circle, rgba(181,69,9,0.06), transparent 60%); }
+  .page.dark .orb-bl { bottom: 0; left: 0; width: 160px; height: 160px; background: radial-gradient(circle, rgba(245,158,11,0.04), transparent 60%); }
   .page-num { position: absolute; bottom: 14mm; left: 0; right: 0; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 0.6rem; color: var(--text-secondary); }
 
   .sec-num { font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 6px; position: relative; z-index: 1; }
@@ -55,10 +62,9 @@
   @media print {
     @page { size: A4; margin: 0; }
     body { background: #fff; }
-    .page { width: 210mm; height: 297mm; margin: 0; box-shadow: none; page-break-after: always; overflow: hidden; }
-    .page.light { height: auto; min-height: 297mm; padding: 1in; }
-    .page.light { padding: 1in; }
-    .page.dark { padding: 22mm 20mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { width: 210mm; min-height: 297mm; margin: 0; box-shadow: none; page-break-after: always; }
+    .page.light { padding: 1in; height: auto; min-height: 297mm; }
+    .page.dark { padding: 22mm 20mm; height: 297mm; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .clause { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .sig-grid { page-break-inside: avoid; }
     .sig-line { border-color: #000 !important; }
