@@ -25,8 +25,8 @@
     display: flex; flex-direction: column; justify-content: center;
     padding: 28mm 24mm;
   }
-  .page.dark::before { content: ''; position: absolute; top: -80px; right: -40px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(181,69,9,0.08), transparent 60%); }
-  .page.dark::after { content: ''; position: absolute; bottom: -40px; left: -20px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(245,158,11,0.06), transparent 60%); }
+  .page.dark::before { content: ''; position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm; background: linear-gradient(155deg, #fef3c7 0%, #fef9e7 40%, #fef3c7 100%); z-index: -1; border-radius: 2px; }
+  .page.dark::after { content: ''; position: absolute; top: -80px; right: -40px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(181,69,9,0.08), transparent 60%); z-index: 0; }
 
   .doc-type { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 10px; position: relative; z-index: 1; }
   .cover-title { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 500; line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 8px; position: relative; z-index: 1; max-width: 480px; color: var(--ink); }
@@ -58,7 +58,8 @@
     body { background: #fff; }
     .page { width: 210mm; min-height: 297mm; margin: 0; box-shadow: none; page-break-after: always; }
     .page.light { padding: 20mm 20mm 18mm; }
-    .page.dark { padding: 22mm 20mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page.dark { padding: 22mm 20mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; overflow: visible; }
+    .page.dark::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .clause { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .sig-grid { page-break-inside: avoid; }
     .sig-line { border-color: #000 !important; }
@@ -77,6 +78,7 @@
 
 <!-- ═══════ PAGE 1: COVER ═══════ -->
 <div class="page dark">
+  <div class="orb orb-tr"></div><div class="orb orb-bl"></div>
   <div class="doc-type">Legal Document · Confidential</div>
   <h1 class="cover-title">Consultancy<br><em>Agreement</em></h1>
   <div class="parties">
@@ -102,6 +104,7 @@
 
 <!-- ═══════ PAGE 2: WHEREAS + SECTION 1 BREAK ═══════ -->
 <div class="page dark">
+  <div class="orb orb-tr"></div><div class="orb orb-bl"></div>
   <div class="sec-num">Preamble</div>
   <h2 class="sec-title">Engagement<br><em>Whereas</em></h2>
   <p class="sec-desc">The Client operates a technology consulting and product development business including but not limited to blockchain-based payment systems, fintech applications, and digital infrastructure. The Client desires to engage the Consultant for its current and future technical projects.</p>
@@ -132,6 +135,7 @@
 
 <!-- ═══════ PAGE 4: SECTION 2 BREAK ═══════ -->
 <div class="page dark">
+  <div class="orb orb-tr"></div><div class="orb orb-bl"></div>
   <div class="sec-num">Section 2</div>
   <h2 class="sec-title">Obligations of<br>the <em>Consultant</em></h2>
   <p class="sec-desc">The Consultant shall perform all duties with professionalism, integrity, and in the best interests of the Client.</p>
@@ -159,6 +163,7 @@
 
 <!-- ═══════ PAGE 6: SECTION 3 BREAK ═══════ -->
 <div class="page dark">
+  <div class="orb orb-tr"></div><div class="orb orb-bl"></div>
   <div class="sec-num">Section 3</div>
   <h2 class="sec-title">Appointment<br>&amp; <em>Term</em></h2>
   <p class="sec-desc">The engagement shall be for an initial term with provisions for renewal and extension by mutual agreement.</p>
@@ -184,6 +189,7 @@
 
 <!-- ═══════ PAGE 8: SECTION 4 BREAK ═══════ -->
 <div class="page dark">
+  <div class="orb orb-tr"></div><div class="orb orb-bl"></div>
   <div class="sec-num">Section 4</div>
   <h2 class="sec-title">Consultant<br><em>Fee</em></h2>
   <p class="sec-desc">The Client shall pay the Consultant a fixed fee net of withholding tax, with additional performance-based compensation.</p>
@@ -223,6 +229,7 @@
 
 <!-- ═══════ PAGE 10: SECTION 5 BREAK ═══════ -->
 <div class="page dark">
+  <div class="orb orb-tr"></div><div class="orb orb-bl"></div>
   <div class="sec-num">Section 5</div>
   <h2 class="sec-title">Intellectual<br><em>Property</em></h2>
   <p class="sec-desc">All work product and deliverables created under this Agreement shall be the exclusive property of the Client.</p>
@@ -245,6 +252,7 @@
 
 <!-- ═══════ PAGE 12: SECTION 6 BREAK ═══════ -->
 <div class="page dark">
+  <div class="orb orb-tr"></div><div class="orb orb-bl"></div>
   <div class="sec-num">Section 6</div>
   <h2 class="sec-title">Confidentiality<br>&amp; <em>Non-Disclosure</em></h2>
   <p class="sec-desc">The Consultant is bound by the terms of the Non-Disclosure Agreement executed concurrently with this Agreement.</p>
@@ -326,6 +334,7 @@
 
 <!-- ═══════ PAGE 16: EXECUTION ═══════ -->
 <div class="page dark">
+  <div class="orb orb-tr"></div><div class="orb orb-bl"></div>
   <div class="sec-num">Execution</div>
   <h2 class="sec-title">Signatures</h2>
   <p class="sec-desc">The Parties hereby execute this Agreement as of the Effective Date.</p>
