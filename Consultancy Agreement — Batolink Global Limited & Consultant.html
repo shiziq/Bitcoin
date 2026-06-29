@@ -24,11 +24,6 @@
     background: linear-gradient(155deg, #fef3c7 0%, #fef9e7 40%, #fef3c7 100%); color: var(--ink);
     display: flex; flex-direction: column; padding: 28mm 24mm;
   }
-  .page.light { padding: 1in; height: auto; min-height: 297mm; }
-  .page.light p, .page.light li, .page.light td { font-family: 'Times New Roman', Times, serif; font-size: 10pt; line-height: 1.6; }
-  .page.light h3 { font-family: 'Times New Roman', Times, serif; font-size: 12pt; font-weight: 700; margin: 16px 0 6px; color: var(--gold-dark); }
-  .page.light h4 { font-family: 'Times New Roman', Times, serif; font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gold); margin: 12px 0 5px; }
-  .page.dark::before { content: ''; position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm; background: linear-gradient(155deg, #fef3c7 0%, #fef9e7 40%, #fef3c7 100%); z-index: -1; border-radius: 2px; }
   .page.dark::after { content: ''; position: absolute; top: -80px; right: -40px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(181,69,9,0.08), transparent 60%); z-index: 0; }
 
   .doc-type { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 10px; position: relative; z-index: 1; }
@@ -63,8 +58,7 @@
     .page { width: 210mm; height: 297mm; margin: 0; box-shadow: none; page-break-after: always; overflow: hidden; }
     .page.light { height: auto; min-height: 297mm; padding: 1in; }
     .page.light { padding: 1in; }
-    .page.dark { padding: 22mm 20mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; overflow: visible; }
-    .page.dark::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page.dark { padding: 22mm 20mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .clause { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .sig-grid { page-break-inside: avoid; }
     .sig-line { border-color: #000 !important; }
