@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Non-Disclosure Agreement — Batolink Global Limited & Nextplay Solutions Limited</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap');
+
+  :root {
+    --gold: #f59e0b; --gold-dark: #b45309; --ink: #0a0f1e;
+    --surface: #ffffff; --text: #1a1d26; --text-secondary: #5b6472;
+    --outline: #e2e8f0;
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page { size: A4; margin: 25mm 22mm 30mm 22mm; @bottom-center { content: "Page " counter(page); font-family: 'DM Sans', sans-serif; font-size: 8pt; color: #94a3b8; } }
+
+  body {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-size: 10.5pt; line-height: 1.7; color: var(--text);
+    background: var(--surface); max-width: 100%; padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══════════ COVER PAGE ═══════════════════ */
+  .cover {
+    background: var(--ink); color: #ffffff;
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 72px; page-break-after: always; position: relative; overflow: hidden;
+  }
+  .cover::before { content: ''; position: absolute; top: -200px; right: -120px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(245,158,11,0.12), transparent 60%); }
+  .cover::after { content: ''; position: absolute; bottom: -80px; left: -60px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 60%); }
+
+  .cover .document-type { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; position: relative; z-index: 1; }
+  .cover h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 500; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 12px; position: relative; z-index: 1; max-width: 650px; }
+  .cover h1 em { font-style: italic; color: var(--gold); }
+  .cover .parties { font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 32px; position: relative; z-index: 1; }
+  .cover .parties strong { color: rgba(255,255,255,0.9); font-weight: 700; }
+  .cover .logos { display: flex; align-items: center; gap: 24px; position: relative; z-index: 1; }
+  .cover .logos img { height: 44px; }
+  .cover .logos .between { font-size: 0.85rem; color: var(--gold); font-weight: 500; font-style: italic; }
+  .cover .meta { position: absolute; bottom: 60px; left: 72px; font-size: 0.7rem; color: rgba(255,255,255,0.35); font-family: 'DM Sans', sans-serif; }
+  .cover .meta span { display: block; }
+
+  /* ═══════════ SECTION BREAK PAGES ══════════ */
+  .section-break {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 72px; page-break-after: always; background: var(--ink); color: #ffffff;
+    position: relative;
+  }
+  .section-break .sec-num { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .section-break h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; max-width: 600px; }
+  .section-break h2 em { font-style: italic; color: var(--gold); }
+  .section-break .sec-desc { font-size: 0.92rem; color: rgba(255,255,255,0.5); margin-top: 16px; max-width: 480px; }
+
+  /* ═══════════ MAIN CONTENT PAGES ═══════════ */
+  .content-page { padding: 0; page-break-before: avoid; }
+
+  h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; margin: 36px 0 10px; color: var(--gold-dark); letter-spacing: -0.01em; }
+  h4 { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin: 28px 0 8px; }
+
+  p { margin-bottom: 10px; color: var(--text-secondary); }
+  p strong { color: var(--text); }
+
+  ul, ol { margin-bottom: 14px; padding-left: 22px; color: var(--text-secondary); }
+  li { margin-bottom: 5px; }
+
+  .clause-block { background: #faf9f5; border-left: 3px solid var(--gold); padding: 16px 22px; margin: 16px 0; border-radius: 0 var(--radius) var(--radius) 0; }
+  .clause-block p { margin-bottom: 0; color: var(--text); }
+
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 0.92rem; }
+  th { background: var(--ink); color: #fff; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 10px 16px; text-align: left; }
+  td { padding: 10px 16px; border-bottom: 1px solid var(--outline); color: var(--text-secondary); }
+  tr:nth-child(even) td { background: #faf9f5; }
+
+  .sig-block { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 36px 0; }
+  .sig-block .sig-col {  }
+  .sig-block .sig-line { border-bottom: 1px solid var(--text); height: 40px; margin-bottom: 6px; }
+  .sig-block .sig-label { font-size: 0.72rem; color: var(--text-secondary); font-weight: 600; }
+  .sig-block .sig-label strong { display: block; color: var(--text); font-size: 0.85rem; margin-bottom: 2px; }
+
+  .seal { display: inline-block; border: 2px solid var(--gold); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 0.5rem; color: var(--gold); text-align: center; margin-top: 16px; font-family: 'DM Mono', monospace; font-weight: 700; letter-spacing: 0.5px; }
+  .seal span { display: block; line-height: 1.2; }
+
+  footer.nda-footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--outline); font-size: 0.65rem; color: var(--text-secondary); display: flex; justify-content: space-between; }
+  footer.nda-footer span { }
+
+  @media print {
+    body { font-size: 9.5pt; }
+    .cover, .section-break {
+      background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      min-height: 0; height: 297mm; width: 210mm; box-sizing: border-box;
+      padding: 22mm 20mm; page-break-after: always; display: flex; flex-direction: column; justify-content: center;
+    }
+    .cover .meta { position: absolute; bottom: 22mm; left: 20mm; }
+    .cover h1 { font-size: 2.4rem; }
+    .section-break h2 { font-size: 2rem; }
+    .content-page { padding: 0; max-width: 170mm; }
+    h3, h4 { page-break-after: avoid; }
+    .clause-block, .sig-block { page-break-inside: avoid; }
+    .clause-block { background: #faf9f5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sig-line { border-bottom-color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER PAGE ════════════════════════════ -->
+<section class="cover">
+  <div class="document-type">Legal Document · Confidential</div>
+  <h1>Non-Disclosure<br><em>Agreement</em></h1>
+  <div class="parties">
+    <strong>BETWEEN:</strong><br>
+    <strong>Batolink Global Limited</strong><br>
+    a company incorporated under the laws of the Republic of Kenya<br>
+    (hereinafter referred to as the <strong>"Disclosing Party"</strong> or <strong>"Client"</strong>)<br><br>
+    <strong>AND:</strong><br>
+    <strong>Nextplay Solutions Limited</strong><br>
+    a company incorporated under the laws of the Republic of Kenya<br>
+    (hereinafter referred to as the <strong>"Receiving Party"</strong> or <strong>"Developer"</strong>)
+  </div>
+  <div class="logos">
+    <img src="assets/Batolink Logo.svg" alt="Batolink Global Limited">
+    <span class="between">&amp;</span>
+    <img src="assets/Nextplay Logo.svg" alt="Nextplay Solutions Limited">
+  </div>
+  <div class="meta">
+    <span>Effective Date: 1st July 2026</span>
+    <span>Project: Bato — USDT Stablecoin Payment System (the "Project")</span>
+    <span>Document Ref: NDA-BATO-2026-001</span>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION BREAK 1 ════════════════════════ -->
+<section class="section-break" id="section1">
+  <div class="sec-num">Section 1</div>
+  <h2>Purpose<br>&amp; <em>Scope</em></h2>
+  <div class="sec-desc">This Agreement defines the confidential relationship between the Client and the Developer with respect to the Bato Project — a USDT stablecoin payment system integrated into the KCB banking application.</div>
+</section>
+
+<div class="content-page">
+
+<h3>1.1 Purpose of Disclosure</h3>
+<p>The Developer has been engaged by the Client to design, develop, and implement the <strong>Bato USDT Stablecoin Payment System</strong> (the "Project"), an end-to-end digital payment infrastructure comprising:</p>
+<ul>
+  <li>A USDT stablecoin digital wallet embedded within the KCB Bank mobile application</li>
+  <li>A point-of-sale merchant payment system with QR code protocol (<code>bankpay-ke-v1</code>)</li>
+  <li>An in-app authenticator with message-based confirmation and shared code verification</li>
+  <li>An optional NFC-enabled wearable payment bracelet (PayBand)</li>
+  <li>A multi-chain blockchain infrastructure spanning Polygon POS and Arbitrum</li>
+  <li>A dual-currency display engine (USDT + KES) with live rate aggregation from CBK, Binance P2P, and aggregated forex feeds</li>
+  <li>All supporting documentation, including product requirements documents, customer journey maps, technical specifications, architecture diagrams, and user interface designs</li>
+</ul>
+<p>In the course of this engagement, the Client will disclose to the Developer certain <strong>Confidential Information</strong> as defined herein. This Agreement governs the treatment of all such information.</p>
+
+<h3>1.2 Scope of Agreement</h3>
+<p>This Agreement applies to all Confidential Information disclosed by the Client to the Developer, whether disclosed before, on, or after the Effective Date, and whether disclosed orally, in writing, electronically, or through any other medium. The obligations set forth in this Agreement shall survive the termination of the Project for the duration specified in Section 7.</p>
+
+</div>
+
+<!-- ═══════════ SECTION BREAK 2 ════════════════════════ -->
+<section class="section-break" id="section2">
+  <div class="sec-num">Section 2</div>
+  <h2>Definition of<br><em>Confidential Information</em></h2>
+  <div class="sec-desc">All information, data, documentation, and materials related to the Project are deemed Confidential Information under this Agreement.</div>
+</section>
+
+<div class="content-page">
+
+<h3>2.1 What Constitutes Confidential Information</h3>
+<p>For the purposes of this Agreement, <strong>"Confidential Information"</strong> shall include, but not be limited to:</p>
+
+<h4>2.1.1 Technical Information</h4>
+<ul>
+  <li>Product Requirements Documents (PRDs), technical specifications, and architecture diagrams</li>
+  <li>Source code, algorithms, software libraries, SDKs, and APIs developed for the Project</li>
+  <li>Blockchain smart contract interfaces, including IUSDT and MerchantRegistry contract specifications</li>
+  <li>Database schemas, data models, and API endpoint specifications</li>
+  <li>Authentication protocols, device-key cryptography architecture, and in-app authenticator logic</li>
+  <li>Shared code verification protocols (Mode A and Mode B) and their implementation details</li>
+  <li>Rate engine architecture, multi-feed aggregation algorithms, and currency conversion logic</li>
+  <li>PayBand NFC bracelet hardware specifications, secure element design, and NDEF communication protocols</li>
+</ul>
+
+<h4>2.1.2 Business &amp; Commercial Information</h4>
+<ul>
+  <li>Competitive positioning analysis, including the M-Pesa comparison framework and fee structure analysis</li>
+  <li>Multi-chain network strategy, including cost-benefit analyses for Polygon, Arbitrum, Solana, TRON, and other blockchain networks</li>
+  <li>Projected transaction volumes, revenue models, and bank spread calculations</li>
+  <li>Development phase timelines, resource allocation plans, and go-to-market strategies</li>
+  <li>Merchant partnership terms, onboarding processes, and settlement configurations</li>
+</ul>
+
+<h4>2.1.3 User Experience &amp; Design Information</h4>
+<ul>
+  <li>Customer journey maps, user flow diagrams, and screen flow architectures</li>
+  <li>User interface mockups, wireframes, and interactive prototypes</li>
+  <li>Brand assets, including the Bato logo, KCB integration elements, and PayBand product identity</li>
+  <li>User experience research findings, persona definitions, and usability testing results</li>
+</ul>
+
+<h4>2.1.4 Legal &amp; Regulatory Information</h4>
+<ul>
+  <li>Discussions and correspondence with the Central Bank of Kenya (CBK) regarding the Project</li>
+  <li>Compliance assessments, regulatory review findings, and audit reports</li>
+  <li>Any information related to the intellectual property strategy, patent filings, or trademark registrations</li>
+</ul>
+
+<div class="clause-block">
+  <p><strong>2.2 Exclusions:</strong> Confidential Information does not include information that: (a) is or becomes publicly available through no breach of this Agreement; (b) was lawfully known to the Developer prior to disclosure by the Client; (c) is independently developed by the Developer without use of or reference to the Client's Confidential Information; or (d) is required to be disclosed by law, regulation, or court order, provided the Developer gives the Client prompt written notice of such requirement.</p>
+</div>
+
+</div>
+
+<!-- ═══════════ SECTION BREAK 3 ════════════════════════ -->
+<section class="section-break" id="section3">
+  <div class="sec-num">Section 3</div>
+  <h2>Intellectual<br><em>Property</em></h2>
+  <div class="sec-desc">All work product, deliverables, and intellectual property created for the Project shall be the sole and exclusive property of the Client.</div>
+</section>
+
+<div class="content-page">
+
+<h3>3.1 Ownership of Work Product</h3>
+<p>All work product, deliverables, inventions, designs, code, documentation, data, algorithms, processes, user interfaces, brand assets, and any other materials created by the Developer in the course of performing services for the Project (collectively, the <strong>"Work Product"</strong>) shall be the <strong>sole and exclusive intellectual property of Batolink Global Limited</strong>.</p>
+
+<p>The Developer hereby irrevocably assigns, transfers, and conveys to the Client all right, title, and interest in and to the Work Product, including but not limited to:</p>
+<ul>
+  <li>All copyrights, patents, trade secrets, trademarks, and other intellectual property rights</li>
+  <li>All moral rights, to the fullest extent permitted by law</li>
+  <li>The right to sue for past, present, and future infringement of any such rights</li>
+</ul>
+
+<h3>3.2 Work-for-Hire Doctrine</h3>
+<p>The Work Product shall be deemed <strong>"work made for hire"</strong> as defined under the Copyright Act of Kenya (Cap 130, Laws of Kenya) and any applicable international copyright conventions. To the extent that the Work Product does not qualify as work made for hire, the Developer hereby assigns all rights as set forth in Section 3.1 above.</p>
+
+<h3>3.3 Assistance with IP Protection</h3>
+<p>The Developer shall, at the Client's request and expense, execute all documents and take all actions reasonably necessary to assist the Client in obtaining, perfecting, maintaining, and enforcing intellectual property protection for the Work Product in any jurisdiction worldwide.</p>
+
+<h3>3.4 Pre-Existing Materials</h3>
+<p>To the extent the Developer uses any pre-existing materials, tools, libraries, or frameworks owned by the Developer prior to this engagement (collectively, <strong>"Pre-Existing Materials"</strong>), the Developer shall:</p>
+<ul>
+  <li>Disclose all Pre-Existing Materials to the Client in writing before incorporating them into the Work Product</li>
+  <li>Grant the Client a perpetual, irrevocable, royalty-free, worldwide license to use, modify, and distribute the Pre-Existing Materials solely as incorporated into or required for the operation of the Work Product</li>
+</ul>
+
+<h3>3.5 The Bato Brand</h3>
+<p>The name <strong>"Bato"</strong>, the Bato logo, the PayBand product name and identity, and all associated brand assets created for this Project are the exclusive intellectual property of Batolink Global Limited. The Developer shall not use, reference, or claim any association with the Bato brand beyond the scope of this engagement without the Client's prior written consent.</p>
+
+</div>
+
+<!-- ═══════════ SECTION BREAK 4 ════════════════════════ -->
+<section class="section-break" id="section4">
+  <div class="sec-num">Section 4</div>
+  <h2>Obligations<br>&amp; <em>Restrictions</em></h2>
+  <div class="sec-desc">The Developer's obligations extend to all personnel, subcontractors, and third parties who may access Confidential Information through the Developer.</div>
+</section>
+
+<div class="content-page">
+
+<h3>4.1 Use of Confidential Information</h3>
+<p>The Developer shall:</p>
+<ul>
+  <li>Use the Confidential Information <strong>solely and exclusively</strong> for the purpose of performing services for the Project</li>
+  <li>Not use, copy, reproduce, distribute, publish, or otherwise disseminate any Confidential Information for any purpose other than the Project</li>
+  <li>Not disclose Confidential Information to any third party without the Client's prior written consent</li>
+  <li>Limit access to Confidential Information to only those employees, contractors, or agents of the Developer who have a genuine need to know such information for the Project and who are bound by written confidentiality obligations at least as protective as this Agreement</li>
+</ul>
+
+<h3>4.2 Non-Competition</h3>
+<p>For a period of <strong>twenty-four (24) months</strong> from the date of the last disclosure of Confidential Information, the Developer shall not, directly or indirectly:</p>
+<ul>
+  <li>Develop, market, or participate in the development or marketing of any product or service that is substantially similar to or competes with the Bato Project in the Republic of Kenya or any other market where the Client has expressed intent to operate</li>
+  <li>Solicit, approach, or engage with the Client's banking partners, merchant partners, or technology providers identified during the Project for the purpose of offering competing services</li>
+  <li>Use the knowledge, relationships, or insights gained from the Project to compete with or undermine the Client's commercial interests</li>
+</ul>
+
+<h3>4.3 Non-Solicitation</h3>
+<p>For a period of <strong>twenty-four (24) months</strong> from the Effective Date, neither party shall directly or indirectly solicit, induce, or attempt to solicit or induce any employee, contractor, or consultant of the other party who was involved in the Project to terminate their relationship with that party.</p>
+
+<h3>4.4 Security Obligations</h3>
+<p>The Developer shall maintain <strong>reasonable and appropriate security measures</strong> to protect the Confidential Information from unauthorized access, disclosure, alteration, or destruction. Such measures shall include, at minimum:</p>
+<ul>
+  <li>Encryption of all Confidential Information at rest and in transit using industry-standard protocols</li>
+  <li>Access controls limiting Confidential Information to authorized personnel only</li>
+  <li>Regular security reviews and vulnerability assessments</li>
+  <li>Immediate notification to the Client in the event of any actual or suspected breach of security affecting Confidential Information</li>
+</ul>
+
+<h3>4.5 No Reverse Engineering</h3>
+<p>The Developer shall not, and shall not permit any third party to, reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code, architecture, algorithms, or design of any component of the Project, except as expressly authorized in writing by the Client.</p>
+
+</div>
+
+<!-- ═══════════ SECTION BREAK 5 ════════════════════════ -->
+<section class="section-break" id="section5">
+  <div class="sec-num">Section 5</div>
+  <h2>Remedies &amp;<br><em>Liability</em></h2>
+  <div class="sec-desc">The Client is entitled to seek all available remedies in the event of a breach of this Agreement.</div>
+</section>
+
+<div class="content-page">
+
+<h3>5.1 Irreparable Harm</h3>
+<p>The Developer acknowledges that any breach of this Agreement would cause the Client <strong>irreparable harm</strong> for which monetary damages would be an inadequate remedy. Accordingly, the Client shall be entitled to seek <strong>injunctive relief</strong>, including temporary restraining orders, preliminary injunctions, and permanent injunctions, in addition to any other remedies available at law or in equity, without the necessity of posting a bond or proving actual damages.</p>
+
+<h3>5.2 Return or Destruction of Confidential Information</h3>
+<p>Upon the Client's written request, or upon termination or expiration of the Project engagement, the Developer shall:</p>
+<ul>
+  <li>Promptly return all physical and electronic copies of Confidential Information to the Client; or</li>
+  <li>At the Client's election, securely and permanently destroy all copies of Confidential Information</li>
+  <li>Provide written certification of such return or destruction within <strong>ten (10) business days</strong></li>
+</ul>
+<p>Notwithstanding the foregoing, the Developer may retain one archival copy of the Confidential Information solely for the purpose of demonstrating compliance with this Agreement, provided such copy remains subject to all confidentiality obligations herein.</p>
+
+<h3>5.3 Indemnification</h3>
+<p>The Developer agrees to indemnify, defend, and hold harmless the Client, its affiliates, directors, officers, employees, and agents from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising out of or related to:</p>
+<ul>
+  <li>Any breach of this Agreement by the Developer</li>
+  <li>Any unauthorized use or disclosure of the Client's Confidential Information by the Developer or its personnel</li>
+  <li>Any infringement of third-party intellectual property rights caused by the Developer's unauthorized use of such rights in the Work Product</li>
+</ul>
+
+</div>
+
+<!-- ═══════════ SECTION BREAK 6 ════════════════════════ -->
+<section class="section-break" id="section6">
+  <div class="sec-num">Section 6</div>
+  <h2>Term, Governing Law<br>&amp; <em>General Provisions</em></h2>
+  <div class="sec-desc">This Agreement is governed by the laws of the Republic of Kenya and shall remain in effect as specified herein.</div>
+</section>
+
+<div class="content-page">
+
+<h3>6.1 Term</h3>
+<p>This Agreement shall become effective on the <strong>Effective Date</strong> set forth on the cover page and shall continue in full force and effect for a period of <strong>five (5) years</strong> from the date of the last disclosure of Confidential Information. The obligations of confidentiality, non-competition (Section 4.2), non-solicitation (Section 4.3), and intellectual property assignment (Section 3) shall survive the termination or expiration of this Agreement.</p>
+
+<h3>6.2 Governing Law</h3>
+<p>This Agreement shall be governed by and construed in accordance with the <strong>laws of the Republic of Kenya</strong>, without regard to its conflict of laws principles. Any dispute arising out of or in connection with this Agreement shall be subject to the exclusive jurisdiction of the courts of the Republic of Kenya, sitting in Nairobi.</p>
+
+<h3>6.3 Dispute Resolution</h3>
+<p>In the event of any dispute arising out of this Agreement, the parties shall first attempt to resolve the dispute through <strong>good-faith negotiations</strong> within thirty (30) days of written notice from either party. If the dispute cannot be resolved through negotiation, either party may refer the matter to <strong>binding arbitration</strong> in accordance with the Arbitration Act (Cap 49, Laws of Kenya) before resorting to litigation.</p>
+
+<h3>6.4 Entire Agreement</h3>
+<p>This Agreement constitutes the <strong>entire understanding</strong> between the parties with respect to the subject matter hereof and supersedes all prior agreements, understandings, negotiations, and discussions, whether oral or written. No modification, amendment, or waiver of any provision shall be effective unless in writing and signed by both parties.</p>
+
+<h3>6.5 Severability</h3>
+<p>If any provision of this Agreement is held to be invalid, illegal, or unenforceable by a court of competent jurisdiction, such provision shall be severed and the remaining provisions shall continue in full force and effect. The parties shall negotiate in good faith to replace the severed provision with a valid provision that most closely reflects the original intent.</p>
+
+<h3>6.6 No Waiver</h3>
+<p>The failure of either party to enforce any provision of this Agreement shall not constitute a waiver of that provision or of any other provision. No waiver shall be effective unless in writing and signed by the waiving party.</p>
+
+<h3>6.7 Counterparts</h3>
+<p>This Agreement may be executed in counterparts, each of which shall be deemed an original, and all of which together shall constitute one and the same instrument. Electronic signatures and scanned copies shall have the same force and effect as original signatures.</p>
+
+</div>
+
+<!-- ═══════════ SECTION BREAK 7 ════════════════════════ -->
+<section class="section-break" id="section7">
+  <div class="sec-num">Section 7</div>
+  <h2>Execution<br>&amp; <em>Signatures</em></h2>
+  <div class="sec-desc">The Authorized Representatives of both parties hereby execute this Agreement as of the Effective Date.</div>
+</section>
+
+<div class="content-page">
+
+<h3>7.1 Authorized Representatives</h3>
+
+<div class="sig-block">
+  <div class="sig-col">
+    <div class="sig-label"><strong>For and on behalf of<br>Batolink Global Limited</strong> (the Client)</div>
+    <div class="sig-line"></div>
+    <div class="sig-label">Signature</div>
+    <p style="margin-top:10px;">Name: _______________________________</p>
+    <p>Title: _______________________________</p>
+    <p>Date: _______________________________</p>
+    <div class="seal"><span>BATOLINK<br>SEAL</span></div>
+  </div>
+  <div class="sig-col">
+    <div class="sig-label"><strong>For and on behalf of<br>Nextplay Solutions Limited</strong> (the Developer)</div>
+    <div class="sig-line"></div>
+    <div class="sig-label">Signature</div>
+    <p style="margin-top:10px;">Name: _______________________________</p>
+    <p>Title: _______________________________</p>
+    <p>Date: _______________________________</p>
+    <div class="seal"><span>NEXTPLAY<br>SEAL</span></div>
+  </div>
+</div>
+
+<h3>7.2 Witness</h3>
+<div class="sig-block" style="margin-top:0;">
+  <div class="sig-col">
+    <div class="sig-label"><strong>Witness for Batolink Global Limited</strong></div>
+    <div class="sig-line"></div>
+    <p>Name: _______________________________</p>
+    <p>Signature: _______________________________</p>
+    <p>Date: _______________________________</p>
+  </div>
+  <div class="sig-col">
+    <div class="sig-label"><strong>Witness for Nextplay Solutions Limited</strong></div>
+    <div class="sig-line"></div>
+    <p>Name: _______________________________</p>
+    <p>Signature: _______________________________</p>
+    <p>Date: _______________________________</p>
+  </div>
+</div>
+
+<footer class="nda-footer">
+  <span>Document Ref: NDA-BATO-2026-001</span>
+  <span>Confidential — Batolink Global Limited</span>
+  <span>Effective: 1st July 2026</span>
+</footer>
+
+</div>
+
+</body>
+</html>
