@@ -21,35 +21,25 @@
     background: var(--surface); box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
   .page.dark {
-    background: var(--ink); color: #ffffff;
+    background: linear-gradient(155deg, #fef3c7 0%, #fef9e7 40%, #fef3c7 100%); color: var(--ink);
     display: flex; flex-direction: column; justify-content: center;
     padding: 28mm 24mm;
   }
-  .page.light { padding: 22mm 22mm 20mm; }
-  .page.light p, .page.light li, .page.light td { font-family: 'Times New Roman', Times, serif; font-size: 10pt; }
-  .page.light h3 { font-family: 'Times New Roman', Times, serif; font-size: 12pt; font-weight: 700; margin: 16px 0 6px; color: var(--gold-dark); }
-  .page.light h4 { font-family: 'Times New Roman', Times, serif; font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gold); margin: 12px 0 5px; }
-
-  .page.dark::before { content: ''; position: absolute; top: -80px; right: -40px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(245,158,11,0.1), transparent 60%); }
+  .page.dark::before { content: ''; position: absolute; top: -80px; right: -40px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(181,69,9,0.08), transparent 60%); }
   .page.dark::after { content: ''; position: absolute; bottom: -40px; left: -20px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(245,158,11,0.06), transparent 60%); }
-  .page-num { position: absolute; bottom: 14mm; right: 22mm; font-family: 'DM Sans', sans-serif; font-size: 0.6rem; }
-  .page.dark .page-num { color: rgba(255,255,255,0.3); }
-  .page.light .page-num { color: var(--text-secondary); }
 
-  .doc-type { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; position: relative; z-index: 1; }
-  .cover-title { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 500; line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 8px; position: relative; z-index: 1; max-width: 480px; }
-  .cover-title em { font-style: italic; color: var(--gold); }
-  .parties { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.75; margin-bottom: 24px; position: relative; z-index: 1; font-family: 'DM Sans', sans-serif; }
-  .parties strong { color: rgba(255,255,255,0.9); font-weight: 700; }
-  .logos { display: flex; align-items: center; gap: 18px; position: relative; z-index: 1; }
-  .logos img { height: 40px; }
-  .meta { position: absolute; bottom: 24mm; left: 24mm; font-size: 0.62rem; color: rgba(255,255,255,0.3); z-index: 1; font-family: 'DM Sans', sans-serif; }
-  .meta span { display: block; }
+  .doc-type { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 10px; position: relative; z-index: 1; }
+  .cover-title { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 500; line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 8px; position: relative; z-index: 1; max-width: 480px; color: var(--ink); }
+  .cover-title em { font-style: italic; color: var(--gold-dark); }
+  .parties { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 24px; position: relative; z-index: 1; font-family: 'DM Sans', sans-serif; }
+  .parties strong { color: var(--ink); font-weight: 700; }
+  .meta { position: absolute; bottom: 24mm; left: 24mm; font-size: 0.62rem; color: var(--text-secondary); z-index: 1; font-family: 'DM Sans', sans-serif; }
+  .page.dark .page-num { color: var(--text-secondary); }
 
-  .sec-num { font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; position: relative; z-index: 1; }
-  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 500; line-height: 1.08; letter-spacing: -0.01em; position: relative; z-index: 1; max-width: 460px; }
-  .sec-title em { font-style: italic; color: var(--gold); }
-  .sec-desc { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-top: 12px; max-width: 400px; position: relative; z-index: 1; font-family: 'DM Sans', sans-serif; }
+  .sec-num { font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 6px; position: relative; z-index: 1; }
+  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 500; line-height: 1.08; letter-spacing: -0.01em; position: relative; z-index: 1; max-width: 460px; color: var(--ink); }
+  .sec-title em { font-style: italic; color: var(--gold-dark); }
+  .sec-desc { font-size: 0.82rem; color: var(--text-secondary); margin-top: 12px; max-width: 400px; position: relative; z-index: 1; font-family: 'DM Sans', sans-serif; }
 
   p { margin-bottom: 6px; color: var(--text-secondary); }
   ul, ol { margin-bottom: 8px; padding-left: 22px; color: var(--text-secondary); }
