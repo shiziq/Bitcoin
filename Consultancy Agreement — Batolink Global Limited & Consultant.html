@@ -17,15 +17,14 @@
   }
 
   .page {
-    width: 210mm; min-height: 297mm; margin: 12px auto; position: relative;
-    background: var(--surface); box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    width: 210mm; height: 297mm; margin: 12px auto; position: relative;
+    background: var(--surface); box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden;
   }
   .page.dark {
     background: linear-gradient(155deg, #fef3c7 0%, #fef9e7 40%, #fef3c7 100%); color: var(--ink);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 28mm 24mm;
+    display: flex; flex-direction: column; padding: 28mm 24mm;
   }
-  .page.light { padding: 1in; }
+  .page.light { padding: 1in; height: auto; min-height: 297mm; }
   .page.light p, .page.light li, .page.light td { font-family: 'Times New Roman', Times, serif; font-size: 10pt; line-height: 1.6; }
   .page.light h3 { font-family: 'Times New Roman', Times, serif; font-size: 12pt; font-weight: 700; margin: 16px 0 6px; color: var(--gold-dark); }
   .page.light h4 { font-family: 'Times New Roman', Times, serif; font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gold); margin: 12px 0 5px; }
@@ -61,7 +60,8 @@
   @media print {
     @page { size: A4; margin: 0; }
     body { background: #fff; }
-    .page { width: 210mm; min-height: 297mm; margin: 0; box-shadow: none; page-break-after: always; }
+    .page { width: 210mm; height: 297mm; margin: 0; box-shadow: none; page-break-after: always; overflow: hidden; }
+    .page.light { height: auto; min-height: 297mm; padding: 1in; }
     .page.light { padding: 1in; }
     .page.dark { padding: 22mm 20mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; overflow: visible; }
     .page.dark::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
