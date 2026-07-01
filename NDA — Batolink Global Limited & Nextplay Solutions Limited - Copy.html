@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap');
-  :root { --accent: #D39F29; --primary: #08393D; --gold: #D4AF37; --teal-deep: #0A2B2E; }
+  :root { --accent: #E58225; --primary: #2A89C5; --gold: #DD9652; --teal-deep: #0A2B2E; --ocean: #2A89C5; --tiger: #E58225; --stone: #5A584D; --slate: #B7C2CC; }
   body { font-family: 'DM Sans', system-ui, -apple-system, sans-serif; }
   .heading-serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 800; letter-spacing: -0.02em; }
   .proposal-page { width: 210mm; min-height: 297mm; margin: 0 auto; background: white; box-shadow: 0 25px 60px -15px rgba(0,0,0,0.15); position: relative; overflow: hidden; box-sizing: border-box; page-break-after: always; break-after: page; padding: 0; background-image: url('BatoLinkLetterHead.png'); background-size: 210mm 297mm; background-repeat: no-repeat; background-position: center; }
@@ -19,14 +19,14 @@
   @media print { @page { size: A4; margin: 0; } html, body { margin: 0 !important; padding: 0 !important; background: white !important; width: 210mm; } .proposal-page { box-shadow: none !important; margin: 0 auto !important; width: 210mm !important; min-height: 297mm !important; page-break-after: always; break-after: page; background-image: url('BatoLinkLetterHead.png') !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; } .proposal-page:last-of-type { page-break-after: avoid; } .no-print { display: none !important; } }
   .page-dark { background-color: #0A2B2E; background-blend-mode: multiply; color: #F8FAFC; }
   .section-card { background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border: 1px solid #f1f1f0; }
-  .divider-gold { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .divider-gold { height: 1px; background: linear-gradient(90deg, transparent, var(--tiger), var(--ocean), transparent); }
   .page-footer { position: absolute; bottom: 14mm; left: 0; right: 0; text-align: center; font-size: 8.5px; color: #888; letter-spacing: 0.3px; }
   .legal-body { font-family: 'Times New Roman', Times, serif; font-size: 10pt; line-height: 1.6; }
-  .legal-body h3 { font-family: 'Times New Roman', Times, serif; font-size: 12pt; font-weight: 700; margin: 16px 0 6px; color: #B45309; }
-  .legal-body h4 { font-family: 'Times New Roman', Times, serif; font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #D39F29; margin: 12px 0 5px; }
+  .legal-body h3 { font-family: 'Times New Roman', Times, serif; font-size: 12pt; font-weight: 700; margin: 16px 0 6px; color: #2A89C5; }
+  .legal-body h4 { font-family: 'Times New Roman', Times, serif; font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #E58225; margin: 12px 0 5px; }
   .sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 20px 0; }
   .sig-line { border-bottom: 1px solid #1A1D26; height: 32px; margin-bottom: 4px; }
-  .clause { background: #faf8f2; border-left: 3px solid var(--gold); padding: 10px 16px; margin: 10px 0; }
+  .clause { background: #faf8f2; border-left: 3px solid #E58225; padding: 10px 16px; margin: 10px 0; }
   .seal { display: inline-block; border: 2px solid var(--gold); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 7px; color: var(--gold); text-align: center; margin-top: 10px; font-family: monospace; font-weight: 700; }
   @media print { .page-dark { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .clause { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 </style>
@@ -40,15 +40,15 @@
 <!-- ═══════ PAGE 1: COVER ═══════ -->
 <div class="proposal-page flex flex-col justify-between" style="padding:28mm 22mm;">
   <div>
-    <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-3">Legal Document · Confidential</div>
-    <h1 class="heading-serif text-6xl leading-[1.04] max-w-[420px]" style="color:#08393D;">Non-Disclosure<br><span class="italic" style="color:#D39F29;">Agreement</span></h1>
+    <div class="text-[10px] tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Legal Document · Confidential</div>
+    <h1 class="heading-serif text-6xl leading-[1.04] max-w-[420px]" style="color:#2A89C5;">Non-Disclosure<br><span class="italic" style="color:#E58225;">Agreement</span></h1>
     <div class="mt-6 text-sm text-gray-700 leading-relaxed">
-      <div class="font-bold text-teal-900">BETWEEN:</div>
-      <div class="font-bold text-teal-900 text-base mt-2">Batolink Global Limited</div>
+      <div class="font-bold" style="color:#2A89C5;">BETWEEN:</div>
+      <div class="font-bold text-base mt-2" style="color:#2A89C5;">Batolink Global Limited</div>
       <div class="text-sm text-gray-500">incorporated in the Republic of Kenya</div>
       <div class="text-sm text-gray-500">(the <strong class="text-gray-700">"Disclosing Party"</strong> or <strong class="text-gray-700">"Client"</strong>)</div>
-      <div class="font-bold text-teal-900 mt-4">AND:</div>
-      <div class="font-bold text-teal-900 text-base mt-2">Nextplay Solutions Limited</div>
+      <div class="font-bold mt-4" style="color:#2A89C5;">AND:</div>
+      <div class="font-bold text-base mt-2" style="color:#2A89C5;">Nextplay Solutions Limited</div>
       <div class="text-sm text-gray-500">incorporated in the Republic of Kenya</div>
       <div class="text-sm text-gray-500">(the <strong class="text-gray-700">"Receiving Party"</strong> or <strong class="text-gray-700">"Developer"</strong>)</div>
     </div>
@@ -66,8 +66,8 @@
 
 <!-- ═══════ PAGE 2: SECTION 1 CONTENT ═══════ -->
 <div class="proposal-page" style="padding:22mm 24mm;">
-  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 1</div>
-  <h2 class="heading-serif text-3xl text-teal-900 mb-2">Purpose <span class="italic text-amber-500">&amp; Scope</span></h2>
+  <div class="text-[10px] tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Section 1</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Purpose <span class="italic" style="color:#E58225;">&amp; Scope</span></h2>
   <div class="divider-gold mb-4"></div>
   <p class="text-gray-500 text-xs mb-4">This Agreement defines the confidential relationship between the Client and the Developer with respect to the Bato Project — a USDT stablecoin payment system integrated into the KCB banking application.</p>
 
@@ -91,8 +91,8 @@
 
 <!-- ═══════ PAGE 3: SECTION 2 ═══════ -->
 <div class="proposal-page" style="padding:22mm 24mm;">
-  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 2</div>
-  <h2 class="heading-serif text-3xl text-teal-900 mb-2">Definition of <span class="italic text-amber-500">Confidential Information</span></h2>
+  <div class="text-[10px] tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Section 2</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Definition of <span class="italic" style="color:#E58225;">Confidential Information</span></h2>
   <div class="divider-gold mb-4"></div>
 
   <div class="legal-body">
@@ -133,8 +133,8 @@
 
 <!-- ═══════ PAGE 4: SECTION 3 ═══════ -->
 <div class="proposal-page" style="padding:22mm 24mm;">
-  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 3</div>
-  <h2 class="heading-serif text-3xl text-teal-900 mb-2">Intellectual <span class="italic text-amber-500">Property</span></h2>
+  <div class="text-[10px] tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Section 3</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Intellectual <span class="italic" style="color:#E58225;">Property</span></h2>
   <div class="divider-gold mb-4"></div>
   <p class="text-gray-500 text-xs mb-4">All work product, deliverables, and intellectual property created for the Project shall be the sole and exclusive property of the Client.</p>
 
@@ -160,8 +160,8 @@
 
 <!-- ═══════ PAGE 5: SECTION 4 ═══════ -->
 <div class="proposal-page" style="padding:22mm 24mm;">
-  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 4</div>
-  <h2 class="heading-serif text-3xl text-teal-900 mb-2">Obligations <span class="italic text-amber-500">&amp; Restrictions</span></h2>
+  <div class="text-[10px] tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Section 4</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Obligations <span class="italic" style="color:#E58225;">&amp; Restrictions</span></h2>
   <div class="divider-gold mb-4"></div>
   <p class="text-gray-500 text-xs mb-4">The Developer's obligations extend to all personnel, subcontractors, and third parties who may access Confidential Information through the Developer.</p>
 
@@ -186,8 +186,8 @@
 
 <!-- ═══════ PAGE 6: SECTION 5 ═══════ -->
 <div class="proposal-page" style="padding:22mm 24mm;">
-  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 5</div>
-  <h2 class="heading-serif text-3xl text-teal-900 mb-2">Remedies <span class="italic text-amber-500">&amp; Liability</span></h2>
+  <div class="text-[10px] tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Section 5</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Remedies <span class="italic" style="color:#E58225;">&amp; Liability</span></h2>
   <div class="divider-gold mb-4"></div>
   <p class="text-gray-500 text-xs mb-4">The Client is entitled to seek all available remedies in the event of a breach of this Agreement.</p>
 
@@ -206,8 +206,8 @@
 
 <!-- ═══════ PAGE 7: SECTION 6 ═══════ -->
 <div class="proposal-page" style="padding:22mm 24mm;">
-  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 6</div>
-  <h2 class="heading-serif text-3xl text-teal-900 mb-2">Term, Governing Law <span class="italic text-amber-500">&amp; General Provisions</span></h2>
+  <div class="text-[10px] tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Section 6</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Term, Governing Law <span class="italic" style="color:#E58225;">&amp; General Provisions</span></h2>
   <div class="divider-gold mb-4"></div>
   <p class="text-gray-500 text-xs mb-4">This Agreement is governed by the laws of the Republic of Kenya and shall remain in effect as specified herein.</p>
 
@@ -238,8 +238,8 @@
 
 <!-- ═══════ PAGE 8: EXECUTION + SIGNATURES ═══════ -->
 <div class="proposal-page" style="padding:22mm 24mm;">
-  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 7</div>
-  <h2 class="heading-serif text-3xl text-teal-900 mb-2">Execution <span class="italic text-amber-500">&amp; Signatures</span></h2>
+  <div class="text-[10px] tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Section 7</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Execution <span class="italic" style="color:#E58225;">&amp; Signatures</span></h2>
   <div class="divider-gold mb-4"></div>
   <p class="text-gray-500 text-xs mb-4">The Authorized Representatives of both parties hereby execute this Agreement as of the Effective Date.</p>
 
@@ -247,7 +247,7 @@
     <h3>7.1 Authorized Representatives</h3>
     <div class="sig-grid">
       <div>
-        <div class="font-bold text-sm mb-3" style="color:#08393D;">For and on behalf of<br>Batolink Global Limited (the Client)</div>
+        <div class="font-bold text-sm mb-3" style="color:#2A89C5;">For and on behalf of<br>Batolink Global Limited (the Client)</div>
         <div class="sig-line"></div>
         <div class="text-xs text-gray-500">Signature</div>
         <div class="mt-4 text-sm">Name: _______________________________</div>
@@ -256,7 +256,7 @@
         <div class="seal"><span>BATOLINK<br>SEAL</span></div>
       </div>
       <div>
-        <div class="font-bold text-sm mb-3" style="color:#08393D;">For and on behalf of<br>Nextplay Solutions Limited (the Developer)</div>
+        <div class="font-bold text-sm mb-3" style="color:#2A89C5;">For and on behalf of<br>Nextplay Solutions Limited (the Developer)</div>
         <div class="sig-line"></div>
         <div class="text-xs text-gray-500">Signature</div>
         <div class="mt-4 text-sm">Name: _______________________________</div>
@@ -269,14 +269,14 @@
     <h3>7.2 Witness</h3>
     <div class="sig-grid">
       <div>
-        <div class="font-bold text-sm" style="color:#08393D;">Witness for Batolink Global Limited</div>
+        <div class="font-bold text-sm" style="color:#2A89C5;">Witness for Batolink Global Limited</div>
         <div class="sig-line"></div>
         <div class="text-sm">Name: _______________________________</div>
         <div class="text-sm">Signature: _______________________________</div>
         <div class="text-sm">Date: _______________________________</div>
       </div>
       <div>
-        <div class="font-bold text-sm" style="color:#08393D;">Witness for Nextplay Solutions Limited</div>
+        <div class="font-bold text-sm" style="color:#2A89C5;">Witness for Nextplay Solutions Limited</div>
         <div class="sig-line"></div>
         <div class="text-sm">Name: _______________________________</div>
         <div class="text-sm">Signature: _______________________________</div>
