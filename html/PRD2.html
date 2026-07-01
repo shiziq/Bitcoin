@@ -364,9 +364,9 @@
   </div>
 
   <div class="img-row">
-    <div class="img-card"><img src="assets/Registration — Phone Number Entry.png" alt="Phone Entry" loading="lazy"><div class="cap">Screen 1 — Phone Number Entry</div></div>
-    <div class="img-card"><img src="assets/Registration — Confirmation.png" alt="Confirmation" loading="lazy"><div class="cap">Screen 2 — Detail Confirmation</div></div>
-    <div class="img-card"><img src="assets/Registration — Authenticator Enrollment.png" alt="Auth" loading="lazy"><div class="cap">Screen 3 — Authenticator Enrollment</div></div>
+    <div class="img-card"><img src="../assets/Registration — Phone Number Entry.png" alt="Phone Entry" loading="lazy"><div class="cap">Screen 1 — Phone Number Entry</div></div>
+    <div class="img-card"><img src="../assets/Registration — Confirmation.png" alt="Confirmation" loading="lazy"><div class="cap">Screen 2 — Detail Confirmation</div></div>
+    <div class="img-card"><img src="../assets/Registration — Authenticator Enrollment.png" alt="Auth" loading="lazy"><div class="cap">Screen 3 — Authenticator Enrollment</div></div>
   </div>
 </section>
 
@@ -387,12 +387,12 @@
   </div>
 
   <div class="img-row">
-    <div class="img-card"><img src="assets/Auth — In-App Authenticator Dialog.png" alt="Auth Dialog" loading="lazy"><div class="cap">In-App Authenticator Dialog</div></div>
-    <div class="img-card"><img src="assets/Auth — Challenge Signing.png" alt="Challenge" loading="lazy"><div class="cap">Challenge Signing</div></div>
-    <div class="img-card"><img src="assets/Auth — In-App Confirmation (No SMS).png" alt="Confirm" loading="lazy"><div class="cap">In-App Confirmation — No SMS</div></div>
+    <div class="img-card"><img src="../assets/Auth — In-App Authenticator Dialog.png" alt="Auth Dialog" loading="lazy"><div class="cap">In-App Authenticator Dialog</div></div>
+    <div class="img-card"><img src="../assets/Auth — Challenge Signing.png" alt="Challenge" loading="lazy"><div class="cap">Challenge Signing</div></div>
+    <div class="img-card"><img src="../assets/Auth — In-App Confirmation (No SMS).png" alt="Confirm" loading="lazy"><div class="cap">In-App Confirmation — No SMS</div></div>
   </div>
 
-  <div class="img-frame"><img src="assets/Authenticator — Message-Based Confirmation Architecture.svg" alt="Auth Architecture" loading="lazy"><div class="cap">Authenticator Message-Based Confirmation Architecture</div></div>
+  <div class="img-frame"><img src="../assets/Authenticator — Message-Based Confirmation Architecture.svg" alt="Auth Architecture" loading="lazy"><div class="cap">Authenticator Message-Based Confirmation Architecture</div></div>
 </section>
 
 <!-- ═══════════ §5 — SYSTEM ARCHITECTURE ═══════════════ -->
@@ -400,7 +400,7 @@
   <h2><span class="num">Section 5</span>System Architecture</h2>
   <p class="lead">Five layers: the user's mobile device (KCB app + Bato SDK), the bank's backend services, the currency conversion engine, a multi-chain provider abstraction layer, and the blockchain networks. Every component passes dual-currency (USDT + KES) data end-to-end.</p>
 
-  <div class="img-frame"><img src="assets/High-Level Component Diagram.png" alt="Architecture" loading="lazy"><div class="cap">System Architecture — Mobile Device → Backend → Multi-Chain → Blockchains</div></div>
+  <div class="img-frame"><img src="../assets/High-Level Component Diagram.png" alt="Architecture" loading="lazy"><div class="cap">System Architecture — Mobile Device → Backend → Multi-Chain → Blockchains</div></div>
 
   <div class="stat-row" style="margin-top:32px;">
     <div class="stat-card gold"><div class="val">Polygon + Arbitrum</div><div class="lbl">Phase 1 Chains</div></div>
@@ -415,9 +415,9 @@
   <h2><span class="num" style="color:var(--accent);">Section 6</span>Rate Engine &amp; Dual Currency Display</h2>
   <p class="text-muted">Three independent Kenyan market feeds (CBK, Binance P2P, Forex) feed a weighted average engine. A configurable bank spread is applied. The result is cached for 15 seconds and distributed to every display component via the DualCurrencyDisplay client-side SDK.</p>
 
-  <div class="img-frame"><img src="assets/Dual Currency Display Architecture.png" alt="Currency Architecture" loading="lazy"><div class="cap">Currency Conversion Engine: Rate Feeds → Weighted Avg → Spread → 15s Cache → UI</div></div>
+  <div class="img-frame"><img src="../assets/Dual Currency Display Architecture.png" alt="Currency Architecture" loading="lazy"><div class="cap">Currency Conversion Engine: Rate Feeds → Weighted Avg → Spread → 15s Cache → UI</div></div>
 
-  <div class="img-frame" style="margin-top:24px;"><img src="assets/Rate Engine — Multi-Feed Aggregation Diagram.png" alt="Rate Aggregation" loading="lazy"><div class="cap">Multi-Feed Weighted Aggregation Architecture</div></div>
+  <div class="img-frame" style="margin-top:24px;"><img src="../assets/Rate Engine — Multi-Feed Aggregation Diagram.png" alt="Rate Aggregation" loading="lazy"><div class="cap">Multi-Feed Weighted Aggregation Architecture</div></div>
 </section>
 
 <!-- ═══════════ §7 — DUAL CURRENCY DISPLAY ═════════════ -->
@@ -433,9 +433,9 @@
     <div class="card"><h4>Freshness Indicators</h4><p style="font-size:0.85rem;color:var(--text-secondary);">● Live (<30s) · ○ Recent (<2min) · ⚠ Stale (>2min). Refresh on app foreground and every 15 seconds in background.</p></div>
   </div>
 
-  <div class="img-frame"><img src="assets/Display Rules Visual Reference.png" alt="Display Rules" loading="lazy"><div class="cap">Display Rules — Visual Reference</div></div>
-  <div class="img-frame"><img src="assets/KES Rounding Rules Visual Spec.png" alt="KES Rounding" loading="lazy"><div class="cap">KES Rounding Rules — Visual Specification</div></div>
-  <div class="img-frame"><img src="assets/Dual Currency Display Contexts.png" alt="Display Contexts" loading="lazy"><div class="cap">Dual Currency Display — Every Screen, Notification, and Receipt</div></div>
+  <div class="img-frame"><img src="../assets/Display Rules Visual Reference.png" alt="Display Rules" loading="lazy"><div class="cap">Display Rules — Visual Reference</div></div>
+  <div class="img-frame"><img src="../assets/KES Rounding Rules Visual Spec.png" alt="KES Rounding" loading="lazy"><div class="cap">KES Rounding Rules — Visual Specification</div></div>
+  <div class="img-frame"><img src="../assets/Dual Currency Display Contexts.png" alt="Display Contexts" loading="lazy"><div class="cap">Dual Currency Display — Every Screen, Notification, and Receipt</div></div>
 </section>
 
 <!-- ═══════════ §8 — P2P WALLET ════════════════════════ -->
@@ -444,7 +444,7 @@
 
   <h3>Wallet Balance</h3>
   <div class="card-grid-2">
-    <div class="card"><img src="assets/2.2.1 Use Case User Views Wallet Balance.png" alt="Balance" loading="lazy" style="width:100%;border-radius:var(--radius);"></div>
+    <div class="card"><img src="../assets/2.2.1 Use Case User Views Wallet Balance.png" alt="Balance" loading="lazy" style="width:100%;border-radius:var(--radius);"></div>
     <div class="card">
       <h4>Balance Screen</h4>
       <p style="font-size:0.88rem;color:var(--text-secondary);">Shows on-chain USDT balance + KES equivalent at live rate. Rate freshness indicator. 3-transaction recent activity feed. "Load Wallet", "Send", and "Cash Out" action buttons.</p>
@@ -454,16 +454,16 @@
 
   <h3>Load Wallet — KES to USDT</h3>
   <div class="img-row">
-    <div class="img-card"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 1.png" alt="Load Step 1" loading="lazy"><div class="cap">Step 1 — Enter Amount</div></div>
-    <div class="img-card"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 2.png" alt="Load Step 2" loading="lazy"><div class="cap">Step 2 — Confirm with Rate Lock</div></div>
-    <div class="img-card"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 3.png" alt="Load Step 3" loading="lazy"><div class="cap">Step 3 — Success</div></div>
+    <div class="img-card"><img src="../assets/2.2.2 Use Case User Loads USDT from Bank Account Step 1.png" alt="Load Step 1" loading="lazy"><div class="cap">Step 1 — Enter Amount</div></div>
+    <div class="img-card"><img src="../assets/2.2.2 Use Case User Loads USDT from Bank Account Step 2.png" alt="Load Step 2" loading="lazy"><div class="cap">Step 2 — Confirm with Rate Lock</div></div>
+    <div class="img-card"><img src="../assets/2.2.2 Use Case User Loads USDT from Bank Account Step 3.png" alt="Load Step 3" loading="lazy"><div class="cap">Step 3 — Success</div></div>
   </div>
 
   <h3>P2P Transfer</h3>
   <div class="img-row">
-    <div class="img-card"><img src="assets/P2P Transfer — Jane Sends to Sarah Confirmation.png" alt="Sent" loading="lazy"><div class="cap">Sender Confirmation</div></div>
-    <div class="img-card"><img src="assets/P2P Transfer — Recipient In-App Notification.png" alt="Received" loading="lazy"><div class="cap">Recipient In-App Notification</div></div>
-    <div class="img-card"><img src="assets/P2P Transfer — Transaction Receipt Screen.png" alt="Receipt" loading="lazy"><div class="cap">Transaction Receipt</div></div>
+    <div class="img-card"><img src="../assets/P2P Transfer — Jane Sends to Sarah Confirmation.png" alt="Sent" loading="lazy"><div class="cap">Sender Confirmation</div></div>
+    <div class="img-card"><img src="../assets/P2P Transfer — Recipient In-App Notification.png" alt="Received" loading="lazy"><div class="cap">Recipient In-App Notification</div></div>
+    <div class="img-card"><img src="../assets/P2P Transfer — Transaction Receipt Screen.png" alt="Receipt" loading="lazy"><div class="cap">Transaction Receipt</div></div>
   </div>
 </section>
 
@@ -473,23 +473,23 @@
 
   <h3>POS QR Code Protocol — <code>bankpay-ke-v1</code></h3>
   <div class="img-row">
-    <div class="img-card"><img src="assets/2.3.1 Use Case Scan-to-Pay at Merchant POS QR Code Specification 1.png" alt="QR Spec 1" loading="lazy"><div class="cap">QR Code Specification</div></div>
-    <div class="img-card"><img src="assets/2.3.1 Use Case Scan-to-Pay at Merchant POS QR Code Specification 2.png" alt="QR Spec 2" loading="lazy"><div class="cap">QR Code Field Definitions</div></div>
+    <div class="img-card"><img src="../assets/2.3.1 Use Case Scan-to-Pay at Merchant POS QR Code Specification 1.png" alt="QR Spec 1" loading="lazy"><div class="cap">QR Code Specification</div></div>
+    <div class="img-card"><img src="../assets/2.3.1 Use Case Scan-to-Pay at Merchant POS QR Code Specification 2.png" alt="QR Spec 2" loading="lazy"><div class="cap">QR Code Field Definitions</div></div>
   </div>
 
   <h3>Payment Flow</h3>
   <div class="img-row">
-    <div class="img-card"><img src="assets/POS — Merchant Payment Flow Overview.png" alt="POS Flow" loading="lazy"><div class="cap">Merchant Payment Flow Overview</div></div>
-    <div class="img-card"><img src="assets/POS Payment — Blockchain Processing Screen.png" alt="Processing" loading="lazy"><div class="cap">Blockchain Processing</div></div>
-    <div class="img-card"><img src="assets/POS Payment — In-App Payment Success.png" alt="Success" loading="lazy"><div class="cap">Payment Success — In-App</div></div>
+    <div class="img-card"><img src="../assets/POS — Merchant Payment Flow Overview.png" alt="POS Flow" loading="lazy"><div class="cap">Merchant Payment Flow Overview</div></div>
+    <div class="img-card"><img src="../assets/POS Payment — Blockchain Processing Screen.png" alt="Processing" loading="lazy"><div class="cap">Blockchain Processing</div></div>
+    <div class="img-card"><img src="../assets/POS Payment — In-App Payment Success.png" alt="Success" loading="lazy"><div class="cap">Payment Success — In-App</div></div>
   </div>
 
   <h3>Shared Code Verification — Mode B</h3>
-  <div class="img-frame"><img src="assets/Shared Code Verification — Mode B POS Flow.svg" alt="Shared Code" loading="lazy"><div class="cap">Shared Code Verification: POS Terminal + Authenticator App</div></div>
+  <div class="img-frame"><img src="../assets/Shared Code Verification — Mode B POS Flow.svg" alt="Shared Code" loading="lazy"><div class="cap">Shared Code Verification: POS Terminal + Authenticator App</div></div>
 
   <div class="img-row">
-    <div class="img-card"><img src="assets/2.3.3 POS Terminal Display (Merchant Side).png" alt="POS Terminal" loading="lazy"><div class="cap">Merchant POS Terminal</div></div>
-    <div class="img-card"><img src="assets/2.3.2 Merchant Receipt Display (Client Side Payment Receipt).png" alt="Receipt" loading="lazy"><div class="cap">Client-Side Digital Receipt</div></div>
+    <div class="img-card"><img src="../assets/2.3.3 POS Terminal Display (Merchant Side).png" alt="POS Terminal" loading="lazy"><div class="cap">Merchant POS Terminal</div></div>
+    <div class="img-card"><img src="../assets/2.3.2 Merchant Receipt Display (Client Side Payment Receipt).png" alt="Receipt" loading="lazy"><div class="cap">Client-Side Digital Receipt</div></div>
   </div>
 </section>
 
@@ -499,7 +499,7 @@
   <p class="lead">Users convert USDT from their digital wallet back into Kenyan Shillings deposited to their linked KCB bank account. USDT → KES using the current sell rate with the bank's 2% spread. Confirmation requires the in-app authenticator.</p>
 
   <div class="card-grid-2">
-    <div class="card"><img src="assets/Authenticator — Withdrawal Cash Out Screen.svg" alt="Cash Out" loading="lazy" style="width:100%;"></div>
+    <div class="card"><img src="../assets/Authenticator — Withdrawal Cash Out Screen.svg" alt="Cash Out" loading="lazy" style="width:100%;"></div>
     <div class="card">
       <h4>Withdrawal Flow</h4>
       <p style="font-size:0.88rem;color:var(--text-secondary);">User taps Cash Out → enters USDT amount → sees KES receivable → confirms via Authenticator → backend calls bridgeBurn() on smart contract → KCB core banking credits savings account. Dual-currency receipt stored in-app. No SMS trail.</p>
@@ -528,11 +528,11 @@
   <h2><span class="num">Section 12</span>PayBand — NFC Wearable Bracelet</h2>
   <p class="lead">Forward-looking hardware component of the Bato ecosystem. NFC-enabled silicone bracelet with secure element, E-ink display, and 12-month battery. Loads USDT from the phone via QR + NFC beam. Pays at POS with a tap. All confirmations via the Authenticator.</p>
 
-  <div class="img-frame"><img src="assets/PayBand — NFC Wearable Bracelet Payment Flow.svg" alt="PayBand Flow" loading="lazy"><div class="cap">PayBand — Load + Tap-to-Pay Flow</div></div>
+  <div class="img-frame"><img src="../assets/PayBand — NFC Wearable Bracelet Payment Flow.svg" alt="PayBand Flow" loading="lazy"><div class="cap">PayBand — Load + Tap-to-Pay Flow</div></div>
 
   <div class="img-row" style="margin-top:24px;">
-    <div class="img-card"><img src="assets/CJ — Load Bracelet Screen.svg" alt="Load Bracelet" loading="lazy"><div class="cap">Load Bracelet via App QR + NFC</div></div>
-    <div class="img-card"><img src="assets/CJ — Bracelet Tap at POS.svg" alt="Tap at POS" loading="lazy"><div class="cap">Tap at POS + Shared Code Verification</div></div>
+    <div class="img-card"><img src="../assets/CJ — Load Bracelet Screen.svg" alt="Load Bracelet" loading="lazy"><div class="cap">Load Bracelet via App QR + NFC</div></div>
+    <div class="img-card"><img src="../assets/CJ — Bracelet Tap at POS.svg" alt="Tap at POS" loading="lazy"><div class="cap">Tap at POS + Shared Code Verification</div></div>
   </div>
 
   <div class="card card-gold" style="margin-top:20px;">
@@ -551,7 +551,7 @@
   <h2><span class="num">Section 13</span>Transaction History — Immutable Dual Records</h2>
   <p class="lead">Every transaction stores the USDT amount, the KES equivalent, and the exact exchange rate at the time of transaction. January's receipt shows January's rate — never today's. The rate column is immutable after confirmation.</p>
 
-  <div class="img-frame"><img src="assets/4.1 Transaction History UI.png" alt="Transaction History" loading="lazy"><div class="cap">Transaction History — Dual-Currency with Historical Rates</div></div>
+  <div class="img-frame"><img src="../assets/4.1 Transaction History UI.png" alt="Transaction History" loading="lazy"><div class="cap">Transaction History — Dual-Currency with Historical Rates</div></div>
 </section>
 
 <!-- ═══════════ §14 — NOTIFICATIONS ═══════════════════ -->
@@ -559,7 +559,7 @@
   <h2><span class="num">Section 14</span>In-App Notifications — No SMS Trail</h2>
   <p class="lead">All payment notifications delivered via FCM (Android) / APNs (iOS) and stored exclusively in the in-app notification center. No MNO SMS infrastructure required. Payment confirmations and receipts exist only inside the bank app.</p>
 
-  <div class="img-frame"><img src="assets/Notification Center — In-App Notifications.png" alt="Notification Center" loading="lazy"><div class="cap">In-App Notification Center — Zero SMS Trail</div></div>
+  <div class="img-frame"><img src="../assets/Notification Center — In-App Notifications.png" alt="Notification Center" loading="lazy"><div class="cap">In-App Notification Center — Zero SMS Trail</div></div>
 </section>
 
 <!-- ═══════════ §15 — SMART CONTRACTS ═══════════════════ -->
@@ -567,7 +567,7 @@
   <h2><span class="num" style="color:var(--accent);">Section 15</span>Smart Contract Interface — Polygon + Arbitrum</h2>
   <p class="text-muted">Two Solidity contracts: <strong>IUSDT</strong> (bank-controlled ERC-20 USDT token) and <strong>MerchantRegistry</strong> (on-chain merchant directory for QR signature verification). Both are upgradeable via OpenZeppelin UUPS proxy and governed by the bank's multi-sig wallet.</p>
 
-  <div class="img-frame"><img src="assets/Smart Contract Interface Specification.svg" alt="Smart Contracts" loading="lazy"><div class="cap">Smart Contracts — IUSDT + MerchantRegistry Interfaces and Events</div></div>
+  <div class="img-frame"><img src="../assets/Smart Contract Interface Specification.svg" alt="Smart Contracts" loading="lazy"><div class="cap">Smart Contracts — IUSDT + MerchantRegistry Interfaces and Events</div></div>
 </section>
 
 <!-- ═══════════ §16 — DATABASE SCHEMA ═══════════════════ -->
@@ -613,7 +613,7 @@ CREATE TABLE digital_receipts (
 );</code></pre></div>
   </details>
 
-  <div class="img-frame" style="margin-top:24px;"><img src="assets/7.1 Key Tables for Dual Currency Support B6.png" alt="DB Schema Visual" loading="lazy"><div class="cap">Database Schema — Dual Currency Support Tables</div></div>
+  <div class="img-frame" style="margin-top:24px;"><img src="../assets/7.1 Key Tables for Dual Currency Support B6.png" alt="DB Schema Visual" loading="lazy"><div class="cap">Database Schema — Dual Currency Support Tables</div></div>
 </section>
 
 <!-- ═══════════ §17 — API ENDPOINTS ════════════════════ -->
@@ -635,7 +635,7 @@ CREATE TABLE digital_receipts (
   <h2><span class="num">Section 18</span>Onboarding — First-Run Discovery</h2>
   <p class="lead">How does a user discover Bato in the existing KCB app? The wallet is surfaced as a gold-bordered card on the app's home dashboard. On first tap, a guided onboarding wizard explains the feature before registration begins.</p>
 
-  <div class="img-frame"><img src="assets/Onboarding — First Run Discovery Flow.svg" alt="Onboarding" loading="lazy"><div class="cap">Onboarding Flow — KCB Dashboard → Bato Card → Get Started → Registration</div></div>
+  <div class="img-frame"><img src="../assets/Onboarding — First Run Discovery Flow.svg" alt="Onboarding" loading="lazy"><div class="cap">Onboarding Flow — KCB Dashboard → Bato Card → Get Started → Registration</div></div>
 </section>
 
 <!-- ═══════════ §19 — DEVELOPMENT PHASES ═══════════════ -->
