@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototype Development Quote — Batolink Global Limited</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap');
+  :root { --ocean: #2A89C5; --tiger: #E58225; --stone: #5A584D; --slate: #B7C2CC; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; }
+  .heading-serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 800; letter-spacing: -0.02em; }
+  .proposal-page { width: 210mm; min-height: 297mm; margin: 0 auto; background: white; box-shadow: 0 25px 60px -15px rgba(0,0,0,0.15); position: relative; overflow: hidden; box-sizing: border-box; page-break-after: always; break-after: page; background-image: url('../images/BatoLinkLetterHead.png'); background-size: 210mm 297mm; background-repeat: no-repeat; background-position: center; }
+  .proposal-page:last-of-type { page-break-after: avoid; break-after: avoid; }
+  @page { size: A4 portrait; margin: 0; }
+  @media print { @page { size: A4; margin: 0; } html, body { margin: 0 !important; padding: 0 !important; background: white !important; width: 210mm; } .proposal-page { box-shadow: none !important; margin: 0 auto !important; width: 210mm !important; min-height: 297mm !important; page-break-after: always; background-image: url('../images/BatoLinkLetterHead.png') !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; } .proposal-page:last-of-type { page-break-after: avoid; } .no-print { display: none !important; } }
+  .section-card { background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border: 1px solid #f1f1f0; }
+  .divider-gold { height: 1px; background: linear-gradient(90deg, transparent, var(--tiger), var(--ocean), transparent); }
+  .page-footer { position: absolute; bottom: 14mm; left: 0; right: 0; text-align: center; font-size: 8.5px; color: #888; letter-spacing: 0.3px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: #2A89C5; color: white; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 10px 14px; text-align: left; }
+  td { padding: 10px 14px; border-bottom: 1px solid #E2E8F0; font-size: 13px; color: #475569; }
+  tr:nth-child(even) td { background: #F8FAFC; }
+  tr.total td { font-weight: 800; font-size: 15px; color: #0A0F1E; border-top: 2px solid #E58225; background: #FFF7ED; }
+</style>
+</head>
+<body class="bg-[#E8ECEF] py-6">
+
+<div class="max-w-[210mm] mx-auto mb-4 text-center text-xs text-gray-500 no-print">
+  Quotation · Prototype Development · Confidential — Ref: QUOTE-BATO-2026-001
+</div>
+
+<!-- PAGE 1: COVER -->
+<div class="proposal-page flex flex-col justify-between" style="padding:28mm 22mm;">
+  <div>
+    <div class="text-xs tracking-[0.25em] uppercase font-bold mb-3" style="color:#E58225;">Quotation · Confidential</div>
+    <h1 class="heading-serif text-6xl leading-[1.04] max-w-[480px]" style="color:#2A89C5;">Bato — Prototype<br><span class="italic" style="color:#E58225;">Development Quote</span></h1>
+    <div class="mt-6 text-sm text-gray-700 leading-relaxed">
+      <div class="font-bold" style="color:#2A89C5;">PREPARED FOR:</div>
+      <div class="font-bold text-base mt-1" style="color:#2A89C5;">Batolink Global Limited</div>
+      <div class="text-sm text-gray-500">Nairobi, Kenya</div>
+      <div class="font-bold mt-4" style="color:#2A89C5;">PREPARED BY:</div>
+      <div class="font-bold text-base mt-1" style="color:#2A89C5;">Sheila Kwamboka Ogega</div>
+      <div class="text-sm text-gray-500">Independent Consultant</div>
+      <div class="flex items-center gap-4 mt-6"><img src="../assets/Bato Logo.png" alt="Bato" style="height:32px;"></div>
+    </div>
+  </div>
+  <div class="flex justify-between items-end text-[10px] text-gray-500">
+    <div>Date: 1st July 2026 · Ref: QUOTE-BATO-2026-001</div>
+    <div class="text-sm">1</div>
+  </div>
+</div>
+
+<!-- PAGE 2: SCOPE -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-xs tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Scope</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Deliverables <span class="italic" style="color:#E58225;">&amp; Exclusions</span></h2>
+  <div class="divider-gold mb-5"></div>
+
+  <p class="text-gray-600 text-sm mb-4 leading-relaxed">A fully functional Flutter prototype of the Bato USDT Stablecoin Payment System, designed for Android and publishable on the Google Play Store. The prototype implements the complete customer journey with mocked blockchain transactions — full user experience without live smart contracts.</p>
+
+  <div class="grid grid-cols-2 gap-4 mb-4">
+    <div class="section-card p-5 border-t-4" style="border-top-color:#2A89C5;">
+      <div class="text-sm font-bold mb-3" style="color:#2A89C5;">Included</div>
+      <div class="text-xs text-gray-600 leading-relaxed space-y-1">
+        <div>✓ Wallet balance with dual-currency display</div>
+        <div>✓ Load wallet flow (3 screens)</div>
+        <div>✓ P2P transfer + authenticator confirmation</div>
+        <div>✓ POS QR scan-to-pay + shared code verification</div>
+        <div>✓ Withdrawal / cash-out flow</div>
+        <div>✓ Transaction history + notification center</div>
+        <div>✓ Registration + onboarding screens</div>
+        <div>✓ Play Store listing + APK delivery</div>
+        <div>✓ Full source code (owned by Client)</div>
+        <div>✓ All screens match PRD v5 documentation</div>
+      </div>
+    </div>
+    <div class="section-card p-5 border-t-4" style="border-top-color:#5A584D;">
+      <div class="text-sm font-bold mb-3" style="color:#5A584D;">Not Included (Phase 2)</div>
+      <div class="text-xs text-gray-600 leading-relaxed space-y-1">
+        <div>✗ Live Polygon/Arbitrum smart contracts</div>
+        <div>✗ Backend API services (rate engine, auth)</div>
+        <div>✗ PayBand bracelet integration</div>
+        <div>✗ Real exchange rate feeds (CBK, Binance)</div>
+        <div>✗ Firebase/Redis/PostgreSQL setup</div>
+        <div>✗ iOS (Apple App Store) version</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card p-5 bg-amber-50 border-amber-200">
+    <div class="text-sm font-bold mb-2" style="color:#E58225;">Mocked Blockchain — How It Works</div>
+    <p class="text-xs text-gray-600 leading-relaxed">The prototype simulates blockchain transactions locally. When Jane loads USDT, the app shows the full screen flow — including the authenticator confirmation dialog — and displays a fake transaction hash. No actual Polygon or Arbitrum contracts are called. The user experiences the complete journey as if it were live. Real blockchain integration is scoped for Phase 2.</p>
+  </div>
+  <div class="page-footer">Batolink Global Limited · Prototype Quote · Page 2</div>
+</div>
+
+<!-- PAGE 3: COST BREAKDOWN -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-xs tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Cost Breakdown</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Investment <span class="italic" style="color:#E58225;">Summary</span></h2>
+  <div class="divider-gold mb-5"></div>
+
+  <table>
+    <tr><th>Deliverable Component</th><th style="text-align:center;">Hours</th><th style="text-align:right;">Amount (KES)</th></tr>
+    <tr><td>Flutter setup, architecture, navigation framework</td><td style="text-align:center;">16</td><td style="text-align:right;">24,000</td></tr>
+    <tr><td>Wallet balance + dual-currency display component</td><td style="text-align:center;">12</td><td style="text-align:right;">18,000</td></tr>
+    <tr><td>Load wallet flow (enter, confirm, success)</td><td style="text-align:center;">10</td><td style="text-align:right;">15,000</td></tr>
+    <tr><td>P2P transfer + authenticator + receipt</td><td style="text-align:center;">14</td><td style="text-align:right;">21,000</td></tr>
+    <tr><td>In-app authenticator + shared code verification</td><td style="text-align:center;">12</td><td style="text-align:right;">18,000</td></tr>
+    <tr><td>POS QR scan-to-pay + camera integration</td><td style="text-align:center;">14</td><td style="text-align:right;">21,000</td></tr>
+    <tr><td>Withdrawal / cash-out flow</td><td style="text-align:center;">8</td><td style="text-align:right;">12,000</td></tr>
+    <tr><td>Transaction history + notification center</td><td style="text-align:center;">10</td><td style="text-align:right;">15,000</td></tr>
+    <tr><td>Registration + onboarding screens</td><td style="text-align:center;">8</td><td style="text-align:right;">12,000</td></tr>
+    <tr><td>UI polish, animations, brand styling</td><td style="text-align:center;">12</td><td style="text-align:right;">18,000</td></tr>
+    <tr><td>Testing, debugging, device compatibility</td><td style="text-align:center;">8</td><td style="text-align:right;">12,000</td></tr>
+    <tr><td>Play Store listing, APK, screenshots, upload</td><td style="text-align:center;">6</td><td style="text-align:right;">9,000</td></tr>
+    <tr><td>Play Store Console Fee (one-time)</td><td style="text-align:center;">—</td><td style="text-align:right;">3,000</td></tr>
+    <tr class="total"><td><strong>TOTAL — Estimated Market Rate</strong></td><td style="text-align:center;"><strong>130 hrs</strong></td><td style="text-align:right;"><strong>KES 198,000</strong></td></tr>
+    <tr style="background:#FFF7ED;"><td style="color:#E58225;font-weight:700;">QUOTED FIXED FEE</td><td style="text-align:center;">—</td><td style="text-align:right;font-weight:800;font-size:16px;color:#E58225;">KES 50,000</td></tr>
+  </table>
+
+  <p class="text-xs text-gray-500 mt-3">The KES 50,000 fixed fee represents a <strong>75% discount</strong> from the market rate. This is possible because: (a) the Consultant has already completed all product documentation — PRDs, customer journey maps, UI/UX designs, screen flows, and brand assets — eliminating the discovery, requirements, and design phases; (b) blockchain transactions are mocked, not live; and (c) the Consultant has deep familiarity with the project having authored the documentation.</p>
+
+  <div class="grid grid-cols-2 gap-4 mt-4">
+    <div class="section-card p-4 border-l-4" style="border-left-color:#E58225;">
+      <div class="text-sm font-bold mb-1" style="color:#E58225;">Payment Terms</div>
+      <p class="text-xs text-gray-600">50% upfront (KES 25,000) on acceptance. 50% (KES 25,000) on Play Store delivery with source code.</p>
+    </div>
+    <div class="section-card p-4 border-l-4" style="border-left-color:#2A89C5;">
+      <div class="text-sm font-bold mb-1" style="color:#2A89C5;">Timeline</div>
+      <p class="text-xs text-gray-600">8–10 weeks from acceptance. APK delivered at Week 8. Play Store published by Week 10.</p>
+    </div>
+  </div>
+  <div class="page-footer">Batolink Global Limited · Prototype Quote · Page 3</div>
+</div>
+
+<!-- PAGE 4: JUSTIFICATIONS -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-xs tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Justification</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Why This Price <span class="italic" style="color:#E58225;">is Fair</span></h2>
+  <div class="divider-gold mb-5"></div>
+
+  <div class="space-y-3">
+    <div class="section-card p-4 border-l-4" style="border-left-color:#2A89C5;">
+      <div class="text-sm font-bold mb-1" style="color:#2A89C5;">1. Documentation Already Complete</div>
+      <p class="text-xs text-gray-600">The PRD v5, Customer Journey Maps, UI/UX designs, screen flows, and brand assets are already created. The developer needs zero time for discovery, wireframing, or design — saving ~50 hours of traditional development effort.</p>
+    </div>
+    <div class="section-card p-4 border-l-4" style="border-left-color:#E58225;">
+      <div class="text-sm font-bold mb-1" style="color:#E58225;">2. Mocked Blockchain — Reduced Complexity</div>
+      <p class="text-xs text-gray-600">No Polygon or Arbitrum smart contracts deployed. No backend rate engine or auth service. The prototype simulates blockchain TXs locally — full frontend experience without backend infrastructure. Saves ~35 hours.</p>
+    </div>
+    <div class="section-card p-4 border-l-4" style="border-left-color:#2A89C5;">
+      <div class="text-sm font-bold mb-1" style="color:#2A89C5;">3. Fixed Fee — Zero Budget Risk</div>
+      <p class="text-xs text-gray-600">KES 50,000 is the total. The Client will not be charged for scope changes, additional hours, or unforeseen complexity. Project risk sits with the Consultant, not the Client.</p>
+    </div>
+    <div class="section-card p-4 border-l-4" style="border-left-color:#E58225;">
+      <div class="text-sm font-bold mb-1" style="color:#E58225;">4. Play Store Ready — Immediate Stakeholder Access</div>
+      <p class="text-xs text-gray-600">Published on Google Play, accessible via link. Investors, bank executives, regulators, and partners download and experience the product on their own phones. More compelling than slides or screen recordings.</p>
+    </div>
+    <div class="section-card p-4 border-l-4" style="border-left-color:#2A89C5;">
+      <div class="text-sm font-bold mb-1" style="color:#2A89C5;">5. Source Code Delivered — Full Ownership</div>
+      <p class="text-xs text-gray-600">The Client receives the complete Flutter source code and owns it outright. Continue development with any developer — no vendor lock-in. All intellectual property belongs to Batolink Global Limited.</p>
+    </div>
+    <div class="section-card p-4 border-l-4" style="border-left-color:#E58225;">
+      <div class="text-sm font-bold mb-1" style="color:#E58225;">6. Prototype = Fundraising &amp; Partner Readiness</div>
+      <p class="text-xs text-gray-600">A working Play Store prototype validates the product to investors, enables partnership discussions with KCB, and demonstrates regulatory readiness to the Central Bank of Kenya. It transforms the Bato project from a document into a tangible product.</p>
+    </div>
+  </div>
+  <div class="page-footer">Batolink Global Limited · Prototype Quote · Page 4</div>
+</div>
+
+<!-- PAGE 5: ACCEPTANCE -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-xs tracking-[0.25em] uppercase font-bold mb-2" style="color:#E58225;">Acceptance</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#2A89C5;">Approval <span class="italic" style="color:#E58225;">&amp; Signatures</span></h2>
+  <div class="divider-gold mb-5"></div>
+
+  <div class="section-card p-5 mb-5 bg-amber-50 border-amber-200">
+    <div class="text-sm font-bold mb-2" style="color:#E58225;">Quotation Summary</div>
+    <div class="grid grid-cols-3 gap-2 text-xs">
+      <div class="text-gray-500">Total Investment (Fixed Fee)</div><div class="font-bold text-right" style="color:#E58225;">KES 50,000</div><div class="text-gray-400">One-time</div>
+      <div class="text-gray-500">Payment Structure</div><div class="font-bold text-right">50% / 50%</div><div class="text-gray-400">Start + Delivery</div>
+      <div class="text-gray-500">Delivery Timeline</div><div class="font-bold text-right">8–10 weeks</div><div class="text-gray-400">From acceptance</div>
+      <div class="text-gray-500">Platform</div><div class="font-bold text-right">Android APK</div><div class="text-gray-400">Google Play Store</div>
+      <div class="text-gray-500">Technology</div><div class="font-bold text-right">Flutter / Dart</div><div class="text-gray-400">Cross-platform ready</div>
+      <div class="text-gray-500">Ownership</div><div class="font-bold text-right">Batolink Global Ltd</div><div class="text-gray-400">Full source code</div>
+    </div>
+  </div>
+
+  <p class="text-gray-600 text-xs mb-6 leading-relaxed">By signing below, the Client accepts this quotation and authorises the Consultant to commence prototype development according to the scope, timeline, and payment terms set forth herein. The signed quotation constitutes a binding agreement between Batolink Global Limited (the Client) and Sheila Kwamboka Ogega (the Consultant).</p>
+
+  <div class="grid grid-cols-2 gap-8 mt-6">
+    <div>
+      <div class="font-bold text-sm mb-1" style="color:#2A89C5;">For Batolink Global Limited</div>
+      <div style="border-bottom:1px solid #5A584D;height:32px;margin-bottom:4px;"></div>
+      <div class="text-xs text-gray-500">Authorised Signature</div>
+      <div class="mt-3 text-xs text-gray-600">Name: _______________________________</div>
+      <div class="text-xs text-gray-600">Title: _______________________________</div>
+      <div class="text-xs text-gray-600">Date: _______________________________</div>
+    </div>
+    <div>
+      <div class="font-bold text-sm mb-1" style="color:#2A89C5;">For the Consultant</div>
+      <div style="border-bottom:1px solid #5A584D;height:32px;margin-bottom:4px;"></div>
+      <div class="text-xs text-gray-500">Authorised Signature</div>
+      <div class="mt-3 text-xs text-gray-600">Name: Sheila Kwamboka Ogega</div>
+      <div class="text-xs text-gray-600">Date: _______________________________</div>
+    </div>
+  </div>
+  <div class="page-footer">Batolink Global Limited · Prototype Quote · Page 5</div>
+</div>
+
+<div class="max-w-[210mm] mx-auto mt-4 text-center text-xs text-gray-500 no-print">
+  End of Quotation — QUOTE-BATO-2026-001
+</div>
+
+</body>
+</html>
