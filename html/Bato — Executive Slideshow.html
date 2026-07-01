@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bato — Executive Slideshow · KCB USDT Payment System</title>
+<style>
+  :root { --ink: #0a0f1e; --slate: #1e2837; --gold: #f59e0b; --white: #ffffff; --steel: #94a3b8; --emerald: #059669; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--ink); color: var(--white); overflow: hidden;
+    height: 100vh; width: 100vw;
+  }
+
+  /* ═══════════ CONTAINER ═══════════════════ */
+  .deck { width: 100vw; height: 100vh; position: relative; }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+    transform: scale(0.97);
+    flex-direction: column; padding: 60px 80px;
+  }
+  .slide.active { opacity: 1; pointer-events: auto; transform: scale(1); }
+  .slide.exit-left { opacity: 0; transform: translateX(-60px) scale(0.97); }
+  .slide.exit-right { opacity: 0; transform: translateX(60px) scale(0.97); }
+  .slide.enter-left { opacity: 1; transform: translateX(0) scale(1); }
+  .slide.enter-right { opacity: 1; transform: translateX(0) scale(1); }
+
+  /* ═══════════ SLIDE LAYOUTS ═══════════════ */
+  .slide-full { padding: 0; }
+  .slide-full img { width: 100%; height: 100%; object-fit: contain; background: var(--ink); }
+
+  .slide-split { flex-direction: row; gap: 48px; padding: 60px 60px; }
+  .slide-split .img-panel { flex: 1; display: flex; align-items: center; justify-content: center; max-height: 80vh; }
+  .slide-split .img-panel img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
+  .slide-split .text-panel { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .slide-split .text-panel h2 { font-size: 2rem; font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px; }
+  .slide-split .text-panel h2 span { color: var(--gold); }
+  .slide-split .text-panel p { font-size: 1.05rem; color: var(--steel); line-height: 1.7; margin-bottom: 12px; }
+  .slide-split .text-panel .stat-badge { display: inline-block; background: rgba(5,150,105,0.15); color: var(--emerald); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-top: 8px; letter-spacing: 0.5px; }
+
+  .slide-center { text-align: center; }
+  .slide-center h2 { font-size: 2.4rem; font-weight: 900; margin-bottom: 20px; letter-spacing: -1px; max-width: 800px; }
+  .slide-center h2 span { color: var(--gold); }
+  .slide-center p { font-size: 1.1rem; color: var(--steel); line-height: 1.7; max-width: 650px; }
+  .slide-center img { margin-top: 30px; max-width: 70%; max-height: 45vh; object-fit: contain; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
+  .slide-center .big-emoji { font-size: 5rem; margin-bottom: 16px; }
+
+  .slide-comparison { flex-direction: column; gap: 24px; }
+  .slide-comparison .row { display: flex; gap: 32px; width: 100%; max-width: 1100px; }
+  .slide-comparison .col { flex: 1; background: var(--slate); border-radius: 20px; padding: 32px; }
+  .slide-comparison .col.bad { border-left: 4px solid #e11d48; }
+  .slide-comparison .col.good { border-left: 4px solid var(--emerald); }
+  .slide-comparison .col h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 14px; }
+  .slide-comparison .col.bad h3 { color: #e11d48; }
+  .slide-comparison .col.good h3 { color: var(--emerald); }
+  .slide-comparison .col .amount { font-size: 1.8rem; font-weight: 900; margin: 8px 0; }
+  .slide-comparison .col .sub { font-size: 0.85rem; color: var(--steel); }
+  .slide-comparison h2 { font-size: 2rem; font-weight: 900; text-align: center; }
+  .slide-comparison h2 span { color: var(--gold); }
+
+  .slide-grid { flex-direction: column; gap: 24px; }
+  .slide-grid h2 { font-size: 1.6rem; font-weight: 900; text-align: center; margin-bottom: 4px; }
+  .slide-grid h2 span { color: var(--gold); }
+  .slide-grid .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; }
+  .slide-grid .grid img { width: 100%; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+  .slide-grid .grid .cap { font-size: 0.7rem; color: var(--steel); text-align: center; margin-top: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .slide-dual-img { flex-direction: row; gap: 32px; }
+  .slide-dual-img img { max-width: 48%; max-height: 70vh; object-fit: contain; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+  .slide-dual-img .vs { font-size: 2rem; color: var(--gold); font-weight: 900; }
+
+  /* ═══════════ PROGRESS BAR ═══════════════ */
+  .progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); z-index: 100; transition: width 0.5s linear; }
+  .progress-container { position: fixed; top: 0; left: 0; width: 100vw; height: 3px; background: rgba(255,255,255,0.08); z-index: 99; }
+
+  /* ═══════════ SCENE BADGE ═══════════════ */
+  .scene-badge { position: fixed; top: 20px; right: 24px; z-index: 100; background: rgba(10,15,30,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 6px 16px; font-size: 0.7rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; transition: all 0.4s; }
+
+  /* ═══════════ NAV DOTS ══════════════════ */
+  .nav-dots { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 8px; }
+  .nav-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; border: none; }
+  .nav-dots .dot.active { background: var(--gold); width: 24px; border-radius: 4px; }
+  .nav-dots .dot.scene-start { width: 12px; height: 12px; border: 2px solid rgba(255,255,255,0.3); }
+  .nav-dots .dot.scene-start.active { border-color: var(--gold); background: var(--gold); }
+
+  /* ═══════════ PAUSE BUTTON ══════════════ */
+  .pause-btn { display: none; }
+
+  /* ═══════════ FADE-IN TEXT ANIMATION ═════ */
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .anim-up { animation: fadeInUp 0.6s ease-out forwards; }
+  .anim-up-d1 { animation-delay: 0.15s; opacity: 0; }
+  .anim-up-d2 { animation-delay: 0.3s; opacity: 0; }
+
+  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+  .pulse { animation: pulse 2s ease-in-out infinite; }
+
+  @keyframes shimmer { 0% { background-position: -200px 0; } 100% { background-position: 200px 0; } }
+  .shimmer { background: linear-gradient(90deg, transparent, rgba(245,158,11,0.1), transparent); background-size: 200px 100%; animation: shimmer 2s infinite; }
+
+  @media (max-width: 900px) {
+    .slide { padding: 30px 20px; }
+    .slide-split { flex-direction: column; gap: 20px; padding: 20px; }
+    .slide-center h2 { font-size: 1.4rem; }
+    .slide-center img { max-width: 95%; max-height: 35vh; }
+    .slide-grid .grid { grid-template-columns: 1fr 1fr; }
+    .slide-comparison .row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-container"><div class="progress" id="progressBar"></div></div>
+<div class="scene-badge" id="sceneBadge">SCENE 1 / 7</div>
+
+<button class="pause-btn" id="pauseBtn" title="Pause/Play">⏸</button>
+
+<div class="nav-dots" id="navDots"></div>
+
+<div class="deck" id="deck"></div>
+
+<script>
+const SCENES = [
+  {
+    title: "Kenya's Money Problem",
+    bg: "var(--ink)",
+    slides: [
+      {
+        layout: "center",
+        content: `<div class="big-emoji anim-up">🇰🇪</div>
+<h2 class="anim-up anim-up-d1">30 Million Kenyans</h2>
+<p class="anim-up anim-up-d2">Send money through M-Pesa every single day.</p>`,
+        duration: 4000
+      },
+      {
+        layout: "center",
+        content: `<h2 class="anim-up">Every Transaction Has a Price</h2>
+<p class="anim-up anim-up-d1">M-Pesa charges <span style="color:#e11d48;font-weight:800;">1–3% per transaction</span>. Percentage-based. The more you send, the more you pay.</p>
+<img class="anim-up anim-up-d2" src="assets/KCB Logo.png" alt="KCB" style="max-width:180px;margin-top:24px;">`,
+        duration: 5000
+      },
+      {
+        layout: "comparison",
+        content: `<h2 class="anim-up">Percentage Fee <span>vs</span> Flat Fee</h2>
+<div class="row">
+  <div class="col bad anim-up anim-up-d1">
+    <h3>M-Pesa Today</h3>
+    <div class="amount" style="color:#e11d48;">KSh 500–1,500</div>
+    <div class="sub">To send KSh 50,000</div>
+    <div class="sub" style="margin-top:8px;font-weight:700;color:#e11d48;">Fee type: Percentage (1–3%)</div>
+  </div>
+  <div class="col good anim-up anim-up-d2">
+    <h3>Bato Tomorrow</h3>
+    <div class="amount" style="color:var(--emerald);">KSh 0.15</div>
+    <div class="sub">To send any amount — KSh 500 or KSh 50,000</div>
+    <div class="sub" style="margin-top:8px;font-weight:700;color:var(--emerald);">Fee type: FLAT — not percentage-based</div>
+  </div>
+</div>`,
+        duration: 6000
+      },
+      {
+        layout: "center",
+        content: `<h2 class="anim-up">This is <span>Bato</span></h2>
+<p class="anim-up anim-up-d1">KCB's USDT stablecoin payment system.</p>
+<p class="anim-up anim-up-d2">Flat KSh 0.15 per transfer. Zero SMS. 2-second settlement.</p>
+<img class="anim-up anim-up-d2" src="assets/Bato Logo.png" alt="Bato" style="max-width:200px;margin-top:20px;">`,
+        duration: 5000
+      },
+    ]
+  },
+  {
+    title: "Jane's Journey — Discover Bato",
+    bg: "var(--ink)",
+    slides: [
+      {
+        layout: "split",
+        content: `<div class="img-panel"><img src="assets/CJ — KCB Bank App Home Dashboard.svg" alt="KCB Dashboard"></div>
+<div class="text-panel">
+  <h2 class="anim-up">Meet <span>Jane</span></h2>
+  <p class="anim-up anim-up-d1">She opens her KCB bank app — the same app she uses every day.</p>
+  <p class="anim-up anim-up-d2">There's something new. A gold-bordered card.<br><span style="color:var(--gold);font-weight:700;">"Bato — Digital Wallet"</span></p>
+</div>`,
+        duration: 6000
+      },
+      {
+        layout: "split",
+        content: `<div class="img-panel"><img src="assets/CJ — Bato Wallet Empty State.svg" alt="Bato Empty"></div>
+<div class="text-panel">
+  <h2 class="anim-up">One Tap, <span>One Wallet</span></h2>
+  <p class="anim-up anim-up-d1">Jane taps the card. This is her first time.</p>
+  <p class="anim-up anim-up-d2">An empty wallet with ₿ icon.<br>"Your Digital Wallet" — ready to create.</p>
+  <span class="stat-badge anim-up anim-up-d2">No separate app download</span>
+</div>`,
+        duration: 5000
+      },
+      {
+        layout: "grid",
+        content: `<h2 class="anim-up">Registration: <span>3 Screens. Zero SMS.</span></h2>
+<div class="grid anim-up anim-up-d1">
+  <div><img src="assets/Registration — Phone Number Entry.png" alt="Phone"><div class="cap">Screen 1 — Phone Number</div></div>
+  <div><img src="assets/Registration — Confirmation.png" alt="Confirm"><div class="cap">Screen 2 — Confirm Details</div></div>
+  <div><img src="assets/Registration — Authenticator Enrollment.png" alt="Auth"><div class="cap">Screen 3 — Set Up Authenticator</div></div>
+</div>`,
+        duration: 6000
+      },
+      {
+        layout: "split",
+        content: `<div class="img-panel"><img src="assets/2.2.1 Use Case User Views Wallet Balance.png" alt="Wallet Balance"></div>
+<div class="text-panel">
+  <h2 class="anim-up">Wallet <span>Created</span></h2>
+  <p class="anim-up anim-up-d1">Jane lands on her wallet balance screen.<br>Zero USDT. Zero KSh. Ready to load.</p>
+  <p class="anim-up anim-up-d2">No SMS sent. No email. No OTP.<br>Device key generated in Secure Enclave.</p>
+  <span class="stat-badge anim-up anim-up-d2">Registration complete</span>
+</div>`,
+        duration: 5000
+      },
+    ]
+  },
+  {
+    title: "Load Wallet — KES to USDT",
+    bg: "var(--ink)",
+    slides: [
+      {
+        layout: "grid",
+        content: `<h2 class="anim-up">Jane Loads <span>200 USDT</span></h2>
+<div class="grid anim-up anim-up-d1">
+  <div><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 1.png" alt="Step 1"><div class="cap">Enter Amount — 200 USDT</div></div>
+  <div><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 2.png" alt="Step 2"><div class="cap">Confirm — Rate Locked</div></div>
+  <div><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 3.png" alt="Step 3"><div class="cap">Success — New Balance</div></div>
+</div>`,
+        duration: 6000
+      },
+      {
+        layout: "center",
+        content: `<h2 class="anim-up">Dual Currency — <span>Always 2×</span></h2>
+<p class="anim-up anim-up-d1">KES cost: KSh 29,580.00. Rate: 1 USDT = KSh 147.90.</p>
+<p class="anim-up anim-up-d2">Fee: KSh 580 conversion + KSh 1.45 network. Confirmed via Authenticator.</p>
+<img class="anim-up anim-up-d2" src="assets/2.2.1 Use Case User Views Wallet Balance.png" alt="Balance" style="max-height:300px;">`,
+        duration: 5000
+      },
+    ]
+  },
+  {
+    title: "Send to Sarah — P2P Transfer",
+    bg: "var(--ink)",
+    slides: [
+      {
+        layout: "split",
+        content: `<div class="img-panel"><img src="assets/CJ — P2P Send Enter Recipient.svg" alt="Send"></div>
+<div class="text-panel">
+  <h2 class="anim-up">Send <span>50 USDT</span> to Sarah</h2>
+  <p class="anim-up anim-up-d1">Jane enters Sarah's wallet address. Types 50.</p>
+  <p class="anim-up anim-up-d2">Instant preview: 50.00 USDT ≈ KSh 7,250.00<br>Network fee: 0.50 USDT (≈ KSh 72.50)</p>
+  <span class="stat-badge anim-up anim-up-d2">Rate: 1 USDT = KSh 145.00</span>
+</div>`,
+        duration: 5000
+      },
+      {
+        layout: "split",
+        content: `<div class="img-panel"><img src="assets/Authenticator — P2P Transfer Confirmation.svg" alt="Authenticator"></div>
+<div class="text-panel">
+  <h2 class="anim-up">Authenticator <span>Confirms</span></h2>
+  <p class="anim-up anim-up-d1">Push notification — not an SMS.</p>
+  <p class="anim-up anim-up-d2">"Confirm transfer of 50 USDT to Sarah?"<br>Jane taps Approve. Signed with device key.</p>
+  <span class="stat-badge anim-up anim-up-d2">2-second confirmation</span>
+</div>`,
+        duration: 5000
+      },
+      {
+        layout: "dual-img",
+        content: `<img class="anim-up" src="assets/P2P Transfer — Jane Sends to Sarah Confirmation.png" alt="Sent">
+<div class="vs anim-up anim-up-d1">→</div>
+<img class="anim-up anim-up-d2" src="assets/P2P Transfer — Recipient In-App Notification.png" alt="Received">`,
+        duration: 5000
+      },
+    ]
+  },
+  {
+    title: "Scan to Pay — Merchant POS",
+    bg: "var(--ink)",
+    slides: [
+      {
+        layout: "split",
+        content: `<div class="img-panel"><img src="assets/CJ — POS Scan QR Camera View.svg" alt="Scan QR"></div>
+<div class="text-panel">
+  <h2 class="anim-up">At <span>Naivas Supermarket</span></h2>
+  <p class="anim-up anim-up-d1">Cashier rings KSh 650. QR code appears on POS.</p>
+  <p class="anim-up anim-up-d2">Jane scans with KCB app.<br>Naivas Supermarket, Moi Avenue.<br>KSh 650 ≈ 4.48 USDT</p>
+</div>`,
+        duration: 5000
+      },
+      {
+        layout: "dual-img",
+        content: `<img class="anim-up" src="assets/Shared Code Verification — Mode B POS Flow.svg" alt="Shared Code">
+<div class="vs anim-up anim-up-d1">🔐</div>
+<img class="anim-up anim-up-d2" src="assets/CJ — Authenticator Shared Code Entry.svg" alt="Enter Code">`,
+        duration: 6000
+      },
+      {
+        layout: "split",
+        content: `<div class="img-panel"><img src="assets/2.3.3 POS Terminal Display (Merchant Side).png" alt="POS"></div>
+<div class="text-panel">
+  <h2 class="anim-up">Payment <span>Received ✓</span></h2>
+  <p class="anim-up anim-up-d1">Jane enters code A7K3M9 in Authenticator. Approves.</p>
+  <p class="anim-up anim-up-d2">POS confirms in under 3 seconds.<br>KSh 650 · 4.48 USDT · settled.</p>
+  <span class="stat-badge anim-up anim-up-d2">No SMS · No PIN · No fingerprint</span>
+</div>`,
+        duration: 5000
+      },
+    ]
+  },
+  {
+    title: "The Authenticator — No SMS. Period.",
+    bg: "var(--ink)",
+    slides: [
+      {
+        layout: "center",
+        content: `<h2 class="anim-up"><span>Zero SMS.</span> Zero Email. Zero Biometric.</h2>
+<p class="anim-up anim-up-d1">M-Pesa uses SMS. SMS is vulnerable to SIM-swap — Kenya's most common fraud vector.</p>
+<p class="anim-up anim-up-d2">Bato uses an in-app authenticator. Push message. Device key. Cryptographic challenge. No external channel.</p>
+<img class="anim-up anim-up-d2" src="assets/Authenticator — Message-Based Confirmation Architecture.svg" alt="Auth Architecture" style="max-height:300px;">`,
+        duration: 6000
+      },
+      {
+        layout: "grid",
+        content: `<h2 class="anim-up">Two Verification <span>Modes</span></h2>
+<div class="grid anim-up anim-up-d1">
+  <div><img src="assets/Auth — In-App Authenticator Dialog.png" alt="Mode A"><div class="cap">Mode A — Tap to Approve</div></div>
+  <div><img src="assets/Auth — Challenge Signing.png" alt="Challenge"><div class="cap">Device Key Signs Challenge</div></div>
+  <div><img src="assets/Auth — In-App Confirmation (No SMS).png" alt="Confirmation"><div class="cap">In-App — No SMS Trail</div></div>
+</div>`,
+        duration: 5000
+      },
+      {
+        layout: "center",
+        content: `<h2 class="anim-up">All Confirmations <span>In-App Only</span></h2>
+<p class="anim-up anim-up-d1">No SMS on Jane's phone records. No external trail.</p>
+<p class="anim-up anim-up-d2">Payment history, receipts, notifications — all inside the bank app.</p>
+<img class="anim-up anim-up-d2" src="assets/Notification Center — In-App Notifications.png" alt="Notifications" style="max-height:300px;">`,
+        duration: 5000
+      },
+    ]
+  },
+  {
+    title: "The Future — PayBand + The Ask",
+    bg: "var(--ink)",
+    slides: [
+      {
+        layout: "split",
+        content: `<div class="img-panel"><img src="assets/PayBand — NFC Wearable Bracelet Payment Flow.svg" alt="PayBand"></div>
+<div class="text-panel">
+  <h2 class="anim-up">The <span>PayBand</span></h2>
+  <p class="anim-up anim-up-d1">NFC-enabled silicone bracelet. Water resistant. E-ink display. 12-month battery.</p>
+  <p class="anim-up anim-up-d2">Load via KCB app QR + NFC. Tap at checkout. Authenticator confirms. &lt;2 seconds.</p>
+  <span class="stat-badge anim-up anim-up-d2">Phase 2 hardware — same device key security</span>
+</div>`,
+        duration: 5000
+      },
+      {
+        layout: "dual-img",
+        content: `<img class="anim-up" src="assets/CJ — Load Bracelet Screen.svg" alt="Load Bracelet">
+<img class="anim-up anim-up-d2" src="assets/CJ — Bracelet Tap at POS.svg" alt="Tap at POS">`,
+        duration: 5000
+      },
+      {
+        layout: "center",
+        content: `<h2 class="anim-up">This is <span>Bato</span></h2>
+<p class="anim-up anim-up-d1">First bank in Kenya — in Africa — with a stablecoin payment system inside the banking app.</p>
+<p class="anim-up anim-up-d2">Flat KSh 0.15 per transfer. Zero SMS. 2-second settlement. Multi-chain ready.<br><strong style="color:var(--gold);">The question is: which bank gets there first?</strong></p>
+<img class="anim-up anim-up-d2" src="assets/KCB Logo.png" alt="KCB" style="max-width:140px;margin-top:16px;display:inline-block;">
+<img class="anim-up anim-up-d2" src="assets/Bato Logo.png" alt="Bato" style="max-width:140px;margin-top:16px;display:inline-block;margin-left:16px;">`,
+        duration: 6000
+      },
+    ]
+  },
+];
+
+// Flatten all slides for the linear deck
+const ALL_SLIDES = [];
+const SCENE_BOUNDARIES = [0];
+SCENES.forEach(scene => {
+  scene.slides.forEach(s => ALL_SLIDES.push(s));
+  SCENE_BOUNDARIES.push(ALL_SLIDES.length);
+});
+
+let currentSlide = 0;
+
+function renderDeck() {
+  const deck = document.getElementById('deck');
+  deck.innerHTML = '';
+
+  ALL_SLIDES.forEach((slide, i) => {
+    const div = document.createElement('div');
+    div.className = `slide slide-${slide.layout}`;
+    if (i === currentSlide) div.classList.add('active');
+    div.innerHTML = slide.content;
+    deck.appendChild(div);
+  });
+
+  renderNavDots();
+  updateProgress();
+}
+
+function renderNavDots() {
+  const container = document.getElementById('navDots');
+  container.innerHTML = '';
+
+  ALL_SLIDES.forEach((slide, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot';
+    if (i === currentSlide) dot.classList.add('active');
+    // Check if this slide starts a new scene
+    if (SCENE_BOUNDARIES.includes(i) && i > 0) dot.classList.add('scene-start');
+    dot.onclick = () => goToSlide(i);
+    container.appendChild(dot);
+  });
+}
+
+function updateProgress() {
+  const pct = ((currentSlide) / (ALL_SLIDES.length - 1)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+
+  // Find which scene we're in
+  let sceneIdx = 1;
+  for (let i = 1; i < SCENE_BOUNDARIES.length; i++) {
+    if (currentSlide < SCENE_BOUNDARIES[i]) { sceneIdx = i; break; }
+  }
+  document.getElementById('sceneBadge').textContent = `SCENE ${sceneIdx} / ${SCENES.length}`;
+}
+
+function goToSlide(index) {
+  if (index < 0 || index >= ALL_SLIDES.length) return;
+
+  const oldEl = document.querySelector('.slide.active');
+  const newEl = document.querySelectorAll('.slide')[index];
+
+  if (oldEl) oldEl.classList.remove('active');
+  if (newEl) {
+    newEl.classList.add('active');
+    // Reset animations on child elements
+    newEl.querySelectorAll('.anim-up, .anim-up-d1, .anim-up-d2').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = '';
+    });
+  }
+
+  currentSlide = index;
+  updateProgress();
+  renderNavDots();
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    if (currentSlide < ALL_SLIDES.length - 1) {
+      goToSlide(currentSlide + 1);
+    }
+  } else if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    if (currentSlide > 0) {
+      goToSlide(currentSlide - 1);
+    }
+  }
+});
+
+// Start
+renderDeck();
+</script>
+</body>
+</html>

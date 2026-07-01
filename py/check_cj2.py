@@ -1,0 +1,5 @@
+f = open(r"C:\Users\User\Batolink\4. Bitcoin_Cryptocurrency\Customer Journey 2 - Copy.html", encoding="utf-8")
+c = f.read(); f.close()
+print(f"Size: {len(c):,} chars, {c.count(chr(10))} lines")
+print(f"Images: {c.count('img src=')}")
+print(f"Phases: {c.count('phase-badge')}")

@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRD v3 — Bato USDT Payment System · KCB Bank · Multi-Chain</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --ink: #0a0f1e; --ink-80: rgba(10,15,30,0.8); --slate: #1e2837; --slate-light: #2d3a4f;
+    --steel: #94a3b8; --silver: #cbd5e1; --cloud: #e2e8f0; --canvas: #f8fafc; --white: #ffffff;
+    --gold: #f59e0b; --gold-soft: #fef3c7; --gold-glow: rgba(245,158,11,0.18);
+    --emerald: #059669; --emerald-soft: #d1fae5; --ruby: #e11d48; --ruby-soft: #ffe4e6;
+    --sapphire: #2563eb; --sapphire-soft: #dbeafe; --amber: #d97706; --amber-soft: #fef3c7;
+    --grad-hero: linear-gradient(135deg, #0a0f1e 0%, #1a2744 40%, #162240 100%);
+    --grad-gold: linear-gradient(135deg, #f59e0b, #d97706);
+    --grad-emerald: linear-gradient(135deg, #059669, #047857);
+    --grad-sapphire: linear-gradient(135deg, #2563eb, #1d4ed8);
+    --radius-sm: 6px; --radius: 12px; --radius-lg: 20px; --radius-xl: 28px;
+    --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-elevated: 0 2px 4px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.1);
+    --shadow-glow: 0 0 40px var(--gold-glow);
+    --transition: 0.2s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--canvas); color: var(--ink); line-height: 1.7;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+
+  nav.sidebar {
+    position: fixed; left: 0; top: 0; height: 100vh; width: 272px;
+    background: var(--ink); z-index: 1000; overflow-y: auto;
+    padding: 32px 24px 40px; border-right: 1px solid rgba(255,255,255,0.06);
+    display: flex; flex-direction: column;
+  }
+  nav.sidebar .logo { font-size: 13px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; display: flex; align-items: center; gap: 8px; }
+  nav.sidebar .logo::before { content: '◆'; font-size: 10px; }
+  nav.sidebar .nav-section { margin-bottom: 16px; }
+  nav.sidebar .nav-section-title { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(148,163,184,0.5); margin-bottom: 6px; padding-left: 4px; }
+  nav.sidebar a { display: block; color: var(--silver); text-decoration: none; font-size: 12.5px; font-weight: 400; padding: 4px 8px; border-radius: var(--radius-sm); transition: all var(--transition); line-height: 1.6; }
+  nav.sidebar a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+  nav.sidebar a.active { color: var(--gold); background: rgba(245,158,11,0.1); font-weight: 600; }
+  nav.sidebar a.l2 { padding-left: 20px; }
+  nav.sidebar a.l3 { padding-left: 34px; font-size: 11.5px; }
+
+  main { margin-left: 272px; }
+
+  .hero { background: var(--grad-hero); padding: 80px 72px 100px; position: relative; overflow: hidden; color: var(--white); }
+  .hero::after { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%); pointer-events: none; }
+  .hero .pretitle { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero h1 { font-size: 3rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 16px; max-width: 800px; }
+  .hero h1 span { background: var(--grad-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero .subtitle { font-size: 1.1rem; color: var(--steel); max-width: 650px; line-height: 1.7; margin-bottom: 40px; }
+  .hero .metrics { display: flex; gap: 40px; flex-wrap: wrap; }
+  .hero .metric { text-align: left; }
+  .hero .metric .value { font-size: 2.2rem; font-weight: 900; letter-spacing: -1px; background: var(--grad-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero .metric .label { font-size: 0.78rem; color: var(--steel); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .section { padding: 72px 72px 0; }
+  .section-dark { padding: 72px 72px; background: var(--ink); color: var(--silver); }
+  .section-dark h2, .section-dark h3, .section-dark h4 { color: var(--white); }
+  .section-dark h5 { color: var(--gold); }
+  .section-dark p, .section-dark li { color: var(--silver); }
+  .section-dark p.lead { color: var(--silver); }
+  .section-dark .text-muted { color: var(--steel); }
+  .section-dark code { background: var(--slate-light); color: var(--silver); }
+  .section-dark strong { color: var(--white); }
+  .section-dark .img-caption { color: var(--steel); }
+
+  h2 { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; color: var(--ink); }
+  h2.section-num { font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .section-num { font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .section-dark .section-num { color: var(--gold); }
+  h3 { font-size: 1.25rem; font-weight: 700; margin: 36px 0 8px; color: var(--ink); padding-top: 8px; }
+  h4 { font-size: 1rem; font-weight: 700; margin: 24px 0 6px; color: var(--ink); }
+  h5 { font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gold); margin: 20px 0 4px; }
+
+  p { color: var(--ink-80); margin-bottom: 14px; }
+  p.lead { font-size: 1.15rem; line-height: 1.75; color: var(--slate); margin-bottom: 24px; }
+
+  .card { background: var(--white); border: 1px solid var(--cloud); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: var(--shadow-card); transition: all var(--transition); }
+  .card:hover { box-shadow: var(--shadow-elevated); transform: translateY(-1px); }
+  .card-dark { background: var(--slate); border: 1px solid var(--slate-light); border-radius: var(--radius-lg); padding: 28px 32px; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin: 24px 0; }
+  .card-grid-2 { grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); }
+
+  .callout { padding: 18px 24px; border-radius: var(--radius); margin: 20px 0; font-weight: 500; font-size: 0.92rem; display: flex; gap: 12px; align-items: flex-start; }
+  .callout .icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+  .callout-critical { background: var(--ruby-soft); border: 1px solid rgba(225,29,72,0.2); color: #881337; }
+  .callout-critical .icon { color: var(--ruby); }
+  .callout-info { background: var(--sapphire-soft); border: 1px solid rgba(37,99,235,0.2); color: #1e3a5f; }
+  .callout-info .icon { color: var(--sapphire); }
+  .callout-warn { background: var(--amber-soft); border: 1px solid rgba(217,119,6,0.2); color: #78350f; }
+  .callout-warn .icon { color: var(--amber); }
+  .callout-success { background: var(--emerald-soft); border: 1px solid rgba(5,150,105,0.2); color: #064e3b; }
+  .callout-success .icon { color: var(--emerald); }
+
+  .metric-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 24px 0; }
+  .metric-card { background: var(--white); border: 1px solid var(--cloud); border-radius: var(--radius); padding: 20px; text-align: center; box-shadow: var(--shadow-card); }
+  .metric-card .val { font-size: 1.8rem; font-weight: 900; color: var(--ink); letter-spacing: -0.5px; }
+  .metric-card .lbl { font-size: 0.75rem; font-weight: 600; color: var(--steel); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+  .journey { display: flex; gap: 0; margin: 32px 0; overflow-x: auto; padding-bottom: 8px; }
+  .journey-step { flex: 1; min-width: 160px; position: relative; padding: 24px 16px 20px; text-align: center; background: var(--white); border: 1px solid var(--cloud); border-radius: 0; }
+  .journey-step:first-child { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
+  .journey-step:last-child { border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+  .journey-step .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--grad-sapphire); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; margin: 0 auto 10px; }
+  .journey-step .step-title { font-weight: 700; font-size: 0.88rem; color: var(--ink); margin-bottom: 4px; }
+  .journey-step .step-desc { font-size: 0.78rem; color: var(--steel); line-height: 1.5; }
+  .journey-step::after { content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--silver); z-index: 2; font-weight: 700; }
+  .journey-step:last-child::after { display: none; }
+
+  .img-frame { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-elevated); margin: 24px 0; background: var(--white); }
+  .img-frame img { width: auto; max-width: 100%; max-height: 520px; display: block; margin: 0 auto; }
+  .img-frame .img-caption { padding: 12px 20px; font-size: 0.78rem; color: var(--steel); font-weight: 500; border-top: 1px solid var(--cloud); }
+  .img-inline { max-width: 100%; border-radius: var(--radius); box-shadow: var(--shadow-card); }
+  .img-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 24px 0; }
+  .img-row .img-card { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); background: var(--white); }
+  .img-row .img-card img { width: 100%; display: block; max-height: 480px; object-fit: contain; }
+  .img-row .img-card .img-card-caption { padding: 10px 16px; font-size: 0.75rem; font-weight: 600; color: var(--slate); border-top: 1px solid var(--cloud); }
+
+  .placeholder { background: var(--slate-light); min-height: 200px; display: flex; align-items: center; justify-content: center; color: var(--steel); font-size: 0.82rem; text-align: center; padding: 32px 24px; border-radius: var(--radius); }
+  .placeholder strong { display: block; color: var(--gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+
+  code { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.85em; background: var(--cloud); padding: 2px 6px; border-radius: 4px; color: var(--ruby); }
+  pre { background: #0d1117; color: #e6edf3; padding: 24px 28px; border-radius: var(--radius-lg); overflow-x: auto; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 12.5px; line-height: 1.7; margin: 20px 0; box-shadow: var(--shadow-elevated); }
+  pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+
+  details.tech-spec { margin: 20px 0; border: 1px solid var(--cloud); border-radius: var(--radius-lg); background: var(--white); overflow: hidden; box-shadow: var(--shadow-card); }
+  details.tech-spec summary { padding: 18px 24px; font-weight: 700; font-size: 0.92rem; cursor: pointer; user-select: none; background: var(--sapphire-soft); color: var(--sapphire); display: flex; align-items: center; gap: 8px; }
+  details.tech-spec summary::after { content: '▸ Expand code'; font-size: 0.75rem; font-weight: 500; opacity: 0.7; margin-left: auto; }
+  details.tech-spec[open] summary::after { content: '▾ Collapse code'; }
+  details.tech-spec .spec-body { padding: 0 24px 24px; }
+  details.tech-spec .spec-body p { color: var(--slate); font-size: 0.88rem; }
+  details.tech-spec .spec-body li { color: var(--slate); font-size: 0.88rem; }
+
+  .section-dark details.tech-spec { background: var(--slate); border-color: var(--slate-light); }
+  .section-dark details.tech-spec .spec-body p { color: var(--silver); }
+  .section-dark details.tech-spec .spec-body li { color: var(--silver); }
+  .section-dark details.tech-spec .spec-body strong { color: var(--white); }
+  .section-dark details.tech-spec summary::after { color: var(--steel); }
+
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
+  th { background: var(--ink); color: var(--white); font-weight: 700; padding: 14px 18px; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 12px 18px; border-bottom: 1px solid var(--cloud); color: var(--slate); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--canvas); }
+  tr:hover td { background: #f1f5f9; }
+  .section-dark td { color: var(--silver); border-bottom-color: var(--slate-light); }
+  .section-dark tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+  .section-dark tr:hover td { background: rgba(255,255,255,0.06); }
+  .section-dark th { background: var(--slate-light); }
+
+  .phase-track { position: relative; padding-left: 40px; margin: 32px 0; }
+  .phase-track::before { content: ''; position: absolute; left: 19px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--gold), var(--sapphire), var(--emerald)); }
+  .phase-item { position: relative; margin-bottom: 32px; padding-left: 32px; }
+  .phase-item::before { content: ''; position: absolute; left: -25px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--white); border: 3px solid var(--gold); }
+  .phase-item:nth-child(even)::before { border-color: var(--sapphire); }
+  .phase-item .phase-week { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); }
+  .phase-item h4 { margin: 0 0 6px; font-size: 1.05rem; }
+  .phase-item ul { padding-left: 18px; color: var(--slate); font-size: 0.9rem; }
+  .phase-item li { margin: 4px 0; }
+
+  .principles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; margin: 24px 0; }
+  .principle-card { background: var(--white); border: 1px solid var(--cloud); border-radius: var(--radius-lg); padding: 24px 28px; box-shadow: var(--shadow-card); border-left: 4px solid var(--emerald); transition: all var(--transition); }
+  .principle-card:hover { box-shadow: var(--shadow-elevated); transform: translateY(-2px); }
+  .principle-card .num { font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--emerald); margin-bottom: 6px; }
+  .principle-card h4 { margin: 0 0 6px; font-size: 1rem; }
+  .principle-card p { font-size: 0.88rem; color: var(--slate); }
+
+  .endpoint { margin: 20px 0; border: 1px solid var(--cloud); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); }
+  .endpoint .method { display: inline-block; padding: 4px 12px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.5px; text-transform: uppercase; margin-right: 10px; }
+  .method-get { background: var(--emerald-soft); color: var(--emerald); }
+  .method-post { background: var(--sapphire-soft); color: var(--sapphire); }
+  .endpoint-header { padding: 16px 24px; background: var(--canvas); border-bottom: 1px solid var(--cloud); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; }
+  .endpoint-body { padding: 16px 24px; }
+  .endpoint-body p { font-size: 0.88rem; color: var(--slate); margin: 8px 0; }
+  .section-dark .endpoint { background: var(--slate); border-color: var(--slate-light); }
+  .section-dark .endpoint-header { background: rgba(255,255,255,0.04); border-color: var(--slate-light); color: var(--white); }
+  .section-dark .endpoint-body p { color: var(--silver); }
+
+  .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0; }
+  .comparison-col { border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--cloud); }
+  .comparison-col h5 { margin-bottom: 12px; }
+  .comparison-col ul { padding-left: 18px; font-size: 0.88rem; color: var(--slate); }
+  .comparison-col li { margin: 6px 0; }
+  .comp-before { background: var(--ruby-soft); border-color: rgba(225,29,72,0.15); }
+  .comp-after { background: var(--emerald-soft); border-color: rgba(5,150,105,0.15); }
+
+  .flow-vert { display: flex; flex-direction: column; gap: 0; margin: 24px 0; }
+  .flow-vert .flow-step { display: flex; gap: 20px; align-items: flex-start; padding: 20px 24px; position: relative; border-left: 2px solid var(--silver); margin-left: 20px; }
+  .flow-vert .flow-step::before { content: ''; position: absolute; left: -9px; top: 26px; width: 16px; height: 16px; border-radius: 50%; background: var(--grad-sapphire); }
+  .flow-vert .flow-step:last-child { border-left-color: transparent; }
+  .flow-vert .flow-num { font-weight: 900; font-size: 1.1rem; color: var(--sapphire); min-width: 32px; text-align: center; padding-top: 2px; }
+  .flow-vert .flow-body { flex: 1; }
+  .flow-vert .flow-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
+  .flow-vert .flow-desc { font-size: 0.82rem; color: var(--slate); }
+  .section-dark .flow-vert .flow-title { color: var(--white); }
+  .section-dark .flow-vert .flow-desc { color: var(--steel); }
+  .section-dark .flow-vert .flow-num { color: var(--gold); }
+  .section-dark .flow-vert .flow-step { border-left-color: var(--slate-light); }
+  .section-dark .flow-vert .flow-step:last-child { border-left-color: transparent; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+  .stat-card { background: var(--white); border-radius: var(--radius-lg); padding: 24px; text-align: center; box-shadow: var(--shadow-card); border-top: 3px solid var(--sapphire); transition: all var(--transition); }
+  .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-elevated); }
+  .stat-card.gold { border-top-color: var(--gold); }
+  .stat-card.emerald { border-top-color: var(--emerald); }
+  .stat-card .stat-val { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px; }
+  .stat-card .stat-lbl { font-size: 0.75rem; font-weight: 600; color: var(--steel); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .section-dark .stat-card { background: var(--slate); border-color: var(--slate-light); }
+  .section-dark .stat-card .stat-val { color: var(--white); }
+  .section-dark .stat-card .stat-lbl { color: var(--steel); }
+
+  @media (max-width: 1024px) {
+    nav.sidebar { display: none; }
+    main { margin-left: 0; }
+    .hero { padding: 48px 32px 64px; }
+    .hero h1 { font-size: 2rem; }
+    .section, .section-sm { padding: 40px 32px 0; }
+    .section-dark { padding: 40px 32px; }
+    .journey { flex-wrap: wrap; }
+    .journey-step { flex: 1 1 140px; min-width: 140px; border-radius: 0; }
+    .journey-step::after { display: none; }
+    .comparison { grid-template-columns: 1fr; }
+    .principles-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+    nav.sidebar { display: none; }
+    main { margin-left: 0; width: 100%; }
+    body { font-size: 9pt; line-height: 1.55; }
+    .hero { background: var(--white); color: var(--ink); padding: 24px 0 36px; page-break-after: avoid; }
+    .hero h1 { font-size: 1.5rem; -webkit-text-fill-color: var(--ink); }
+    .hero .subtitle { font-size: 0.85rem; color: var(--slate); }
+    .hero .metric .value { font-size: 1.4rem; -webkit-text-fill-color: var(--ink); }
+    .hero .metric .label { font-size: 0.6rem; }
+    .hero .metrics { gap: 24px; }
+    .hero .pretitle { font-size: 0.58rem; letter-spacing: 1.5px; }
+    .section, .section-sm { padding: 28px 0 0; }
+    .section-dark { padding: 28px 0; background: var(--white); color: var(--ink); border-top: 1px solid var(--cloud); border-bottom: 1px solid var(--cloud); }
+    .section-dark h2, .section-dark h3, .section-dark h4 { color: var(--ink); }
+    .section-dark h5 { color: var(--gold); }
+    .section-dark p, .section-dark li, .section-dark td { color: var(--slate); }
+    .section-dark .text-muted { color: var(--ink-80); }
+    .section-dark code { background: var(--cloud); color: var(--ruby); }
+    .section-dark strong { color: var(--ink); }
+    .section-dark .img-caption { color: var(--steel); }
+    .section-dark .endpoint { background: var(--white); border-color: var(--cloud); }
+    .section-dark .endpoint-header { background: var(--canvas); border-color: var(--cloud); color: var(--ink); }
+    .section-dark .endpoint-body p { color: var(--slate); }
+    .section-dark .stat-card { background: var(--white); border-color: var(--cloud); }
+    .section-dark .stat-card .stat-val { color: var(--ink); }
+    h2 { font-size: 1.3rem; margin: 0 0 6px; }
+    h3 { font-size: 1.05rem; margin: 20px 0 6px; }
+    h4 { font-size: 0.9rem; margin: 14px 0 4px; }
+    p { margin-bottom: 8px; }
+    p.lead { font-size: 0.92rem; line-height: 1.6; margin-bottom: 14px; }
+    .card { box-shadow: none; border: 1px solid var(--cloud); padding: 18px 22px; }
+    .card-grid { gap: 12px; }
+    .callout { padding: 10px 16px; margin: 12px 0; font-size: 0.8rem; }
+    .img-frame { box-shadow: none; margin: 18px 0; }
+    .img-frame img { max-height: 420px; max-width: 95%; margin: 0 auto; display: block; }
+    .img-row { gap: 16px; }
+    .img-row .img-card img { max-height: 380px; max-width: 100%; }
+    .image-row { gap: 16px; }
+    .visual-image img { max-height: 380px; max-width: 100%; }
+    pre { font-size: 7.5pt; padding: 12px 16px; margin: 10px 0; box-shadow: none; }
+    table { font-size: 0.75rem; margin: 10px 0; }
+    th, td { padding: 8px 12px; }
+    .journey { gap: 0; }
+    .journey-step { padding: 14px 10px 12px; min-width: 100px; }
+    .journey-step .step-num { width: 24px; height: 24px; font-size: 0.7rem; }
+    .journey-step .step-title { font-size: 0.72rem; }
+    .journey-step .step-desc { font-size: 0.65rem; }
+    .phase-track { padding-left: 24px; }
+    .phase-item { margin-bottom: 18px; padding-left: 20px; }
+    .phase-item h4 { font-size: 0.88rem; }
+    .phase-item ul { font-size: 0.78rem; }
+    .principles-grid { gap: 10px; }
+    .principle-card { padding: 16px 20px; }
+    .principle-card h4 { font-size: 0.85rem; }
+    .principle-card p { font-size: 0.75rem; }
+    .metric-panel { gap: 10px; }
+    .metric-card { padding: 12px; }
+    details.tech-spec { box-shadow: none; }
+    details.tech-spec summary { padding: 10px 16px; font-size: 0.8rem; }
+    .spec-body { padding: 0 16px 16px; }
+    .stat-row { gap: 10px; }
+    .stat-card { padding: 16px; }
+    .hero, h2, h3, h4, .callout, .flow-vert .flow-step, .journey-step, .phase-item, .principle-card, .img-frame, .img-row .img-card, .endpoint { page-break-inside: avoid; }
+    table { page-break-inside: avoid; }
+    pre { page-break-inside: avoid; widows: 3; orphans: 3; }
+    img { page-break-inside: avoid; }
+    .img-row { page-break-inside: avoid; }
+    .image-row { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="logo">KenyaPay PRD v2</div>
+  <div class="nav-section">
+    <div class="nav-section-title">Vision &amp; Principles</div>
+    <a href="#exec" class="active">Executive Summary</a>
+    <a href="#vision" class="l2">Product Vision &amp; Metrics</a>
+    <a href="#manifesto" class="l2">Seven Key Principles</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-title">User Journeys</div>
+    <a href="#journey-p2p" class="l2">Journey 1 — P2P Wallet</a>
+    <a href="#journey-pos" class="l2">Journey 2 — Merchant POS</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-title">Implementation (in order)</div>
+    <a href="#req-register" class="l2">§5 — User Registration</a>
+    <a href="#req-auth" class="l2">§6 — Authentication (No SMS)</a>
+    <a href="#arch-overview" class="l2">§7 — System Architecture</a>
+    <a href="#req-rates" class="l2">§8 — Rate Engine &amp; Display SDK</a>
+    <a href="#req-display" class="l2">§9 — Dual Currency Display Rules</a>
+    <a href="#req-p2p" class="l2">§10 — P2P Wallet (Full Spec)</a>
+    <a href="#req-pos" class="l2">§11 — POS Merchant (Full Spec)</a>
+    <a href="#req-withdraw" class="l2">§12 — Withdrawal / Cash Out</a>
+    <a href="#req-errors" class="l2">§13 — Error States &amp; Edge Cases</a>
+    <a href="#req-bracelet" class="l2">§14 — PayBand Bracelet (Hardware)</a>
+    <a href="#req-history" class="l2">§15 — Transaction History</a>
+    <a href="#req-notify" class="l2">§16 — In-App Notifications</a>
+    <a href="#spec-contracts" class="l2">§17 — Smart Contract Interface</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-title">Specifications</div>
+    <a href="#spec-db" class="l2">§18 — Database Schema</a>
+    <a href="#spec-api" class="l2">§19 — API Endpoints</a>
+    <a href="#spec-onboard" class="l2">§20 — Onboarding / First Run</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-title">Delivery</div>
+    <a href="#delivery-phases" class="l2">§21 — Development Phases</a>
+    <a href="#delivery-stack" class="l2">§22 — Tech Stack</a>
+    <a href="#quickstart" class="l2">Quick Start Checklist</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════ HERO ════════════════════════════════ -->
+<section class="hero" id="exec">
+  <div class="pretitle">Product Requirements Document · v2.0 · June 2026</div>
+  <h1>Bank-Integrated<br><span>Stablecoin Payment</span><br>System</h1>
+  <p class="subtitle">A Kenyan banking application enhanced with USDT stablecoin capabilities — peer-to-peer transfers, point-of-sale merchant payments, and a mandatory dual-currency (USDT + KES) display across every screen, receipt, and notification. No SMS. All confirmations via in-app authenticator.</p>
+  <div class="metrics">
+    <div class="metric"><div class="value">2s</div><div class="label">POS settlement</div></div>
+    <div class="metric"><div class="value">~KSh 0.15</div><div class="label">Avg TX fee</div></div>
+    <div class="metric"><div class="value">2×</div><div class="label">Currency display</div></div>
+    <div class="metric"><div class="value">0 SMS</div><div class="label">In-app auth only</div></div>
+  </div>
+</section>
+
+<!-- ═══════════ 1. PRODUCT VISION ══════════════════════ -->
+<section class="section" id="vision">
+  <div class="section-num">Section 1</div>
+  <h2>Product Vision — What We're Building &amp; Why</h2>
+  <p class="lead">We are integrating USDT stablecoin capabilities into an existing Kenyan banking application. Users load value from their bank accounts, send it peer-to-peer, and pay merchants at point-of-sale — all on Polygon blockchain with near-zero fees and 2-second confirmation. Every monetary value is displayed simultaneously in USDT and Kenyan Shillings.</p>
+
+  <h3>The Problem</h3>
+  <div class="comparison" style="margin-bottom:32px;">
+    <div class="comparison-col comp-before">
+      <h5>Today — M-Pesa Dominance</h5>
+      <ul>
+        <li>M-Pesa charges 1–3% per transaction — percentage-based, scales with amount</li>
+        <li>SMS-based 2FA is vulnerable to SIM-swap attacks — Kenya's most common fraud vector</li>
+        <li>SMS payment trails expose transaction history on phone records — no privacy</li>
+        <li>M-Pesa has single-digit finality on Safaricom network — can't interoperate with Airtel/Telkom seamlessly</li>
+        <li>Cross-border payments take days and cost 5–10% — remittance corridor is broken</li>
+        <li>Users cannot hold or spend stable USD-pegged value — KES-only, exposed to local inflation</li>
+        <li>No stablecoin integration in any Kenyan banking app — the gap is wide open</li>
+      </ul>
+    </div>
+    <div class="comparison-col comp-after">
+      <h5>Tomorrow — Bato + KenyaPay</h5>
+      <ul>
+        <li>Blockchain TX fees near ~KSh 0.15 — <strong>FLAT FEE, not percentage-based</strong></li>
+        <li>In-app authenticator + device-attestation — no SMS, no SIM-swap risk</li>
+        <li>Instant settlement on L2 networks (~2 second block time) — orders of magnitude faster</li>
+        <li>USDT stablecoin fully integrated into bank app — first-mover advantage</li>
+        <li>KES display on every value — users always know the shilling equivalent</li>
+        <li>All confirmations and receipts stored in-app — zero SMS trail, full privacy</li>
+        <li>Interoperable across all Kenyan telcos, merchants, and future cross-border corridors</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>The Competitive Edge — Why This Beats M-Pesa</h3>
+  <p>M-Pesa charges a <strong>percentage-based fee</strong> — send KSh 10,000 and you pay KSh 100–300. Bato charges a <strong>flat blockchain fee</strong> of approximately KSh 0.15 per transaction — send KSh 10 or KSh 100,000 and the blockchain cost is the same. This is the fundamental economic advantage of stablecoin rails over mobile money.</p>
+
+  <div class="stat-row" style="margin-top:20px;">
+    <div class="stat-card gold"><div class="stat-val">~KSh 0.15</div><div class="stat-lbl">Bato Flat Fee</div></div>
+    <div class="stat-card"><div class="stat-val">KSh 100–300</div><div class="stat-lbl">M-Pesa on KSh 10K</div></div>
+    <div class="stat-card emerald"><div class="stat-val">~99.9%</div><div class="stat-lbl">Fee Reduction</div></div>
+    <div class="stat-card"><div class="stat-val">0%</div><div class="stat-lbl">Percentage Cut</div></div>
+  </div>
+
+  <h3 style="margin-top:32px;">Network Strategy — Multi-Chain for Maximum Competitive Advantage</h3>
+  <p class="lead">To rival M-Pesa's dominance, Bato must deploy USDT across multiple blockchain networks — giving the bank and its customers the flexibility to choose the optimal network per transaction based on cost, speed, and destination. The executive decision is not "which chain" but "<strong>which chains and in what order</strong>."</p>
+
+  <table>
+    <tr><th>Network</th><th>Typical USDT Transfer Fee</th><th>Speed</th><th>Strategic Value for Kenya</th></tr>
+    <tr><td><strong>Arbitrum (L2)</strong></td><td>Less than $0.20 (~KSh 29)</td><td>Seconds</td><td>EVM-compatible — same tooling as Polygon. Ultra-low fees. Ideal for high-volume POS and micro-transactions.</td></tr>
+    <tr><td><strong>Polygon POS</strong></td><td>$0.001–0.01 (~KSh 0.15–1.45)</td><td>~2 seconds</td><td>Already selected as primary chain. Proven in production. Deep USDT liquidity. Best cost-to-speed ratio for Kenyan market.</td></tr>
+    <tr><td><strong>Optimism (L2)</strong></td><td>Less than $0.30 (~KSh 44)</td><td>Seconds</td><td>EVM-compatible. Higher fee than Arbitrum but strong ecosystem. Fallback option for Polygon congestion periods.</td></tr>
+    <tr><td><strong>Solana</strong></td><td>A few cents</td><td>&lt;1 second</td><td>Non-EVM — different SDK required. Fastest finality. Ideal for POS use-case where sub-second confirmation is critical. Phase 2 consideration.</td></tr>
+    <tr><td><strong>BNB Smart Chain</strong></td><td>Usually under $1 (~KSh 145)</td><td>3–5 seconds</td><td>EVM-compatible. Higher fee but massive user base in emerging markets. Cross-chain bridge for remittance corridors.</td></tr>
+    <tr><td><strong>TRON (TRC20)</strong></td><td>~$0.50 or less (~KSh 73)</td><td>1–3 minutes</td><td>Most widely used USDT chain globally. Higher fee than L2s but largest USDT liquidity pool. Important for cross-border remittance.</td></tr>
+    <tr><td><strong>Ethereum (ERC20)</strong></td><td>$5–$30+ (~KSh 725–4,350)</td><td>1–10+ minutes</td><td>Prohibitively expensive for Kenyan market. Excluded from Phase 1. Only for institutional settlement if ever.</td></tr>
+  </table>
+
+  <div class="callout callout-info"><span class="icon">ℹ</span><div><strong>Executive Recommendation — Phase 1: Polygon + Arbitrum.</strong> Deploy on Polygon POS as the primary settlement chain (lowest absolute fee to beat M-Pesa's percentage model). Add Arbitrum in parallel for EVM compatibility and even lower fees during Polygon congestion. Phase 2: Solana for sub-second POS finality and TRON for cross-border remittance corridors. Ethereum and BNB Smart Chain are excluded from Phase 1 due to cost and speed constraints relative to the Kenyan market. All chains use the same USDT token — the user's balance and the KES display layer are chain-agnostic. The backend's multi-chain provider layer abstracts network selection from the user.</div></div>
+
+  <h3>How It Works — Plain Terms</h3>
+  <p>Your banking app gains a new section — a <strong>Digital Wallet</strong> that holds USDT (digital dollars). You load it from your bank account, send money to anyone, or scan a QR code at a shop counter to pay. The in-app authenticator confirms every payment — no SMS, no codes. Every amount appears in both USDT and KSh so you always know what you're spending. All notifications stay inside the app with zero SMS trail.</p>
+
+  <div class="stat-row" id="metrics">
+    <div class="stat-card"><div class="stat-val">~₮0.001</div><div class="stat-lbl">Blockchain TX Cost</div></div>
+    <div class="stat-card gold"><div class="stat-val">2 sec</div><div class="stat-lbl">POS Confirmation</div></div>
+    <div class="stat-card emerald"><div class="stat-val">Always 2×</div><div class="stat-lbl">Dual Currency Display</div></div>
+    <div class="stat-card"><div class="stat-val">Polygon</div><div class="stat-lbl">Chain · 137</div></div>
+  </div>
+</section>
+
+<!-- ═══════════ 2. KEY PRINCIPLES ══════════════════════ -->
+<section class="section" id="manifesto">
+  <div class="section-num">Section 2</div>
+  <h2>The Seven Principles — Our Non-Negotiables</h2>
+  <p class="lead">Every design decision, every code review, every QA test must pass these seven gates. These principles are the constitutional foundation of the product. Read them before writing a single line of code.</p>
+
+  <div class="principles-grid">
+    <div class="principle-card"><div class="num">Principle 1</div><h4>KES is the primary reference</h4><p>Kenyan users budget, price, and think in shillings. Every user-facing screen, receipt, and notification must present the KES amount prominently. The KES value drives user comprehension and trust.</p></div>
+    <div class="principle-card"><div class="num">Principle 2</div><h4>USDT is the settlement currency</h4><p>All on-chain transfers, smart contract interactions, and value storage use USDT. USDT provides stability against KES fluctuation and enables fast, cheap, global blockchain transactions.</p></div>
+    <div class="principle-card"><div class="num">Principle 3</div><h4>Every amount shows both</h4><p>Balance: USDT + KES. Transfer: USDT + KES. Fees: USDT + KES. History: USDT + KES. Notifications: USDT + KES. Receipts: USDT + KES. No exception. No escape hatch. This is the golden rule of the entire system.</p></div>
+    <div class="principle-card"><div class="num">Principle 4</div><h4>Rates are transparent</h4><p>Display the rate source (CBK, Binance P2P, Forex), the bank spread percentage, and the rate freshness indicator on every screen showing converted values. Users deserve to know where every number comes from.</p></div>
+    <div class="principle-card"><div class="num">Principle 5</div><h4>Historical rates are immutable</h4><p>Transaction records and receipts store the exact KES/USDT rate at the time of transaction. January's receipt shows January's rate — never today's. The rate_usdt_to_kes column is immutable after confirmation.</p></div>
+    <div class="principle-card"><div class="num">Principle 6</div><h4>No SMS. Period.</h4><p>Authentication: in-app authenticator + device key. Confirmation: in-app notification center. Recovery: in-app KYC challenge. Zero SMS trail. Zero MNO dependency. Zero email. All payment records exist only inside the app.</p></div>
+    <div class="principle-card"><div class="num">Principle 7</div><h4>Built for Kenya, by design</h4><p>KES formatting: en-KE locale (1,500,000.00). Timezone: Africa/Nairobi (EAT). Rate feeds: Kenyan sources first. Phone format: +254 normalization. Every design choice serves the Kenyan banking customer.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 3. USER JOURNEYS ═══════════════════════ -->
+<section class="section" id="journey-p2p">
+  <div class="section-num">Section 3</div>
+  <h2>User Journey 1 — The Digital Wallet (P2P)</h2>
+  <p class="lead">Jane opens her bank app, navigates to the Digital Wallet, loads USDT from her savings account, sends money to her friend Sarah — all in under 30 seconds, confirmed in-app with the authenticator.</p>
+
+  <div class="journey">
+    <div class="journey-step"><div class="step-num">1</div><div class="step-title">Open Wallet</div><div class="step-desc">Jane taps "Digital Wallet" in her bank app</div></div>
+    <div class="journey-step"><div class="step-num">2</div><div class="step-title">See Balance</div><div class="step-desc">Shows 600 USDT<br>≈ KSh 87,000</div></div>
+    <div class="journey-step"><div class="step-num">3</div><div class="step-title">Load USDT</div><div class="step-desc">Transfers from bank savings in KSh<br>Sees both values</div></div>
+    <div class="journey-step"><div class="step-num">4</div><div class="step-title">Send</div><div class="step-desc">Enters Sarah's address<br>50 USDT ≈ KSh 7,250</div></div>
+    <div class="journey-step"><div class="step-num">5</div><div class="step-title">Authenticate</div><div class="step-desc">In-app authenticator<br>No SMS code needed</div></div>
+    <div class="journey-step"><div class="step-num">6</div><div class="step-title">Done</div><div class="step-desc">Sarah receives instantly<br>Confirmation in-app only</div></div>
+  </div>
+
+  <div class="img-row">
+    <div class="img-card">
+      <img src="assets/2.2.1 Use Case User Views Wallet Balance.png" alt="Wallet Balance Screen" loading="lazy">
+      <div class="img-card-caption">Wallet Balance — Dual Currency</div>
+    </div>
+    <div class="img-card">
+      <img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 3.png" alt="Load USDT Success Screen" loading="lazy">
+      <div class="img-card-caption">Load USDT — Success with New Balance</div>
+    </div>
+    <div class="img-card">
+      <img src="assets/P2P Transfer — Jane Sends to Sarah Confirmation.png" alt="Jane Sends to Sarah Confirmation" loading="lazy">
+      <div class="img-card-caption">Jane's Transfer Confirmation — Both Currencies</div>
+    </div>
+    <div class="img-card">
+      <img src="assets/Authenticator — P2P Transfer Confirmation.svg" alt="Authenticator Transfer Confirmation" loading="lazy">
+      <div class="img-card-caption">Authenticator — Confirm Transfer (In-App)</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="journey-pos">
+  <div class="section-num">Section 4</div>
+  <h2>User Journey 2 — Scan-to-Pay (Merchant POS)</h2>
+  <p class="lead">At Naivas Supermarket, John scans a QR code on the cashier's POS terminal with his bank app. The amount appears in KSh (the price he knows) and USDT (the settlement currency). He confirms via the in-app authenticator. Payment clears in 2 seconds.</p>
+
+  <div class="journey">
+    <div class="journey-step"><div class="step-num">1</div><div class="step-title">Cashier Rings</div><div class="step-desc">POS displays KSh 650<br>QR code appears</div></div>
+    <div class="journey-step"><div class="step-num">2</div><div class="step-title">Scan QR</div><div class="step-desc">John opens app<br>Camera reads code</div></div>
+    <div class="journey-step"><div class="step-num">3</div><div class="step-title">Verify</div><div class="step-desc">Shows KSh 650<br>≈ 4.48 USDT<br>Rate: 1 USDT = KSh 145</div></div>
+    <div class="journey-step"><div class="step-num">4</div><div class="step-title">Authenticate</div><div class="step-desc">In-app authenticator<br>No SMS, no PIN</div></div>
+    <div class="journey-step"><div class="step-num">5</div><div class="step-title">Settled</div><div class="step-desc">POS confirms<br>4.48 USDT received<br>Receipt in-app</div></div>
+  </div>
+
+  <div class="img-frame">
+    <img src="assets/POS — Merchant Payment Flow Overview.png" alt="Merchant POS Payment Flow Overview" loading="lazy">
+    <div class="img-caption">POS — Merchant Payment Flow Overview</div>
+  </div>
+
+  <div class="img-row">
+    <div class="img-card">
+      <img src="assets/2.3.2 Merchant Receipt Display (Client Side Payment Receipt).png" alt="Merchant Receipt" loading="lazy">
+      <div class="img-card-caption">Digital Receipt — Client Side</div>
+    </div>
+  </div>
+
+  <div class="img-frame">
+    <img src="assets/2.3.3 POS Terminal Display (Merchant Side).png" alt="POS Terminal" loading="lazy">
+    <div class="img-caption">POS Terminal — Merchant Side</div>
+  </div>
+</section>
+
+<!-- ═══════════ 4. REGISTRATION ═════════════════════════ -->
+<section class="section" id="req-register">
+  <div class="section-num">Section 5 — Build This First</div>
+  <h2>User Registration — Phone Number, Once Only</h2>
+  <p class="lead">Registration is a one-time event using the user's Kenyan phone number. No email verification. No SMS OTP. The phone number links to the existing bank customer profile. During registration, a device-bound key pair is generated in the Secure Enclave/TEE — this key becomes the user's permanent authentication credential.</p>
+
+  <div class="flow-vert">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">User opens bank app, taps "Create Digital Wallet"</div><div class="flow-desc">Prompted to enter their Safaricom / Airtel / Telkom phone number (07XX XXX XXX or +254 7XX XXX XXX)</div></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">App performs device fingerprinting</div><div class="flow-desc">Collects device hardware ID, OS version, app signature. Generates device-bound key pair in Secure Enclave/TEE</div></div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-body"><div class="flow-title">Backend normalizes phone number to +254 format</div><div class="flow-desc">Checks uniqueness, links to existing bank customer profile via core banking system</div></div></div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-body"><div class="flow-title">HD wallet address generated</div><div class="flow-desc">BIP-44 derivation path m/44'/60'/{userIndex}'/0/0 on Polygon. Device public key stored for future auth</div></div></div>
+    <div class="flow-step"><div class="flow-num">5</div><div class="flow-body"><div class="flow-title">Registration complete — no SMS, no email</div><div class="flow-desc">User lands on Wallet Balance screen. Authenticator enrollment triggered inside app. All future auth is in-app authenticator + device key. No SMS trail.</div></div></div>
+  </div>
+
+  <div class="callout callout-info"><span class="icon">ℹ</span><div><strong>Why phone number?</strong> Kenyan banking customers are identified primarily by phone number (M-Pesa, mobile banking). Phone numbers are already linked to bank accounts in the core banking system. Phone number is used as a static identifier — <strong>NOT</strong> as an authentication channel. No SMS is ever sent.</div></div>
+
+  <h4>Registration Rules</h4>
+  <table>
+    <tr><th>Rule</th><th>Requirement</th></tr>
+    <tr><td>Phone format</td><td>Kenyan numbers only (Safaricom 07XX, Airtel 07XX, Telkom 07XX)</td></tr>
+    <tr><td>One wallet per phone</td><td>A phone number can only have one active wallet</td></tr>
+    <tr><td>Bank account required</td><td>Phone must be linked to an existing bank customer profile</td></tr>
+    <tr><td>Device binding</td><td>Device public key bound during registration, used for all future auth</td></tr>
+    <tr><td>No SMS OTP</td><td>No SMS verification at any point</td></tr>
+    <tr><td>No email required</td><td>Email is never requested, stored, or used</td></tr>
+    <tr><td>Recovery method</td><td>In-app KYC identity challenge (national ID, selfie match, bank PIN)</td></tr>
+  </table>
+
+  <h4 style="margin-top:28px;">Registration Screens</h4>
+  <div class="img-row">
+    <div class="img-card"><img src="assets/Registration — Phone Number Entry.png" alt="Registration — Phone Number Entry" loading="lazy"><div class="img-card-caption">Screen 1 — Phone Number Entry &amp; Bank Profile Link</div></div>
+    <div class="img-card"><img src="assets/Registration — Confirmation.png" alt="Registration — Confirmation" loading="lazy"><div class="img-card-caption">Screen 2 — Registration Detail Confirmation</div></div>
+    <div class="img-card"><img src="assets/Registration — Authenticator Enrollment.png" alt="Registration — Authenticator Enrollment" loading="lazy"><div class="img-card-caption">Screen 3 — Authenticator Enrollment &amp; Device Key Binding</div></div>
+  </div>
+
+  <details class="tech-spec">
+    <summary>Technical Implementation — Registration Service</summary>
+    <div class="spec-body"><pre><code>interface RegistrationRequest {
+    phoneNumber: string; devicePublicKey: string;
+    deviceFingerprint: { deviceId: string; platform: 'ios' | 'android'; osVersion: string; appVersion: string; appSignature: string; };
+    appInstanceId: string;
+}
+
+class RegistrationService {
+    async registerUser(request: RegistrationRequest): Promise&lt;RegistrationResponse&gt; {
+        const normalized = this.normalizePhoneNumber(request.phoneNumber);
+        const existing = await this.registrationDB.findByPhone(normalized);
+        if (existing && existing.status !== 'closed') throw new PhoneAlreadyRegisteredError();
+        const bankProfile = await this.coreBankingSystem.findCustomerByPhone(normalized);
+        if (!bankProfile) throw new CustomerNotFoundError();
+        const userId = crypto.randomUUID();
+        const walletAddress = await this.walletService.createWallet(userId);
+        const keyValid = await this.cryptoService.validateDeviceKey(request.devicePublicKey);
+        if (!keyValid) throw new SecurityError('Invalid device key');
+        await this.registrationDB.insert({ userId, phoneNumber: normalized, walletAddress,
+            deviceKeys: [{ publicKey: request.devicePublicKey, ... }],
+            bankAccountId: bankProfile.accountId, status: 'active' });
+        return { userId, walletAddress, phoneNumberNormalized: normalized,
+                 bankAccountLinked: { ...bankProfile }, deviceKeyConfirmed: true };
+    }
+}</code></pre></div>
+  </details>
+</section>
+
+<!-- ═══════════ 5. AUTHENTICATION ═══════════════════════ -->
+<section class="section-dark" id="req-auth">
+  <div class="section-num">Section 6 — Build This Second</div>
+  <h2>Authentication — In-App Authenticator + Device Attestation</h2>
+  <p class="text-muted">The device public key bound during registration is used for all subsequent authentication. After scanning a QR code or initiating a transfer, the user confirms the transaction using the <strong>in-app authenticator</strong> — a secure confirmation dialog built into the bank app itself. The server verifies the device signature from the Secure Enclave and the authenticator's signed challenge. Payment confirmations and receipts are stored exclusively in-app — there is <strong>no SMS trail</strong> whatsoever.</p>
+
+  <div class="callout callout-warn"><span class="icon">⚠</span><div><strong>No biometric OS prompt.</strong> The authenticator is an in-app component — not the system FaceID/TouchID dialog. This keeps the payment confirmation experience fully contained within the bank app's UI.</div></div>
+
+  <div class="flow-vert" style="margin:32px 0;">
+    <div class="flow-step"><div class="flow-num">0</div><div class="flow-body"><div class="flow-title">User is already registered</div><div class="flow-desc">Phone + device key bound during one-time registration. No SMS, no email, no OTP infrastructure.</div></div></div>
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">User scans QR code or initiates transfer</div><div class="flow-desc">Tap "Send" or scan merchant QR. Dual-currency payment preview appears with KES + USDT breakdown.</div></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">In-app authenticator opens</div><div class="flow-desc">The bank app displays its own secure confirmation dialog: "Confirm payment of 50.00 USDT (≈ KSh 7,250.00)?" with the dual-currency breakdown. No system biometric prompt. No SMS.</div></div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-body"><div class="flow-title">User confirms via authenticator</div><div class="flow-desc">User taps "Confirm" in the in-app authenticator dialog. The authenticator signs the transaction challenge using the device-bound key from the Secure Enclave.</div></div></div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-body"><div class="flow-title">Server verifies authenticator signature</div><div class="flow-desc">Backend auth service validates the authenticator's signed challenge, device key match, session integrity, and risk score. All verification is cryptographic — no SMS, no OTP, no external channel.</div></div></div>
+    <div class="flow-step"><div class="flow-num">5</div><div class="flow-body"><div class="flow-title">Conditional step-up (high-risk only)</div><div class="flow-desc">App PIN, keystroke dynamics analysis, GPS location verification — all in-app. No SMS fallback.</div></div></div>
+    <div class="flow-step"><div class="flow-num">6</div><div class="flow-body"><div class="flow-title">Transaction executed — confirmed in-app</div><div class="flow-desc">Blockchain TX submitted to Polygon. In-app notification confirms result. Receipt stored in the app's transaction history. Zero SMS trail — the payment exists only within the bank app.</div></div></div>
+  </div>
+
+  <h5 style="margin-top:36px;">Authentication Flow — Visual Reference</h5>
+  <p class="text-muted" style="margin-bottom:20px;">The authentication flow is entirely in-app. After scanning a QR code or initiating a transfer, the user confirms via the in-app authenticator dialog, the device key signs the challenge cryptographically, and the result is delivered inside the app — zero SMS trail.</p>
+
+  <div class="img-row">
+    <div class="img-card"><img src="assets/Auth — In-App Authenticator Dialog.png" alt="In-App Authenticator Dialog" loading="lazy"><div class="img-card-caption">Step 2 — In-App Authenticator Confirmation Dialog</div></div>
+    <div class="img-card"><img src="assets/Auth — Challenge Signing.png" alt="Challenge Signing" loading="lazy"><div class="img-card-caption">Steps 3–4 — Authenticator Signing &amp; Server Verification</div></div>
+    <div class="img-card"><img src="assets/Auth — In-App Confirmation (No SMS).png" alt="In-App Confirmation" loading="lazy"><div class="img-card-caption">Step 6 — In-App Confirmation (No SMS Trail)</div></div>
+  </div>
+
+  <h5 style="margin-top:36px;">Authentication Technology Stack</h5>
+  <table style="margin-top:16px;">
+    <tr><th>Step</th><th>Component</th><th>Technology</th></tr>
+    <tr><td>0. Registration</td><td>Phone + Device Key Binding</td><td>Phone number input, Secure Enclave key gen, core banking lookup</td></tr>
+    <tr><td>2. Authenticator Dialog</td><td>In-App Authenticator Component</td><td>Custom UI component inside bank app — no system biometric dialog</td></tr>
+    <tr><td>3. Authenticator Signing</td><td>Secure Enclave / TEE</td><td>KeyStore (Android) / Secure Enclave (iOS) — signs challenge with device-bound key</td></tr>
+    <tr><td>4. Server Verification</td><td>Auth Service</td><td>Cryptographic signature verification + session integrity + risk score</td></tr>
+    <tr><td>5. Step-Up</td><td>In-App PIN + Behavioral</td><td>Custom PIN pad + keystroke dynamics — all in-app, no external channel</td></tr>
+    <tr><td>6. Confirmation</td><td>In-App Notification Center</td><td>Internal push + deep link to receipt. Zero SMS. No external notification trail.</td></tr>
+  </table>
+
+  <div class="callout callout-info" style="margin-top:24px;"><span class="icon">ℹ</span><div><strong>Why an in-app authenticator instead of biometric OS prompts?</strong> The in-app authenticator keeps the entire payment flow within the bank's controlled UI surface. It enables consistent UX across Android and iOS, allows the app to display the full dual-currency breakdown during confirmation, and eliminates dependency on platform biometric APIs which vary in availability and behavior across device manufacturers. The device-bound key in the Secure Enclave still provides hardware-backed cryptographic assurance — the authenticator simply owns the UI around it.</div></div>
+
+  <h5 style="margin-top:36px;">Authenticator Message-Based Confirmation Flow</h5>
+  <p class="text-muted" style="margin-bottom:16px;">All payment confirmations flow through the Authenticator App via push messages — not embedded in the bank app, not via SMS. The backend sends a confirmation request to the Authenticator App on the user's registered device. The user receives the request, reviews it, and approves or rejects. Two verification modes are supported depending on risk level.</p>
+
+  <div class="img-frame" style="margin-top:20px;">
+    <img src="assets/Authenticator — Message-Based Confirmation Architecture.svg" alt="Authenticator Message-Based Confirmation Architecture" loading="lazy">
+    <div class="img-caption">Authenticator App — Message-Based Confirmation Architecture with Two Verification Modes</div>
+  </div>
+
+  <h4 style="margin-top:28px;">Verification Mode A — Tap to Approve</h4>
+  <p>For standard transactions where the risk score is below threshold. The Authenticator App displays the dual-currency payment preview and the user taps "Approve" or "Reject". The Authenticator signs a cryptographic challenge (nonce + transaction ID + amount) using the device-bound key from the Secure Enclave. The signature is sent back to the bank backend for verification.</p>
+
+  <h4 style="margin-top:24px;">Verification Mode B — Shared Code Matching</h4>
+  <p>For high-value or high-risk transactions where merchant-side verification is required. The bank backend generates a <strong>6-character alpha-numeric code</strong> (e.g., "A7K3M9") and delivers it simultaneously to <strong>both the merchant's POS terminal screen AND the user's Authenticator App</strong>. The user visually confirms the code matches on both screens, then enters the code in the Authenticator App. This prevents man-in-the-middle attacks — both parties verify the same code. The code has a 60-second TTL and a maximum of 3 entry attempts.</p>
+
+  <table style="margin-top:20px;">
+    <tr><th>Feature</th><th>Mode A (Tap)</th><th>Mode B (Shared Code)</th></tr>
+    <tr><td>When used</td><td>Standard transactions, low risk</td><td>High-value transactions, merchant requests, risk score above threshold</td></tr>
+    <tr><td>User action</td><td>Tap Approve / Reject</td><td>Enter 6-char code from POS screen into Authenticator</td></tr>
+    <tr><td>Code lifetime</td><td>N/A (challenge signed immediately)</td><td>60 seconds, 3 attempts maximum</td></tr>
+    <tr><td>MITM protection</td><td>Device key signature verifies integrity</td><td>Both parties see the same code — visual verification prevents interception</td></tr>
+    <tr><td>Authenticator push</td><td>Yes — payment preview + amounts</td><td>Yes — payment preview + code entry field</td></tr>
+    <tr><td>Backend validation</td><td>Verify device key signature + nonce</td><td>Verify shared code match + device key signature</td></tr>
+  </table>
+</section>
+
+<!-- ═══════════ 6. ARCHITECTURE ════════════════════════ -->
+<section class="section-dark" id="arch-overview">
+  <div class="section-num">Section 7</div>
+  <h2>System Architecture — High Level</h2>
+  <p class="text-muted" style="max-width:750px;">The system spans five layers: the user's mobile device (KCB bank app + Bato payment SDK), the bank's backend services, a dedicated currency conversion engine, a <strong>multi-chain provider abstraction layer</strong>, and the blockchain networks. Every component passes dual-currency (USDT + KES) data end-to-end. The multi-chain layer allows the bank to route USDT transactions across Polygon, Arbitrum, and future chains without the user ever needing to know which network processed their payment.</p>
+
+  <div class="img-frame"><img src="assets/High-Level Component Diagram.png" alt="High-Level Component Diagram" loading="lazy"><div class="img-caption">Figure 1 — System Architecture: Mobile Device → Bank Backend → Multi-Chain Layer → Blockchain Networks</div></div>
+
+  <div class="stat-row" style="margin-top:32px;">
+    <div class="stat-card gold"><div class="stat-val">Polygon + Arbitrum</div><div class="stat-lbl">Phase 1 Chains</div></div>
+    <div class="stat-card"><div class="stat-val">~KSh 0.15</div><div class="stat-lbl">Avg TX Fee (vs M-Pesa 1–3%)</div></div>
+    <div class="stat-card emerald"><div class="stat-val">Multi-Chain</div><div class="stat-lbl">Abstracted from User</div></div>
+    <div class="stat-card"><div class="stat-val">mTLS</div><div class="stat-lbl">API Security Layer</div></div>
+  </div>
+</section>
+
+<!-- ═══════════ 7. RATE ENGINE + DISPLAY SDK ═══════════ -->
+<section class="section-dark" id="req-rates">
+  <div class="section-num">Section 8</div>
+  <h2>Rate Engine &amp; Dual Currency Display SDK</h2>
+  <p class="text-muted">This is the heart of dual-currency display. Three independent Kenyan market feeds feed a weighted average engine. A configurable bank spread is applied. The result is cached for 15 seconds and distributed to every display component via the DualCurrencyDisplay client-side SDK.</p>
+
+  <div class="img-frame"><img src="assets/Dual Currency Display Architecture.png" alt="Currency Display Architecture" loading="lazy"><div class="img-caption">Currency Conversion Engine: Rate Feeds → Weighted Avg → Spread → Cache → UI</div></div>
+
+  <div class="callout callout-info"><span class="icon">ℹ</span><div><strong>Design Decision:</strong> We use 3 independent feeds with weighted averaging. If any feed fails, the engine falls back to remaining feeds. If all fail, it returns the last cached rate marked as stale. The system never blocks a transaction waiting for a rate.</div></div>
+
+  <details class="tech-spec" style="border-color:rgba(255,255,255,0.1);background:var(--slate);">
+    <summary style="background:rgba(37,99,235,0.15);color:var(--sapphire);">Expand: KenyaRateEngine Full Implementation</summary>
+    <div class="spec-body"><pre><code>interface RateFeed { name: string; source: string; priority: number; weight: number; fetchRate: () => Promise&lt;number&gt;; }
+
+class KenyaRateEngine {
+    private feeds: RateFeed[] = [
+        { name: 'CBK_REFERENCE', source: 'Central Bank of Kenya', priority: 1, weight: 0.4,
+          fetchRate: async () => { /* fetch from api.centralbank.go.ke */ } },
+        { name: 'BINANCE_P2P', source: 'Binance P2P Kenya', priority: 2, weight: 0.35,
+          fetchRate: async () => { /* fetch USDTKES from Binance API */ } },
+        { name: 'FOREX_AGGREGATOR', source: 'Aggregated Forex Feed', priority: 3, weight: 0.25,
+          fetchRate: async () => this.forexProvider.getUSDTKESRate() }
+    ];
+    private cache = null;
+
+    async getCurrentRate(): Promise&lt;ConversionRate&gt; {
+        if (this.cache && (Date.now() - this.cache.timestamp) &lt; this.cache.ttl)
+            return this.buildRateResponse(this.cache.rate, this.cache.feeds);
+        const rates = [];
+        for (const feed of this.feeds) {
+            try {
+                const rate = await Promise.race([ feed.fetchRate(),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 3000)) ]);
+                rates.push({ rate, feed: feed.source, weight: feed.weight });
+            } catch (e) { console.warn(`Feed ${feed.name} failed`); }
+        }
+        if (rates.length === 0) { if (this.cache) return this.buildRateResponse(this.cache.rate, this.cache.feeds, true); throw new RateUnavailableError(); }
+        const totalW = rates.reduce((s, r) => s + r.weight, 0);
+        const weightedRate = rates.reduce((s, r) => s + r.rate * r.weight, 0) / totalW;
+        const effectiveRate = weightedRate * 1.02;
+        this.cache = { rate: effectiveRate, timestamp: Date.now(), feeds: rates.map(r => r.feed), ttl: 15000 };
+        return this.buildRateResponse(effectiveRate, rates.map(r => r.feed));
+    }
+}</code></pre></div>
+  </details>
+
+  <div style="margin-top:24px;"><div class="img-frame"><img src="assets/Rate Engine — Multi-Feed Aggregation Diagram.png" alt="Rate Engine Multi-Feed Architecture" loading="lazy"><div class="img-caption">Rate Source Architecture — Multi-Feed Weighted Aggregation</div></div></div>
+
+  <details class="tech-spec" style="border-color:rgba(255,255,255,0.1);background:var(--slate);margin-top:20px;">
+    <summary style="background:rgba(37,99,235,0.15);color:var(--sapphire);">Expand: Client-Side DualCurrencyDisplay SDK</summary>
+    <div class="spec-body"><pre><code>class DualCurrencyDisplay {
+    startRateUpdates() { setInterval(() => this.refreshRate(), 15000); AppState.addEventListener('change', s => { if (s === 'active') this.refreshRate(); }); }
+    formatCurrency(amountUSDT: number) {
+        const rate = this.rateCache?.rate || 0; const amountKES = amountUSDT * rate;
+        let freshness = 'stale'; if (this.rateCache) { const age = Date.now() - this.rateCache.timestamp; if (age &lt; 30000) freshness = 'live'; else if (age &lt; 120000) freshness = 'recent'; }
+        return { usdt: { amount: amountUSDT.toFixed(2), raw: amountUSDT, formatted: `${amountUSDT.toFixed(2)} USDT` },
+                 kes: { amount: this.formatKES(amountKES), raw: amountKES, formatted: `≈ KSh ${this.formatKES(amountKES)}` },
+                 rate: { value: rate, formatted: `1 USDT = KSh ${rate.toFixed(2)}`, freshness, freshnessText: this.getFreshnessText(freshness) } };
+    }
+    private formatKES(amount: number): string { return new Intl.NumberFormat('en-KE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(amount); }
+}</code></pre></div>
+  </details>
+</section>
+
+<!-- ═══════════ 8. DUAL CURRENCY DISPLAY RULES ═══════════ -->
+<section class="section" id="req-display">
+  <div class="section-num">Section 9</div>
+  <h2>Dual Currency Display — The Golden Rule</h2>
+
+  <div class="callout callout-critical"><span class="icon">⛔</span><div><strong>Every screen, notification, receipt, and confirmation that displays money MUST show both USDT and KES.</strong> This is a non-negotiable system-wide invariant. Balance, transfer amount, fees, history, notifications, receipts — no exceptions.</div></div>
+
+  <div class="card-grid card-grid-2" style="margin:24px 0;">
+    <div class="card"><h4>Display Rules</h4><p style="font-size:0.88rem;color:var(--slate);">Every monetary value rendered in the system:</p><ul style="padding-left:18px;font-size:0.85rem;color:var(--slate);"><li>Primary line: USDT amount (<code>"600.00 USDT"</code>)</li><li>Secondary line: KES approximate (<code>"≈ KSh 87,000.00"</code>)</li><li>Rate line: current conversion rate (<code>"1 USDT = KSh 145.00"</code>)</li><li>Freshness indicator: Live ● / Recent ○ / Stale ⚠</li></ul></div>
+    <div class="card"><h4>Rate Transparency</h4><p style="font-size:0.88rem;color:var(--slate);">Users must always know where the rate comes from:</p><ul style="padding-left:18px;font-size:0.85rem;color:var(--slate);"><li>Rate source disclosed ("Source: CBK + 2% spread")</li><li>Rate lock state indicated (Estimated / Locked)</li><li>Pre-confirmation: orange "Estimated rate"</li><li>Post-confirmation: green "Locked rate"</li><li>Timestamp on all rates for audit trail</li></ul></div>
+    <div class="card"><h4>KES Rounding Specification</h4><ul style="padding-left:18px;font-size:0.85rem;color:var(--slate);"><li>Locale: <code>en-KE</code> (1,500,000.00 format)</li><li>Min/max fraction digits: 2</li><li>Rounding: half-up</li><li>Grouping separator: comma</li><li>Decimal separator: period</li><li>Prefix: <code>"KSh "</code></li><li>Micro-amounts (&lt; KSh 1): display as cents</li></ul></div>
+    <div class="card"><h4>Freshness Indicators</h4><ul style="padding-left:18px;font-size:0.85rem;color:var(--slate);"><li><span style="color:#059669;">● Live</span> — rate &lt; 30 seconds old</li><li><span style="color:#d97706;">○ Recent</span> — rate &lt; 2 minutes old</li><li><span style="color:#e11d48;">⚠ Stale</span> — rate &gt; 2 minutes old</li><li>Rate auto-refreshes every 15 seconds</li><li>Refresh triggered on app foreground</li></ul></div>
+  </div>
+
+  <div class="img-frame"><img src="assets/KES Rounding Rules Visual Spec.png" alt="KES Rounding Rules" loading="lazy"><div class="img-caption">KES Rounding Rules — Visual Specification</div></div>
+  <div class="img-frame"><img src="assets/Display Rules Visual Reference.png" alt="Display Rules Visual" loading="lazy"><div class="img-caption">Display Rules — Visual Reference</div></div>
+  <div class="img-frame"><img src="assets/Dual Currency Display Contexts.png" alt="Dual Currency Display Contexts" loading="lazy"><div class="img-caption">Dual Currency Display Contexts — Every Screen, Notification, and Receipt</div></div>
+</section>
+
+<!-- ═══════════ 9. P2P WALLET FULL SPEC ════════════════ -->
+<section class="section" id="req-p2p">
+  <div class="section-num">Section 10</div>
+  <h2>P2P Wallet — Complete Feature Specification</h2>
+
+  <h3>View Balance</h3>
+  <p>The wallet balance screen is the home screen of the payment module. It displays the user's on-chain USDT balance alongside the KES equivalent calculated at the current live rate, plus a 3-transaction recent activity feed.</p>
+  <div class="img-frame"><img src="assets/2.2.1 Use Case User Views Wallet Balance.png" alt="Wallet Balance Mockup" loading="lazy"><div class="img-caption">Wallet Balance — Primary Screen with Rate Freshness Indicator</div></div>
+
+  <details class="tech-spec" open><summary>Technical Implementation — Balance Service</summary><div class="spec-body"><pre><code>interface DualCurrencyBalance {
+    usdt: { amount: string; raw: number; }; kes: { amount: string; raw: number; };
+    rate: { usdtToKes: number; spread: number; effectiveRate: number; source: string; timestamp: number; ttl: number; };
+    display: { primary: string; secondary: string; rateText: string; freshness: string; freshnessIndicator: 'live' | 'recent' | 'stale'; };
+}
+class BalanceService {
+    async getUserBalance(userId: string): Promise&lt;DualCurrencyBalance&gt; {
+        const usdtBalance = await this.blockchainService.getUSDTBalance(this.getUserAddress(userId));
+        const rate = await this.getCurrentRate(); const kesAmount = usdtBalance * rate.effectiveRate;
+        return { usdt: { amount: usdtBalance.toFixed(2), raw: usdtBalance }, kes: { amount: this.formatKES(kesAmount), raw: kesAmount }, rate: { /* ... */ },
+                 display: { primary: `${usdtBalance.toFixed(2)} USDT`, secondary: `≈ KSh ${this.formatKES(kesAmount)}`, rateText: `1 USDT = KSh ${rate.baseRate.toFixed(2)}`, freshness: this.getFreshnessText(rate.timestamp), freshnessIndicator: this.getFreshnessIndicator(rate.timestamp) } };
+    }
+}</code></pre></div></details>
+
+  <h3 style="margin-top:32px;">Shared Code Verification — Mode B for POS</h3>
+  <p>For high-value merchant payments, the system supports an enhanced verification mode where a shared 6-character code appears on both the POS terminal and the user's Authenticator App. This ensures the user is confirming the correct transaction with the correct merchant — not a spoofed QR code.</p>
+
+  <div class="img-frame">
+    <img src="assets/Shared Code Verification — Mode B POS Flow.svg" alt="Shared Code Verification Mode B POS Flow" loading="lazy">
+    <div class="img-caption">Shared Code Verification — Mode B: Merchant POS Terminal + User Authenticator App</div>
+  </div>
+</section>
+
+<!-- ═══════════ 10. POS MERCHANT FULL SPEC ═══════════════ -->
+<section class="section" id="req-pos">
+  <div class="section-num">Section 11</div>
+  <h2>Point-of-Sale Merchant Payments — Complete Specification</h2>
+
+  <h3>POS QR Code Protocol — <code>bankpay-ke-v1</code></h3>
+  <p>The QR code displayed on the merchant's POS terminal encodes a JSON payload. The merchant prices in KES. The customer's app calculates the USDT equivalent using the current live rate. The QR includes a cryptographic signature from the merchant for tamper-proofing.</p>
+
+  <pre><code>{
+    "protocol": "bankpay-ke-v1", "merchantId": "MERCH_NAIVAS_001", "branchId": "STORE_MOI_042",
+    "terminalId": "POS_03", "invoiceRef": "INV-20260127-1432",
+    "amount": { "kes": 650.00, "usdt": null }, "currency": "KES", "settlementCurrency": "USDT",
+    "chainId": 137, "merchantAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1",
+    "timestamp": 1737995520, "expiresAt": 1737995820, "merchantSignature": "0x...",
+    "rateReference": { "source": "CBK_WEIGHTED_AVG", "requestedAt": 1737995520 }
+}</code></pre>
+
+  <div class="img-row">
+    <div class="img-card"><img src="assets/2.3.1 Use Case Scan-to-Pay at Merchant POS QR Code Specification 1.png" alt="QR Code Spec 1" loading="lazy"><div class="img-card-caption">QR Code Specification</div></div>
+    <div class="img-card"><img src="assets/2.3.1 Use Case Scan-to-Pay at Merchant POS QR Code Specification 2.png" alt="QR Code Spec 2" loading="lazy"><div class="img-card-caption">QR Code Field Definitions</div></div>
+  </div>
+
+  <div class="img-row">
+    <div class="img-card"><img src="assets/POS Payment — Blockchain Processing Screen.png" alt="Blockchain Processing" loading="lazy"><div class="img-card-caption">Payment Processing — Blockchain TX in Flight (No SMS)</div></div>
+    <div class="img-card"><img src="assets/POS Payment — In-App Authenticator Confirmation.png" alt="In-App Authenticator Confirmation" loading="lazy"><div class="img-card-caption">Payment Confirmation — In-App Authenticator Dialog</div></div>
+    <div class="img-card"><img src="assets/POS Payment — In-App Payment Success.png" alt="In-App Payment Success" loading="lazy"><div class="img-card-caption">Payment Success — In-App Confirmation (No SMS)</div></div>
+  </div>
+
+  <details class="tech-spec"><summary>Technical Implementation — POS Payment Service</summary><div class="spec-body"><pre><code>interface POSQRPayload {
+    protocol: string; merchantId: string; branchId: string; terminalId: string; invoiceRef: string;
+    amount: { kes: number; usdt: null; }; currency: 'KES'; settlementCurrency: 'USDT';
+    chainId: number; merchantAddress: string; timestamp: number; expiresAt: number;
+    merchantSignature: string; rateReference: { source: string; requestedAt: number; };
+}
+class POSPaymentService {
+    async scanQRCode(qrString: string): Promise&lt;POSPaymentPreview&gt; {
+        const payload = JSON.parse(qrString);
+        if (payload.protocol !== "bankpay-ke-v1") throw new InvalidQRCodeError();
+        const merchant = await this.merchantDirectory.getMerchant(payload.merchantId);
+        const valid = await this.cryptoService.verifySignature(payload, payload.merchantSignature, merchant.signingPublicKey);
+        if (!valid) throw new SecurityError('Invalid merchant signature');
+        if (Date.now() > payload.expiresAt * 1000) throw new QRCodeExpiredError();
+        const rate = await this.rateService.getCurrentRate();
+        const usdtAmount = payload.amount.kes / rate.effectiveRate;
+        const networkFee = await this.blockchainService.estimateTransferFee();
+        const balance = await this.balanceService.getUserBalance(this.currentUserId);
+        return { /* payment preview with dual currency display */ };
+    }
+    async executePOSPayment(preview, qrPayload, authProof) {
+        if (Date.now() > preview.rate.expiresAt) { const fresh = await this.scanQRCode(JSON.stringify(qrPayload)); throw new RateExpiredError('Rate expired', fresh); }
+        await this.authService.requireStrongAuth(authProof); // IN-APP AUTHENTICATOR
+        const tx = await this.blockchainService.transferUSDT({ from: this.getUserAddress(authProof.userId), to: qrPayload.merchantAddress, amount: preview.payment.amountUSDT, memo: qrPayload.invoiceRef });
+        // Record + notify + generate receipt — ALL IN-APP, NO SMS
+    }
+}</code></pre></div></details>
+</section>
+
+<!-- ═══════════ 12. WITHDRAWAL / CASH OUT ═══════════════ -->
+<section class="section" id="req-withdraw">
+  <div class="section-num">Section 12</div>
+  <h2>Withdrawal — Cash Out USDT to Bank Account</h2>
+  <p class="lead">Users convert USDT from their digital wallet back into Kenyan Shillings deposited to their linked bank account. This is the reverse of the Load Wallet flow — USDT → KES using the current sell rate with the bank's 2% spread. Confirmation requires the in-app authenticator.</p>
+
+  <h3>Withdrawal Flow</h3>
+  <div class="flow-vert">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">User taps "Cash Out" on Wallet Balance screen</div><div class="flow-desc">Enters the amount in USDT to withdraw. App calculates KES receivable at current sell rate. Displays both currencies.</div></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">Preview shows KES destination + fee breakdown</div><div class="flow-desc">Shows: USDT to sell → KES receivable → conversion fee (2% bank spread) → network fee → total KES deposited to bank account. Rate locked for 30 seconds.</div></div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-body"><div class="flow-title">Authenticate with in-app authenticator</div><div class="flow-desc">User confirms via the in-app authenticator dialog showing dual-currency breakdown. No SMS. No biometric OS prompt.</div></div></div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-body"><div class="flow-title">Blockchain bridgeBurn + bank credit</div><div class="flow-desc">Backend calls <code>bridgeBurn()</code> on the USDT smart contract to burn tokens. Bank core system credits KES to user's savings account. Dual-currency receipt stored in-app.</div></div></div>
+  </div>
+
+  <div class="img-frame">
+    <img src="assets/Authenticator — Withdrawal Cash Out Screen.svg" alt="Withdrawal Cash Out Screen" loading="lazy">
+    <div class="img-caption">Withdrawal — Cash Out USDT to Bank Account with Authenticator Confirmation</div>
+  </div>
+
+  <details class="tech-spec">
+    <summary>Technical Implementation — Withdrawal Service</summary>
+    <div class="spec-body"><pre><code>interface WithdrawalPreview {
+    sellAmount: { usdt: number; kes: number; };
+    receiveAmount: { kes: number; display: string; };
+    fees: { conversionFeeKES: number; networkFeeUSDT: number; totalKES: number; display: string; };
+    rate: { sellRate: number; spread: number; effectiveRate: number; lockExpiry: number; source: string; };
+    destination: { accountId: string; accountMasked: string; accountName: string; };
+    display: { primary: string; secondary: string; rateText: string; };
+}
+
+class WithdrawalService {
+    async previewWithdrawal(userId, amountUSDT) { /* rate lookup + fee estimation */ }
+    async executeWithdrawal(userId, preview, authProof) {
+        if (Date.now() > preview.rate.lockExpiry) throw new RateExpiredError();
+        await this.authService.requireStrongAuth(authProof); // IN-APP AUTHENTICATOR, NO SMS
+        const tx = await this.blockchainService.bridgeBurn(userId, preview.sellAmount.usdt);
+        await this.coreBankingSystem.creditAccount(preview.destination.accountId, preview.receiveAmount.kes, `USDT withdrawal — TX: ${tx.hash}`);
+        await this.transactionLedger.record({ type: 'withdrawal', ... });
+        return { success: true, tx: tx.hash, receipt: /* dual-currency receipt */ };
+    }
+}</code></pre></div>
+  </details>
+</section>
+
+<!-- ═══════════ 13. ERROR STATES ═══════════════════════ -->
+<section class="section-dark" id="req-errors">
+  <div class="section-num">Section 13</div>
+  <h2>Error States &amp; Edge Cases — Developer Reference</h2>
+  <p class="text-muted">Every error path must present a clear, localized message to the user with dual-currency amounts where applicable. Errors must never expose internal system details. All errors are logged server-side for monitoring.</p>
+
+  <div class="img-frame">
+    <img src="assets/Error States and Edge Cases Reference.svg" alt="Error States Reference" loading="lazy">
+    <div class="img-caption">Error States — Type, Trigger, User Display, and Recovery Path</div>
+  </div>
+
+  <table>
+    <tr><th>Error</th><th>Trigger</th><th>User Sees</th><th>Recovery</th></tr>
+    <tr><td><code>RateUnavailableError</code></td><td>All 3 feeds fail + cache expired</td><td>"Rate temporarily unavailable. Please try again."</td><td>Retry button. Backend forces refresh.</td></tr>
+    <tr><td><code>RateExpiredError</code></td><td>30-second rate lock expired before confirmation</td><td>"Rate has expired. Refreshing..."</td><td>Auto-refresh preview with new live rate.</td></tr>
+    <tr><td><code>InsufficientFundsError</code></td><td>USDT balance less than amount + fees</td><td>"Insufficient balance. You need X.XX USDT. Load more?"</td><td>Offer navigation to Load Wallet screen.</td></tr>
+    <tr><td><code>QRCodeExpiredError</code></td><td>POS QR code expired (5-min TTL)</td><td>"QR code expired. Ask cashier for a new one."</td><td>User rescans. Cashier regenerates QR.</td></tr>
+    <tr><td><code>SecurityError</code></td><td>Invalid merchant signature or device key mismatch</td><td>"Security check failed. Transaction blocked."</td><td>Block TX. Log event. Flag for fraud review.</td></tr>
+    <tr><td><code>PhoneAlreadyRegisteredError</code></td><td>Phone number already has an active wallet</td><td>"This number is registered. Recover your wallet instead?"</td><td>Offer recovery flow. Do not reveal account info.</td></tr>
+    <tr><td><code>CustomerNotFoundError</code></td><td>No bank account linked to this phone number</td><td>"No bank account found. Contact your branch."</td><td>Direct to bank branch or customer support.</td></tr>
+    <tr><td><code>TransactionFailedError</code></td><td>Blockchain TX reverted after submission (gas, nonce, contract revert)</td><td>"Transaction failed. No funds lost. Please retry."</td><td>Show TX hash for support. Allow retry with fresh nonce.</td></tr>
+    <tr><td><code>InvalidPhoneNumberError</code></td><td>Non-Kenyan or malformed phone number</td><td>"Enter a valid Kenyan phone number (07XX XXX XXX)"</td><td>Validate format client-side before submission.</td></tr>
+    <tr><td><code>NetworkTimeoutError</code></td><td>Blockchain node or API gateway unreachable</td><td>"Connection issue. Check your network and try again."</td><td>Retry with exponential backoff. Queued retry on reconnect.</td></tr>
+  </table>
+
+  <div class="callout callout-info"><span class="icon">ℹ</span><div><strong>Dual currency in errors:</strong> Error messages that reference amounts must include both USDT and KES values (e.g., "Insufficient balance. You need 50.50 USDT (≈ KSh 7,322.50). Your balance: 30.00 USDT (≈ KSh 4,350.00).").</div></div>
+</section>
+
+<!-- ═══════════ 13A. PAYBAND BRACELET ═══════════════════ -->
+<section class="section-dark" id="req-bracelet">
+  <div class="section-num">Section 14</div>
+  <h2>PayBand — NFC Wearable Payment Bracelet (Hardware Vision)</h2>
+  <p class="text-muted" style="max-width:750px;">As a forward-looking hardware component of the KenyaPay ecosystem, the <strong>PayBand</strong> is an NFC-enabled wearable bracelet that allows users to make contactless payments at merchant POS terminals by tapping the bracelet. The bracelet is loaded with USDT from the user's wallet via the bank app, and all payment confirmations flow through the Authenticator App on the user's phone. The bracelet uses the same device-key authentication model as the mobile app — a hardware secure element stores a factory-provisioned key that is bound to the user's bank account at pairing.</p>
+
+  <div class="img-frame">
+    <img src="assets/PayBand — NFC Wearable Bracelet Payment Flow.svg" alt="PayBand NFC Wearable Bracelet Payment Flow" loading="lazy">
+    <div class="img-caption">PayBand — NFC Wearable Bracelet: Load via App QR + NFC → Tap to Pay at POS → Authenticator Confirms</div>
+  </div>
+
+  <h3>How It Works</h3>
+
+  <h4>Phase 1 — Load the Bracelet</h4>
+  <div class="flow-vert">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">User opens bank app, selects "Send to Bracelet"</div><div class="flow-desc">Enters the amount in USDT to load. App displays a QR code encoded with the bracelet's band ID and the transfer amount.</div></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">User brings bracelet near phone NFC reader</div><div class="flow-desc">The bracelet's NFC NTAG 424 DNA chip receives the NDEF payload containing the band ID, amount, and a signed transaction reference from the backend.</div></div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-body"><div class="flow-title">Authenticator push confirms the load</div><div class="flow-desc">The Authenticator App receives a push notification: "Load 50.00 USDT (≈ KSh 7,250.00) to Bracelet #A3K9?" User taps Approve. Authenticator signs challenge with device key. Backend validates and credits the bracelet's on-chain balance.</div></div></div>
+  </div>
+
+  <h4>Phase 2 — Pay with the Bracelet</h4>
+  <div class="flow-vert">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">Cashier rings up amount on POS, QR code + shared code appear</div><div class="flow-desc">POS displays KSh 650 with QR code (bankpay-ke-v1) and the Mode B shared verification code (e.g., A7K3M9) on the merchant screen.</div></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">User taps bracelet to NFC reader on POS terminal</div><div class="flow-desc">Bracelet beams NDEF payload: { bandId, nonce } via NFC. POS terminal captures the bracelet's identity and nonce.</div></div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-body"><div class="flow-title">Authenticator App receives confirmation request</div><div class="flow-desc">Push notification: "Pay KSh 650.00 (≈ 4.48 USDT) to Naivas Supermarket — Moi Avenue? Shared code: A7K3M9."  User visually verifies the code matches the POS screen, enters it in the Authenticator, and approves.</div></div></div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-body"><div class="flow-title">Backend verifies and executes transaction</div><div class="flow-desc">Validates shared code + bracelet device key signature + user authenticator signature. Executes USDT transfer from bracelet's address to merchant's address on Polygon. POS confirms payment in &lt;2 seconds.</div></div></div>
+  </div>
+
+  <h4>Hardware Specifications</h4>
+  <table>
+    <tr><th>Component</th><th>Specification</th></tr>
+    <tr><td>NFC Chip</td><td>NTAG 424 DNA — AES-128 authenticated NFC with Secure Unique NFC (SUN) message authentication</td></tr>
+    <tr><td>Secure Element</td><td>Factory-provisioned device key stored in tamper-resistant hardware. Keys never leave the chip.</td></tr>
+    <tr><td>Display</td><td>Low-power E-ink display showing current USDT balance and shared verification code during transactions</td></tr>
+    <tr><td>Battery</td><td>CR2032 coin cell — 12-month estimated life under normal use (E-ink only draws power on refresh)</td></tr>
+    <tr><td>Durability</td><td>IP67 water resistant. Silicone band. Operating temperature 0°C to 45°C.</td></tr>
+    <tr><td>Pairing</td><td>Bound to user's bank account during initial NFC handshake. One bracelet per user account.</td></tr>
+    <tr><td>Data Protocol</td><td>NDEF (NFC Data Exchange Format) records containing bandId, encrypted payload, and device signature</td></tr>
+  </table>
+
+  <h4>Security Model</h4>
+  <div class="callout callout-info"><span class="icon">ℹ</span><div><strong>Same trust model as the mobile app.</strong> The bracelet does not store funds locally — it is a signing device. The actual USDT balance lives on-chain at the bracelet's assigned wallet address. Every NFC transmission is signed with the bracelet's factory-provisioned device key. The backend verifies both the bracelet signature AND the user's authenticator confirmation before executing any transaction. If the bracelet is lost, the user can deactivate it from the bank app (requires authenticator confirmation). No private key ever leaves the secure element.</div></div>
+</section>
+
+<!-- ═══════════ 11. TRANSACTION HISTORY ════════════════ -->
+<section class="section" id="req-history">
+  <div class="section-num">Section 15</div>
+  <h2>Transaction History — Immutable Dual Records</h2>
+  <p class="lead">Every transaction stores the USDT amount, the KES equivalent, and the <strong>exact exchange rate at the time of transaction</strong>. When a user views a receipt from last month, it shows last month's rate — not today's rate. The <code>rate_usdt_to_kes</code> column is immutable after confirmation.</p>
+
+  <div class="img-frame"><img src="assets/4.1 Transaction History UI.png" alt="Transaction History UI" loading="lazy"><div class="img-caption">Transaction History — Filterable, Dual-Currency Display with Historical Rates</div></div>
+
+  <pre><code>interface TransactionRecord {
+    id: string; type: 'wallet_load' | 'p2p_sent' | 'p2p_received' | 'pos_payment' | 'withdrawal';
+    timestamp: number; status: 'confirmed' | 'pending' | 'failed';
+    amount: { usdt: number; kes: number; }; fees?: { usdt: number; kes: number; };
+    rate: { usdtToKes: number; source: string; spreadApplied: number; }; // HISTORICAL — IMMUTABLE
+    display: { title: string; subtitle: string; primaryAmount: string; secondaryAmount: string; rateText: string; icon: 'receive' | 'send' | 'merchant' | 'load'; };
+    blockchain?: { txHash: string; blockNumber?: number; network: string; };
+    counterparty?: { type: 'user' | 'merchant' | 'bank'; id?: string; name: string; };
+    receipt?: { id: string; merchantDetails?: any; items?: any[]; };
+}</code></pre>
+</section>
+
+<!-- ═══════════ 12. NOTIFICATIONS ══════════════════════ -->
+<section class="section" id="req-notify">
+  <div class="section-num">Section 16</div>
+  <h2>In-App Notifications — No SMS Trail</h2>
+
+  <div class="callout callout-warn"><span class="icon">⚠</span><div><strong>Zero SMS dependencies. No external notification trail.</strong> All payment notifications are delivered via Firebase Cloud Messaging (Android) / APNs (iOS) and stored exclusively in the in-app notification center with deep linking. No MNO SMS infrastructure is required. Payment confirmations, receipts, and transaction history exist only inside the bank app — there is no SMS trail on the user's phone records.</div></div>
+
+  <pre><code>interface PaymentNotification {
+    type: 'payment_sent' | 'payment_received' | 'wallet_loaded' | 'payment_failed' | 'rate_alert';
+    priority: 'high' | 'normal'; content: { title: string; body: string; };
+    data: { transactionId?: string; txHash?: string; amountUSDT?: number; amountKES?: number; rate?: number; counterparty?: string; timestamp: number; };
+    actions?: { id: string; title: string; deepLink: string }[];
+}</code></pre>
+
+  <div class="img-frame" style="margin-top:20px;"><img src="assets/Notification Center — In-App Notifications.png" alt="In-App Notification Center" loading="lazy"><div class="img-caption">Notification Center — All Payment Confirmations Stored In-App, Zero SMS Trail</div></div>
+
+  <div class="metric-panel">
+    <div class="metric-card"><div class="val">FCM/APNs</div><div class="lbl">Push Channel</div></div>
+    <div class="metric-card"><div class="val">In-App</div><div class="lbl">Notification Center</div></div>
+    <div class="metric-card"><div class="val">Deep Link</div><div class="lbl">To Receipts</div></div>
+    <div class="metric-card"><div class="val">Rate Alerts</div><div class="lbl">±2% movements</div></div>
+  </div>
+</section>
+
+<!-- ═══════════ 13. DATABASE SCHEMA ════════════════════ -->
+<section class="section" id="spec-db">
+  <div class="section-num">Section 17</div>
+  <h2>Database Schema</h2>
+
+  <details class="tech-spec" open><summary>User Registrations &amp; Devices</summary><div class="spec-body"><pre><code>CREATE TABLE user_registrations (
+    user_id UUID PRIMARY KEY, phone_number VARCHAR(15) UNIQUE NOT NULL, phone_number_hash VARCHAR(64) NOT NULL,
+    wallet_address VARCHAR(42) NOT NULL, hd_wallet_path VARCHAR(50), bank_account_id VARCHAR(50) NOT NULL,
+    bank_account_masked VARCHAR(20), bank_account_name VARCHAR(255), status VARCHAR(20) DEFAULT 'active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, closed_at TIMESTAMP
+);
+CREATE TABLE user_devices (
+    id UUID PRIMARY KEY, user_id UUID REFERENCES user_registrations(user_id), device_id VARCHAR(255) NOT NULL,
+    public_key TEXT NOT NULL, platform VARCHAR(20) NOT NULL, os_version VARCHAR(50), app_version VARCHAR(20),
+    is_current BOOLEAN DEFAULT TRUE, registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_used_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, UNIQUE (user_id, device_id)
+);</code></pre></div></details>
+
+  <details class="tech-spec" open><summary>Transactions, Exchange Rates, Snapshots &amp; Receipts</summary><div class="spec-body"><pre><code>CREATE TABLE transactions (
+    id UUID PRIMARY KEY, user_id UUID NOT NULL, type VARCHAR(50) NOT NULL, status VARCHAR(20) NOT NULL,
+    amount_usdt DECIMAL(18,6) NOT NULL, amount_kes DECIMAL(18,2) NOT NULL,
+    fee_usdt DECIMAL(18,6), fee_kes DECIMAL(18,2),
+    rate_usdt_to_kes DECIMAL(18,6) NOT NULL, rate_source VARCHAR(255), rate_spread_multiplier DECIMAL(5,4), rate_timestamp TIMESTAMP NOT NULL,
+    display_title VARCHAR(255), display_subtitle VARCHAR(255),
+    blockchain_tx_hash VARCHAR(66), blockchain_network VARCHAR(50), blockchain_confirmations INTEGER DEFAULT 0,
+    counterparty_type VARCHAR(20), counterparty_id VARCHAR(255), counterparty_name VARCHAR(255),
+    merchant_id VARCHAR(100), merchant_branch VARCHAR(100), invoice_ref VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, confirmed_at TIMESTAMP
+);
+CREATE TABLE exchange_rates (
+    id SERIAL PRIMARY KEY, timestamp TIMESTAMP NOT NULL, base_rate DECIMAL(18,6) NOT NULL,
+    spread_multiplier DECIMAL(5,4) NOT NULL, effective_rate DECIMAL(18,6) NOT NULL,
+    source_feeds TEXT[], is_stale BOOLEAN DEFAULT FALSE
+);
+CREATE TABLE balance_snapshots (
+    id SERIAL PRIMARY KEY, user_id UUID NOT NULL, snapshot_time TIMESTAMP NOT NULL,
+    balance_usdt DECIMAL(18,6) NOT NULL, balance_kes DECIMAL(18,2) NOT NULL, rate_used DECIMAL(18,6) NOT NULL
+);
+CREATE TABLE digital_receipts (
+    id UUID PRIMARY KEY, transaction_id UUID REFERENCES transactions(id), receipt_number VARCHAR(50) UNIQUE NOT NULL,
+    receipt_data JSONB NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, downloaded_at TIMESTAMP
+);</code></pre></div></details>
+
+  <div class="img-frame" style="margin-top:24px;">
+    <img src="assets/7.1 Key Tables for Dual Currency Support B6.png" alt="Database Schema Visual Overview" loading="lazy">
+    <div class="img-caption">Database Schema — Dual Currency Support Tables Visual Overview</div>
+  </div>
+</section>
+
+<!-- ═══════════ 14. API ENDPOINTS ══════════════════════ -->
+<section class="section-dark" id="spec-api">
+  <div class="section-num">Section 18</div>
+  <h2>API Endpoints — OpenAPI 3.0</h2>
+
+  <div class="endpoint"><div class="endpoint-header"><span class="method method-post">POST</span> /api/v1/auth/register</div><div class="endpoint-body"><p>One-time registration with phone number. No SMS. Returns wallet address and device key confirmation.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header"><span class="method method-get">GET</span> /api/v1/rates/current</div><div class="endpoint-body"><p>Current USDT/KES rate with source transparency, spread, and freshness indicator.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header"><span class="method method-get">GET</span> /api/v1/wallet/balance</div><div class="endpoint-body"><p>Wallet balance with dual currency display (USDT raw + formatted, KES raw + formatted, with rate info).</p></div></div>
+  <div class="endpoint"><div class="endpoint-header"><span class="method method-post">POST</span> /api/v1/transfer/preview</div><div class="endpoint-body"><p>Preview a P2P transfer with dual currency amounts, fees, and total cost before confirmation.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header"><span class="method method-post">POST</span> /api/v1/pos/scan</div><div class="endpoint-body"><p>Process a scanned POS QR code (<code>bankpay-ke-v1</code> protocol). Returns payment preview with merchant details.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header"><span class="method method-get">GET</span> /api/v1/transactions</div><div class="endpoint-body"><p>Paginated transaction history with dual currency display, historical rates, and period summaries.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header"><span class="method method-get">GET</span> /api/v1/transactions/{id}/receipt</div><div class="endpoint-body"><p>Generate a digital receipt with merchant details, dual currency amounts, and blockchain TX info.</p></div></div>
+  <div class="endpoint"><div class="endpoint-header"><span class="method method-post">POST</span> /api/v1/wallet/withdraw</div><div class="endpoint-body"><p>Preview and execute USDT → KES withdrawal to linked bank account. Requires authenticator auth proof.</p></div></div>
+
+  <div class="img-frame" style="margin-top:28px;">
+    <img src="assets/API Request and Response Body Schemas.svg" alt="API Request and Response Body Schemas" loading="lazy">
+    <div class="img-caption">API Request &amp; Response Body Schemas — Register, POS Scan, Balance, Transfer Preview</div>
+  </div>
+</section>
+
+<!-- ═══════════ 16. SMART CONTRACT INTERFACE ═══════════ -->
+<section class="section" id="spec-contracts">
+  <div class="section-num">Section 19</div>
+  <h2>Smart Contract Interface Specification — Polygon (chainId: 137)</h2>
+  <p class="lead">Two Solidity contracts deployed on Polygon POS: <strong>IUSDT</strong> (bank-controlled ERC-20 USDT token) and <strong>MerchantRegistry</strong> (on-chain merchant directory used for QR signature verification). Both are upgradeable via OpenZeppelin UUPS proxy pattern and governed by the bank's multi-sig wallet.</p>
+
+  <div class="img-frame">
+    <img src="assets/Smart Contract Interface Specification.svg" alt="Smart Contract Interface Specification" loading="lazy">
+    <div class="img-caption">Smart Contract Interface — IUSDT (left) and MerchantRegistry (right) — Function Signatures and Events</div>
+  </div>
+
+  <details class="tech-spec" open>
+    <summary>Solidity Interface — IUSDT (Bank USDT Token)</summary>
+    <div class="spec-body"><pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+interface IIUSDT {
+    /// @notice Bank mints USDT to a user's Polygon wallet (called on wallet load)
+    function bridgeMint(address to, uint256 amount) external;
+
+    /// @notice Bank burns USDT from user's wallet (called on withdrawal / cash out)
+    function bridgeBurn(address from, uint256 amount) external;
+
+    /// @notice Standard ERC-20 transfer for P2P and POS payments
+    function transfer(address to, uint256 amount) external returns (bool);
+
+    function balanceOf(address account) external view returns (uint256);
+    function allowance(address owner, address spender) external view returns (uint256);
+    function approve(address spender, uint256 amount) external returns (bool);
+    function transferFrom(address from, address to, uint256 amount) external returns (bool);
+
+    event BridgeMint(address indexed to, uint256 amount, uint256 indexed bridgeNonce);
+    event BridgeBurn(address indexed from, uint256 amount, uint256 indexed bridgeNonce);
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+
+    function bridgeNonce() external view returns (uint256);
+    function owner() external view returns (address);
+}</code></pre></div>
+  </details>
+
+  <details class="tech-spec" open>
+    <summary>Solidity Interface — MerchantRegistry</summary>
+    <div class="spec-body"><pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+interface IMerchantRegistry {
+    struct Merchant {
+        string id;           // "MERCH_NAIVAS_001"
+        address wallet;      // Merchant's USDT receiving address
+        string name;         // "Naivas Supermarket"
+        string branch;       // "Moi Avenue"
+        address signingKey;  // Public key used to verify QR code signatures
+        bool active;
+    }
+
+    function registerMerchant(string calldata id, address wallet, string calldata name, string calldata branch, address signingKey) external;
+    function getMerchant(string calldata id) external view returns (Merchant memory);
+    function verifySignature(bytes calldata payload, bytes calldata signature, address signingKey) external pure returns (bool);
+    function updateMerchant(string calldata id, address newWallet, string calldata newName, string calldata newBranch) external;
+    function deactivateMerchant(string calldata id) external;
+    function activateMerchant(string calldata id) external;
+
+    event MerchantRegistered(string indexed id, address indexed wallet, string name, string branch);
+    event MerchantUpdated(string indexed id, address indexed newWallet);
+    event MerchantDeactivated(string indexed id);
+    event MerchantActivated(string indexed id);
+
+    function owner() external view returns (address);
+}</code></pre></div>
+  </details>
+
+  <div class="callout callout-info"><span class="icon">ℹ</span><div><strong>Deployment note:</strong> Both contracts are deployed by the bank's admin wallet on Polygon mainnet (chainId: 137). Contract addresses are stored in the backend configuration. All <code>bridgeMint</code> and <code>bridgeBurn</code> calls are made server-side by the bank's backend using a secure hot wallet. Users interact only via <code>transfer</code> (P2P/POS). The <code>bridgeNonce</code> prevents replay attacks — each mint/burn increments the counter.</div></div>
+</section>
+
+<!-- ═══════════ 17. ONBOARDING / FIRST RUN ═══════════ -->
+<section class="section" id="spec-onboard">
+  <div class="section-num">Section 20</div>
+  <h2>Onboarding — First-Run Discovery Flow</h2>
+  <p class="lead">How does a user discover the Digital Wallet feature in the existing bank app? The wallet is surfaced as a prominent card on the app's home dashboard. On first tap, a guided 3-step onboarding wizard explains the feature before the registration flow begins.</p>
+
+  <div class="img-frame">
+    <img src="assets/Onboarding — First Run Discovery Flow.svg" alt="Onboarding First Run Discovery Flow" loading="lazy">
+    <div class="img-caption">Onboarding — Bank App Home → Digital Wallet Card → Get Started → Registration</div>
+  </div>
+
+  <h4>Discovery Rules</h4>
+  <table>
+    <tr><th>Rule</th><th>Requirement</th></tr>
+    <tr><td>Placement</td><td>Digital Wallet card appears in the app's home dashboard alongside Accounts, Transfers, Cards</td></tr>
+    <tr><td>Call to action</td><td>"Digital Wallet — Send, receive &amp; pay with USDT" with gold accent border to draw attention</td></tr>
+    <tr><td>First tap (unregistered)</td><td>3-step onboarding wizard: "What is a Digital Wallet?" → "How it works" → "Get started"</td></tr>
+    <tr><td>First tap (registered)</td><td>Direct to Wallet Balance screen — no onboarding needed</td></tr>
+    <tr><td>No force registration</td><td>Users can dismiss the wizard and return later. Wallet card remains on dashboard.</td></tr>
+    <tr><td>Accessibility</td><td>All onboarding screens support screen readers and high-contrast mode</td></tr>
+  </table>
+</section>
+
+<!-- ═══════════ 15. DEVELOPMENT PHASES ═════════════════ -->
+<section class="section" id="delivery-phases">
+  <div class="section-num">Section 21</div>
+  <h2>Development Phases — 16-Week Roadmap</h2>
+  <p class="lead">Phases are ordered by dependency: registration and auth first, then rate engine (everything depends on it), then balance display, then P2P transfers, then POS integration, then notifications. Each phase includes testing at its boundary.</p>
+
+  <div class="phase-track">
+    <div class="phase-item"><div class="phase-week">Weeks 1–3</div><h4>Phase 1 — User Registration + Authentication</h4><ul><li>Phone number registration flow with +254 normalization</li><li>Device key pair generation in Secure Enclave/TEE</li><li>In-app authenticator component (confirmation dialog + signing)</li><li>Server-side device key verification</li><li>Step-up PIN pad + keystroke dynamics</li></ul></div>
+    <div class="phase-item"><div class="phase-week">Weeks 2–4</div><h4>Phase 2 — Core Currency Infrastructure + Multi-Chain Provider</h4><ul><li>Rate engine with multi-feed aggregation (CBK, Binance P2P, Forex)</li><li>Rate caching with 15-second TTL and fallback chain</li><li>Currency conversion service (USDT ↔ KES)</li><li>Dual currency formatting utilities (en-KE locale)</li><li>Multi-chain provider abstraction layer (Polygon + Arbitrum)</li><li>Chain-specific gas estimation and TX submission</li><li>Rate history database</li><li>Client-side DualCurrencyDisplay SDK</li></ul></div>
+    <div class="phase-item"><div class="phase-week">Weeks 4–6</div><h4>Phase 3 — Wallet Balance &amp; Display</h4><ul><li>On-chain USDT balance querying</li><li>Dual currency wallet balance screen</li><li>Real-time rate display with freshness indicators</li><li>Balance history with rate snapshots</li></ul></div>
+    <div class="phase-item"><div class="phase-week">Weeks 6–10</div><h4>Phase 4 — P2P Transfers</h4><ul><li>Wallet load flow (KES → USDT) with fee breakdown</li><li>Transfer preview with KES equivalent + fee breakdown</li><li>P2P transfer execution (Polygon on-chain)</li><li>Recipient QR code scanning and address entry</li><li>Transaction history with immutable historical rates</li><li>Digital receipts with dual currency display</li></ul></div>
+    <div class="phase-item"><div class="phase-week">Weeks 9–14</div><h4>Phase 5 — POS Integration</h4><ul><li>bankpay-ke-v1 QR code protocol and parser</li><li>Merchant onboarding system with KES settlement configuration</li><li>POS payment flow with dual confirmation screens</li><li>Shared code verification (Mode B) for enhanced merchant security</li><li>Merchant-side POS terminal payment confirmation display</li><li>Merchant receipts in both currencies</li></ul></div>
+    <div class="phase-item"><div class="phase-week">Weeks 12–14</div><h4>Phase 5A — PayBand Bracelet (Hardware Optional)</h4><ul><li>NFC NTAG 424 DNA chip integration and secure element provisioning</li><li>Bracelet-to-phone NFC pairing and loading flow (QR + NDEF beam)</li><li>Bracelet-to-POS NFC tap payment with authenticator confirmation</li><li>E-ink display driver for balance and shared code display</li><li>Bracelet device key factory provisioning and backend verification</li><li>Bracelet deactivation and recovery flow</li></ul></div>
+    <div class="phase-item"><div class="phase-week">Weeks 12–16</div><h4>Phase 6 — Notifications + Testing &amp; Compliance</h4><ul><li>FCM/APNs push notifications with dual currency content</li><li>In-app notification center with deep linking</li><li>Rate alert system (±2% significant movement triggers)</li><li>CBK regulatory review and compliance audit</li><li>User acceptance testing with Kenyan banking customers</li><li>Rate accuracy audits across all three feed sources</li><li>Load testing under rate fluctuation scenarios</li><li>Security penetration testing (no-SMS authentication validation)</li></ul></div>
+  </div>
+</section>
+
+<!-- ═══════════ 16. TECH STACK ═════════════════════════ -->
+<section class="section-dark" id="delivery-stack">
+  <div class="section-num">Section 22</div>
+  <h2>Technical Stack Reference</h2>
+  <table>
+    <tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr>
+    <tr><td>Mobile App</td><td>React Native / Flutter / Native</td><td>Host banking app with embedded payment SDK</td></tr>
+    <tr><td>Payment SDK</td><td>TypeScript / Kotlin / Swift</td><td>Wallet UI, QR scanner, TX builder, DualCurrencyDisplay, Authenticator</td></tr>
+    <tr><td>Backend API</td><td>Node.js / TypeScript</td><td>REST API — OpenAPI 3.0 spec</td></tr>
+    <tr><td>Rate Engine</td><td>Node.js / TypeScript</td><td>Multi-feed weighted average rate aggregation</td></tr>
+    <tr><td>Cache</td><td>Redis</td><td>15s TTL rate cache, session store</td></tr>
+    <tr><td>Database</td><td>PostgreSQL 14+</td><td>Transactions, rates, balance snapshots, receipts, registrations</td></tr>
+    <tr><td>Blockchain</td><td>Polygon POS (chainId: 137) + Arbitrum (chainId: 42161)</td><td>USDT smart contract, merchant registry. Phase 2: Solana, TRON</td></tr>
+    <tr><td>Blockchain SDK</td><td>ethers.js v6 / viem + Multi-Chain Provider</td><td>Transaction building, gas estimation, chain abstraction, event monitoring</td></tr>
+    <tr><td>Auth</td><td>In-App Authenticator + Device Key</td><td>Cryptographic challenge signing via Secure Enclave, no SMS. Mode A (tap) + Mode B (shared code)</td></tr>
+    <tr><td>Hardware (Optional)</td><td>PayBand NFC Bracelet</td><td>NTAG 424 DNA NFC chip, E-ink display, secure element, silicone band</td></tr>
+    <tr><td>Push Notifications</td><td>FCM / APNs</td><td>In-app payment confirmations, rate alerts, receipt deep links</td></tr>
+    <tr><td>Rate Feeds</td><td>CBK API, Binance API, Forex Aggregator</td><td>Multi-source USDT/KES rate data pipeline</td></tr>
+  </table>
+</section>
+
+<!-- ═══════════ QUICK START CHECKLIST ══════════════════ -->
+<section class="section" id="quickstart">
+  <div class="section-num">Quick Start</div>
+  <h2>Developer Quick Start Checklist</h2>
+  <p class="lead">Follow this checklist in order. Check off each item as you build it. Reference the corresponding section for full specifications.</p>
+
+  <div class="flow-vert">
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">1. Read the Seven Principles (Section 2)</div><div class="flow-desc">Understand the non-negotiables before writing any code.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">2. Deploy Smart Contracts on Polygon Testnet (Section 18)</div><div class="flow-desc">Deploy IUSDT + MerchantRegistry on Polygon Amoy testnet. Record contract addresses.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">3. Build Registration + Auth (Sections 5–6)</div><div class="flow-desc">Phone number input → +254 normalization → device key gen → wallet creation → authenticator component.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">4. Build Rate Engine + Display SDK (Sections 7–9)</div><div class="flow-desc">CBK + Binance + Forex feeds → weighted avg → spread → 15s cache → DualCurrencyDisplay component.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">5. Build Wallet Balance Screen (Section 10)</div><div class="flow-desc">On-chain USDT query → KES equivalent → freshness indicator → recent transactions feed.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">6. Build Wallet Load Flow (Section 10)</div><div class="flow-desc">KES → USDT preview → rate lock → authenticator → bridgeMint → confirmation → receipt.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">7. Build P2P Transfer Flow (Section 10)</div><div class="flow-desc">Address entry → dual-currency preview → authenticator → transfer → notification → receipt.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">8. Build POS Payment Flow (Section 11)</div><div class="flow-desc">QR scan → bankpay-ke-v1 parse → merchant verify → preview → authenticator → transfer → POS confirmation.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">9. Build Withdrawal / Cash Out Flow (Section 12)</div><div class="flow-desc">USDT → KES preview → authenticator → bridgeBurn → bank credit → receipt.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">10. Build Transaction History + Notifications (Sections 14–15)</div><div class="flow-desc">Filterable history with immutable rates. FCM/APNs push with deep links. In-app notification center.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">11. Implement Error Handlers (Section 13)</div><div class="flow-desc">All 10 error types with dual-currency user messages, retry logic, and server-side logging.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">12. Build PayBand Bracelet Integration (Section 14 — Optional)</div><div class="flow-desc">NFC pairing, bracelet loading via QR+NFC, tap-to-pay flow, authenticator confirmation, E-ink display driver.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">13. Build Onboarding Flow (Section 20)</div><div class="flow-desc">Dashboard card → 3-step wizard → registration trigger. Accessibility + dismiss option.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">14. Test on Polygon Testnet (Section 21)</div><div class="flow-desc">Full end-to-end: register → load → send → POS scan → shared code verify → bracelet tap → withdraw → check history → check receipts.</div></div></div>
+    <div class="flow-step"><div class="flow-num">□</div><div class="flow-body"><div class="flow-title">15. Deploy to Polygon Mainnet</div><div class="flow-desc">Update contract addresses in config. Run CBK compliance audit. Launch.</div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════════════════════════ -->
+<section style="padding:48px 72px;text-align:center;background:var(--ink);color:var(--steel);font-size:0.8rem;">
+  <p style="color:var(--steel);">Product Requirements Document v3.0 — Bank-Integrated Stablecoin Payment System with Dual Currency Display (USDT + KES)</p>
+  <p style="margin-top:4px;color:var(--steel);">Bato · KenyaPay · June 2026 · Polygon POS + Arbitrum (EVM Multi-Chain) · No SMS · In-App Authenticator · Zero External Trail</p>
+</section>
+
+</main>
+</body>
+</html>

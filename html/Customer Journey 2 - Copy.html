@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Journey — Bato · KCB USDT Payment System</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap');
+  :root { --accent: #D39F29; --primary: #08393D; --gold: #D4AF37; --teal-deep: #0A2B2E; --teal-medium: #1A4A4F; }
+  body { font-family: 'DM Sans', system-ui, -apple-system, sans-serif; }
+  .heading-serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 800; letter-spacing: -0.02em; }
+  .proposal-page { width: 210mm; min-height: 297mm; margin: 0 auto; background: white; box-shadow: 0 25px 60px -15px rgba(0,0,0,0.15); position: relative; overflow: hidden; box-sizing: border-box; page-break-after: always; break-after: page; padding: 0; }
+  .proposal-page:last-of-type { page-break-after: avoid; break-after: avoid; }
+  @page { size: A4 portrait; margin: 0; }
+  @media print { @page { size: A4; margin: 0; } html, body { margin: 0 !important; padding: 0 !important; background: white !important; width: 210mm; } .proposal-page { box-shadow: none !important; margin: 0 auto !important; width: 210mm !important; min-height: 297mm !important; page-break-after: always; break-after: page; } .proposal-page:last-of-type { page-break-after: avoid; } .no-print { display: none !important; } }
+  .section-card { background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04); border: 1px solid #f1f1f0; }
+  .infographic { border-radius: 12px; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); border: 1px solid #f4f4f3; }
+  .divider-gold { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .page-dark { background: linear-gradient(135deg, #0A2B2E 0%, #05181A 100%); color: #F8FAFC; }
+  .page-dark .card-premium { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(2px); border-color: rgba(212, 175, 55, 0.25); }
+  .page-footer { position: absolute; bottom: 14mm; left: 0; right: 0; text-align: center; font-size: 8.5px; color: #888; letter-spacing: 0.3px; }
+  @media print { .page-dark { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+  .step-num { width: 20px; height: 20px; border-radius: 50%; background: var(--teal-deep); color: #fff; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .phone-frame { width: 140px; border-radius: 20px; overflow: hidden; background: #0d1117; margin: 0 auto; }
+  .phone-frame img { width: 100%; display: block; }
+</style>
+</head>
+<body class="bg-[#E8ECEF] py-6">
+
+<div class="max-w-[210mm] mx-auto mb-4 text-center text-xs text-gray-500 no-print">
+  ✦ Premium Executive Customer Journey — Designed for Board Presentation • <a href="Customer Journey 2.html" class="text-amber-600 underline">Classic View</a>
+</div>
+
+<!-- ═══════ PAGE 1: COVER ═══════ -->
+<div class="proposal-page page-dark flex flex-col justify-between" style="padding:28mm 22mm;">
+  <div>
+    <div class="flex items-center gap-4 mb-4">
+      <img src="assets/KCB Logo.png" alt="KCB" style="height:34px;">
+      <span class="text-amber-400 text-lg">+</span>
+      <img src="assets/Bato Logo.png" alt="Bato" style="height:34px;">
+    </div>
+    <h1 class="heading-serif text-6xl leading-[1.04] max-w-[520px]" style="color:#F8FAFC;">End-to-End<br><span class="text-amber-400 italic">Customer Journey</span></h1>
+    <p class="text-slate-300 text-sm mt-4 max-w-[380px] leading-relaxed">Follow Jane's complete experience — from opening the KCB Bank app to tapping her PayBand bracelet. Every screen, every tap, every confirmation. Zero SMS. All in-app. <strong class="text-amber-400">Flat KSh 0.15 per transaction — not M-Pesa's 1–3%.</strong></p>
+  </div>
+  <div class="page-footer">Bato · KCB Bank · Customer Journey · June 2026</div>
+</div>
+
+<!-- ═══════ PAGE 2: M-PESA COMPARISON ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Competitive Context</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">Rivaling <span class="italic text-amber-500">M-Pesa</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-gray-600 text-sm mb-4 max-w-[440px]">M-Pesa charges a percentage-based fee. Bato charges KSh 0.15 — flat. Same for KSh 500 or KSh 50,000.</p>
+
+  <div class="grid grid-cols-2 gap-5 mb-4">
+    <div class="section-card p-5 bg-red-50 border-red-100">
+      <div class="text-red-700 font-bold text-sm mb-2 uppercase tracking-wide">M-Pesa — Percentage Model</div>
+      <div class="text-xs space-y-1 text-red-800">
+        <div class="flex justify-between"><span>Send KSh 500</span><span class="font-bold">≈ KSh 15–50</span></div>
+        <div class="flex justify-between"><span>Send KSh 5,000</span><span class="font-bold">≈ KSh 50–150</span></div>
+        <div class="flex justify-between"><span>Send KSh 50,000</span><span class="font-bold">≈ KSh 500–1,500</span></div>
+        <div class="pt-2 border-t border-red-200 font-bold">Fee type: Percentage (1–3%)</div>
+      </div>
+    </div>
+    <div class="section-card p-5 bg-amber-50 border-amber-200">
+      <div class="text-amber-800 font-bold text-sm mb-2 uppercase tracking-wide">Bato (KCB) — Flat Fee</div>
+      <div class="text-xs space-y-1 text-amber-900">
+        <div class="flex justify-between"><span>Send KSh 500</span><span class="font-bold">KSh 0.15</span></div>
+        <div class="flex justify-between"><span>Send KSh 5,000</span><span class="font-bold">KSh 0.15</span></div>
+        <div class="flex justify-between"><span>Send KSh 50,000</span><span class="font-bold">KSh 0.15</span></div>
+        <div class="pt-2 border-t border-amber-300 font-bold">Fee type: FLAT — not percentage</div>
+      </div>
+    </div>
+  </div>
+  <p class="text-xs text-gray-500">A Kenyan business processing KSh 500K/month through M-Pesa pays ~KSh 5K–15K in fees. On Bato: ~KSh 500 in blockchain fees plus 2% spread on loads — commercially transformative.</p>
+  <div class="page-footer">Bato · Customer Journey · Competitive Context</div>
+</div>
+
+<!-- ═══════ PAGE 3: PHASE 0 ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Phase 0 · DISCOVERY</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">Open <span class="italic text-amber-500">KCB Bank App</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-gray-600 text-sm mb-4 max-w-[440px]">Jane opens the KCB app. Her savings dashboard — KSh 150,000 balance, recent transactions. But today there's something new: a gold-bordered card.</p>
+
+  <div class="flex gap-6">
+    <div class="flex-shrink-0 text-center">
+      <div class="phone-frame" style="width:140px;"><img src="assets/CJ — KCB Bank App Home Dashboard.svg" alt="Dashboard"></div>
+      <div class="text-[9px] text-gray-500 uppercase tracking-wide mt-1">KCB Home Dashboard</div>
+    </div>
+    <div class="flex-1">
+      <div class="text-sm font-bold text-teal-900 mb-2">What Jane Sees</div>
+      <p class="text-xs text-gray-500 leading-relaxed mb-3">The familiar KCB dashboard with a new card: <strong class="text-amber-500">"Bato — Digital Wallet."</strong> Gold border. Next to Accounts, Transfers, Cards. No separate app download.</p>
+      <div class="space-y-1">
+        <div class="flex gap-2 items-start"><div class="step-num flex-shrink-0">1</div><div class="text-xs text-gray-600 pt-0.5">Jane unlocks phone and opens KCB Bank app</div></div>
+        <div class="flex gap-2 items-start"><div class="step-num flex-shrink-0">2</div><div class="text-xs text-gray-600 pt-0.5">Dashboard shows savings + recent transactions</div></div>
+        <div class="flex gap-2 items-start"><div class="step-num flex-shrink-0">3</div><div class="text-xs text-gray-600 pt-0.5">She notices the gold-bordered Bato card</div></div>
+        <div class="flex gap-2 items-start"><div class="step-num flex-shrink-0">4</div><div class="text-xs text-gray-600 pt-0.5">She taps it</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">Bato · Customer Journey · Phase 0 — Open KCB App</div>
+</div>
+
+<!-- ═══════ PAGE 4: PHASE 1 ═══════ -->
+<div class="proposal-page page-dark" style="padding:22mm 24mm;">
+  <div class="text-amber-400 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Phase 1 · FIRST-RUN EXPERIENCE</div>
+  <h2 class="heading-serif text-4xl mb-2" style="color:#F8FAFC;">Discover <span class="italic text-amber-400">Bato</span> — First Run</h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-slate-300 text-sm mb-4 max-w-[440px]">First time in the Bato wallet. Jane sees ₿, "Your Digital Wallet," and an empty balance. "Get Started" is the primary CTA.</p>
+
+  <div class="flex gap-6">
+    <div class="flex-shrink-0 text-center">
+      <div class="phone-frame" style="width:140px;"><img src="assets/CJ — Bato Wallet Empty State.svg" alt="Empty"></div>
+      <div class="text-[9px] text-slate-400 uppercase tracking-wide mt-1">First View</div>
+    </div>
+    <div class="flex-1">
+      <div class="text-sm font-bold text-amber-400 mb-2">Empty Wallet</div>
+      <p class="text-xs text-slate-300 leading-relaxed mb-3">Zero USDT. Zero KSh. Two buttons: "Get Started" and "Learn More." Jane is already a KCB customer — the app knows her phone number. No re-verification needed.</p>
+      <div class="space-y-1">
+        <div class="flex gap-2 items-start"><div class="step-num flex-shrink-0" style="background:var(--gold);color:var(--teal-deep);">1</div><div class="text-xs text-slate-300 pt-0.5">Bato wallet opens — 0.00 USDT, ≈ KSh 0.00</div></div>
+        <div class="flex gap-2 items-start"><div class="step-num flex-shrink-0" style="background:var(--gold);color:var(--teal-deep);">2</div><div class="text-xs text-slate-300 pt-0.5">Jane sees ₿ icon and "Your Digital Wallet"</div></div>
+        <div class="flex gap-2 items-start"><div class="step-num flex-shrink-0" style="background:var(--gold);color:var(--teal-deep);">3</div><div class="text-xs text-slate-300 pt-0.5">She taps "Get Started"</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">Bato · Customer Journey · Phase 1 — Discover Bato</div>
+</div>
+
+<!-- ═══════ PAGE 5: PHASE 2 ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Phase 2 · ACCOUNT CREATION</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">Register — <span class="italic text-amber-500">3 Screens, Zero SMS</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-gray-600 text-xs mb-4">One-time flow. Phone (pre-filled from KCB), confirmation, authenticator enrollment. Device key in Secure Enclave. No SMS. No email.</p>
+
+  <div class="flex gap-2 items-center justify-center mb-4">
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/Registration — Phone Number Entry.png" alt="Phone"></div><div class="text-[8px] text-gray-500 uppercase mt-1">Screen 1/3</div></div>
+    <div class="text-amber-500 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/Registration — Confirmation.png" alt="Confirm"></div><div class="text-[8px] text-gray-500 uppercase mt-1">Screen 2/3</div></div>
+    <div class="text-amber-500 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/Registration — Authenticator Enrollment.png" alt="Auth"></div><div class="text-[8px] text-gray-500 uppercase mt-1">Screen 3/3</div></div>
+    <div class="text-amber-500 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/2.2.1 Use Case User Views Wallet Balance.png" alt="Balance"></div><div class="text-[8px] text-gray-500 uppercase mt-1">Wallet Created</div></div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-3">
+    <div class="section-card p-3 border-l-4 border-teal-700">
+      <div class="text-sm font-bold text-teal-900 mb-1">Phone Number Entry</div>
+      <p class="text-xs text-gray-500">Pre-filled with Jane's KCB-registered phone: <strong>+254 712 345 678</strong>. Phone used as an identifier — NOT for SMS.</p>
+    </div>
+    <div class="section-card p-3 border-l-4 border-amber-400">
+      <div class="text-sm font-bold text-teal-900 mb-1">Authenticator Enrollment</div>
+      <p class="text-xs text-gray-500">Device key generated in Secure Enclave/TEE. Private key never leaves the device. HD wallet address on Polygon.</p>
+    </div>
+  </div>
+  <div class="page-footer">Bato · Customer Journey · Phase 2 — Register</div>
+</div>
+
+<!-- ═══════ PAGE 6: PHASE 3 ═══════ -->
+<div class="proposal-page page-dark" style="padding:22mm 24mm;">
+  <div class="text-amber-400 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Phase 3 · WALLET FUNDING</div>
+  <h2 class="heading-serif text-4xl mb-2" style="color:#F8FAFC;">Load Wallet — <span class="italic text-amber-400">KES to USDT</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-slate-300 text-xs mb-4">Jane loads KSh 29,580 worth of USDT from her KCB savings. Three screens: enter, confirm with rate lock, success.</p>
+
+  <div class="flex gap-2 items-center justify-center mb-4">
+    <div class="text-center"><div class="phone-frame" style="width:110px;"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 1.png" alt="Step 1"></div><div class="text-[8px] text-slate-400 uppercase mt-1">Enter Amount</div></div>
+    <div class="text-amber-400 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:110px;"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 2.png" alt="Step 2"></div><div class="text-[8px] text-slate-400 uppercase mt-1">Confirm</div></div>
+    <div class="text-amber-400 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:110px;"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 3.png" alt="Step 3"></div><div class="text-[8px] text-slate-400 uppercase mt-1">Success</div></div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-3">
+    <div class="card-premium rounded-xl p-4" style="background:rgba(30,41,59,0.5);border:1px solid rgba(212,175,55,0.25);">
+      <div class="text-sm font-bold text-amber-400 mb-2">Dual-Currency Preview</div>
+      <p class="text-xs text-slate-300">Enter 200 USDT. KES cost: <strong>KSh 29,580.00</strong> at 147.90/USDT (2% spread). Fee: KSh 580 + ~KSh 1.45 network. Rate locked 30s.</p>
+    </div>
+    <div class="card-premium rounded-xl p-4" style="background:rgba(30,41,59,0.5);border:1px solid rgba(212,175,55,0.25);">
+      <div class="text-sm font-bold text-amber-400 mb-2">Behind the Scenes</div>
+      <p class="text-xs text-slate-300">Authenticator push → Jane approves → device key signs → <code class="text-amber-400">bridgeMint()</code> on Polygon → 200 USDT minted → balance updates. All in-app. No SMS.</p>
+    </div>
+  </div>
+  <div class="page-footer">Bato · Customer Journey · Phase 3 — Load Wallet</div>
+</div>
+
+<!-- ═══════ PAGE 7: PHASE 4 ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Phase 4 · P2P TRANSFER</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">Send USDT — <span class="italic text-amber-500">Peer to Peer</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-gray-600 text-xs mb-4">Jane sends 50 USDT to Sarah. Authenticator confirms. Sarah receives instantly — dual-currency breakdown throughout.</p>
+
+  <div class="flex gap-2 items-center justify-center mb-4">
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/CJ — P2P Send Enter Recipient.svg" alt="Recipient"></div><div class="text-[8px] text-gray-500 uppercase mt-1">Enter Recipient</div></div>
+    <div class="text-amber-500 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/Authenticator — P2P Transfer Confirmation.svg" alt="Auth"></div><div class="text-[8px] text-gray-500 uppercase mt-1">Authenticator</div></div>
+    <div class="text-amber-500 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/P2P Transfer — Jane Sends to Sarah Confirmation.png" alt="Sent"></div><div class="text-[8px] text-gray-500 uppercase mt-1">Sent</div></div>
+    <div class="text-amber-500 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/P2P Transfer — Recipient In-App Notification.png" alt="Received"></div><div class="text-[8px] text-gray-500 uppercase mt-1">Sarah Receives</div></div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-3">
+    <div class="section-card p-3"><div class="text-sm font-bold text-teal-900 mb-1">Jane (Sender)</div><p class="text-xs text-gray-500">50 USDT → ≈ KSh 7,250. Fee: 0.50 USDT (KSh 72.50). Total: 50.50 USDT (KSh 7,322.50). ~2s confirmation. In-app receipt.</p></div>
+    <div class="section-card p-3 border-l-4 border-emerald-500"><div class="text-sm font-bold text-teal-900 mb-1">Sarah (Recipient)</div><p class="text-xs text-gray-500">In-app notification: "+50.00 USDT from Jane K." ≈ +KSh 7,250.00. No SMS. Tapping opens her Bato wallet. Historical rate preserved.</p></div>
+  </div>
+  <div class="page-footer">Bato · Customer Journey · Phase 4 — Send P2P</div>
+</div>
+
+<!-- ═══════ PAGE 8: PHASE 5 ═══════ -->
+<div class="proposal-page page-dark" style="padding:22mm 24mm;">
+  <div class="text-amber-400 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Phase 5 · IN-STORE POS PAYMENT</div>
+  <h2 class="heading-serif text-4xl mb-2" style="color:#F8FAFC;">Scan to Pay — <span class="italic text-amber-400">Merchant POS</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-slate-300 text-xs mb-4">Jane at Naivas Supermarket. Cashier rings KSh 650. QR + shared code appears. Jane scans, verifies codes match, authenticates. Payment settles in &lt;3 seconds.</p>
+
+  <div class="flex gap-2 items-center justify-center mb-4">
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/CJ — POS Scan QR Camera View.svg" alt="Scan"></div><div class="text-[8px] text-slate-400 uppercase mt-1">Scan QR</div></div>
+    <div class="text-amber-400 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/CJ — Authenticator Shared Code Entry.svg" alt="Code"></div><div class="text-[8px] text-slate-400 uppercase mt-1">Verify Code</div></div>
+    <div class="text-amber-400 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/POS Payment — In-App Authenticator Confirmation.png" alt="Processing"></div><div class="text-[8px] text-slate-400 uppercase mt-1">Processing</div></div>
+    <div class="text-amber-400 text-lg">→</div>
+    <div class="text-center"><div class="phone-frame" style="width:100px;"><img src="assets/CJ — POS Payment Success Receipt.svg" alt="Success"></div><div class="text-[8px] text-slate-400 uppercase mt-1">Success</div></div>
+  </div>
+
+  <div class="flex gap-4">
+    <div class="flex-shrink-0"><img src="assets/2.3.3 POS Terminal Display (Merchant Side).png" alt="POS" class="infographic" style="width:180px;object-fit:contain;"></div>
+    <div class="flex-1">
+      <div class="text-sm font-bold text-amber-400 mb-2">Shared Code — Mode B</div>
+      <p class="text-xs text-slate-300">POS displays 6-char code <strong class="text-amber-400">A7K3M9</strong>. Jane verifies both screens match, enters code, approves. Prevents MITM attacks. 60s TTL, 3 attempts max.</p>
+      <div class="space-y-0.5 mt-2 text-[10px] text-slate-400">
+        <div>1. POS displays KSh 650 QR + shared code A7K3M9</div>
+        <div>2. Jane scans → sees Naivas, KSh 650, ≈ 4.48 USDT</div>
+        <div>3. Authenticator push: "Pay KSh 650 to Naivas? Code: A7K3M9"</div>
+        <div>4. Jane verifies codes match → enters code → approves</div>
+        <div>5. POS confirms: "Payment Received ✓" — 2-second settlement</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">Bato · Customer Journey · Phase 5 — Scan to Pay</div>
+</div>
+
+<!-- ═══════ PAGE 9: PHASE 6 + 7 ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Phase 6 · CASH-OUT TO BANK</div>
+  <h2 class="heading-serif text-3xl text-teal-900 mb-2">Withdraw — <span class="italic text-amber-500">USDT to KES</span></h2>
+  <div class="divider-gold mb-4"></div>
+
+  <div class="flex gap-4 mb-4">
+    <div class="flex-shrink-0 text-center">
+      <div class="phone-frame" style="width:130px;"><img src="assets/Authenticator — Withdrawal Cash Out Screen.svg" alt="Cash Out"></div>
+      <div class="text-[9px] text-gray-500 uppercase mt-1">Withdrawal Screen</div>
+    </div>
+    <div class="flex-1">
+      <div class="text-sm font-bold text-teal-900 mb-2">Cash Out Flow</div>
+      <p class="text-xs text-gray-500 leading-relaxed mb-2">Jane enters 500 USDT → KSh 72,500 receivable at 145 KES/USDT (less 2% spread). Destination: KCB Savings (...4521). Authenticator confirms. <code class="text-amber-600">bridgeBurn()</code> → USDT burned, KES credited. In-app receipt.</p>
+      <div class="space-y-0.5 text-[10px] text-gray-500">
+        <div>1. Tap "Cash Out" on wallet balance</div>
+        <div>2. Enter 500 USDT → KSh 72,500 receivable</div>
+        <div>3. Authenticator confirms → Approve</div>
+        <div>4. bridgeBurn() → KCB credits account</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2 mt-6">Phase 7 · WEARABLE NFC INTERACTION</div>
+  <div class="text-sm font-bold text-teal-900 mb-2">PayBand — NFC Bracelet</div>
+  <div class="flex gap-3">
+    <div class="flex-1 text-center"><img src="assets/CJ — Load Bracelet Screen.svg" alt="Load" class="infographic w-full" style="max-height:140px;object-fit:contain;"><div class="text-[8px] text-gray-500 uppercase mt-1">Load Bracelet</div></div>
+    <div class="flex-1 text-center"><img src="assets/CJ — Bracelet Tap at POS.svg" alt="Tap" class="infographic w-full" style="max-height:140px;object-fit:contain;"><div class="text-[8px] text-gray-500 uppercase mt-1">Tap at POS</div></div>
+  </div>
+  <div class="page-footer">Bato · Customer Journey · Phase 6–7</div>
+</div>
+
+<!-- ═══════ PAGE 10: JOURNEY SUMMARY + CLOSING ═══════ -->
+<div class="proposal-page page-dark flex flex-col justify-between" style="padding:22mm 24mm;">
+  <div>
+    <div class="text-amber-400 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Journey Summary</div>
+    <h2 class="heading-serif text-4xl mb-2" style="color:#F8FAFC;">Complete Journey <span class="italic text-amber-400">Map</span></h2>
+    <div class="divider-gold mb-5"></div>
+    <p class="text-slate-300 text-sm mb-4">From the KCB home screen to the PayBand bracelet — 8 touchpoints, 5 authenticator confirmations, zero SMS.</p>
+
+    <div class="flex gap-1 justify-center mb-6 overflow-x-auto">
+      <div class="text-center flex-shrink-0"><div class="phone-frame" style="width:80px;"><img src="assets/CJ — KCB Bank App Home Dashboard.svg" alt="Home"></div><div class="text-[7px] text-slate-400 uppercase mt-1">Dashboard</div></div>
+      <div class="text-amber-400 text-sm pt-10">→</div>
+      <div class="text-center flex-shrink-0"><div class="phone-frame" style="width:80px;"><img src="assets/CJ — Bato Wallet Empty State.svg" alt="Bato"></div><div class="text-[7px] text-slate-400 uppercase mt-1">Discover</div></div>
+      <div class="text-amber-400 text-sm pt-10">→</div>
+      <div class="text-center flex-shrink-0"><div class="phone-frame" style="width:80px;"><img src="assets/Registration — Phone Number Entry.png" alt="Register"></div><div class="text-[7px] text-slate-400 uppercase mt-1">Register</div></div>
+      <div class="text-amber-400 text-sm pt-10">→</div>
+      <div class="text-center flex-shrink-0"><div class="phone-frame" style="width:80px;"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 1.png" alt="Load"></div><div class="text-[7px] text-slate-400 uppercase mt-1">Load</div></div>
+      <div class="text-amber-400 text-sm pt-10">→</div>
+      <div class="text-center flex-shrink-0"><div class="phone-frame" style="width:80px;"><img src="assets/CJ — P2P Send Enter Recipient.svg" alt="Send"></div><div class="text-[7px] text-slate-400 uppercase mt-1">Send</div></div>
+      <div class="text-amber-400 text-sm pt-10">→</div>
+      <div class="text-center flex-shrink-0"><div class="phone-frame" style="width:80px;"><img src="assets/CJ — POS Scan QR Camera View.svg" alt="Scan"></div><div class="text-[7px] text-slate-400 uppercase mt-1">Scan</div></div>
+      <div class="text-amber-400 text-sm pt-10">→</div>
+      <div class="text-center flex-shrink-0"><div class="phone-frame" style="width:80px;"><img src="assets/CJ — Authenticator Shared Code Entry.svg" alt="Code"></div><div class="text-[7px] text-slate-400 uppercase mt-1">Verify</div></div>
+      <div class="text-amber-400 text-sm pt-10">→</div>
+      <div class="text-center flex-shrink-0"><div class="phone-frame" style="width:80px;"><img src="assets/Authenticator — Withdrawal Cash Out Screen.svg" alt="Cash Out"></div><div class="text-[7px] text-slate-400 uppercase mt-1">Withdraw</div></div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-3">
+      <div class="card-premium rounded-xl p-4 text-center" style="background:rgba(30,41,59,0.5);"><div class="heading-serif text-2xl text-amber-400">8</div><div class="text-[8px] text-slate-400 uppercase tracking-wide">Touchpoints</div></div>
+      <div class="card-premium rounded-xl p-4 text-center" style="background:rgba(30,41,59,0.5);"><div class="heading-serif text-2xl text-amber-400">5</div><div class="text-[8px] text-slate-400 uppercase tracking-wide">Authenticator</div></div>
+      <div class="card-premium rounded-xl p-4 text-center" style="background:rgba(30,41,59,0.5);"><div class="heading-serif text-2xl text-amber-400">&lt;90s</div><div class="text-[8px] text-slate-400 uppercase tracking-wide">First Value</div></div>
+      <div class="card-premium rounded-xl p-4 text-center" style="background:rgba(30,41,59,0.5);"><div class="heading-serif text-2xl text-amber-400">0</div><div class="text-[8px] text-slate-400 uppercase tracking-wide">SMS Sent</div></div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <div class="flex justify-center gap-4 mb-3">
+      <img src="assets/KCB Logo.png" alt="KCB" style="height:32px;">
+      <img src="assets/Bato Logo.png" alt="Bato" style="height:32px;">
+    </div>
+    <p class="text-slate-500 text-xs">KSh 0.15 per transfer. Zero SMS. Zero percentage fees. In-app authenticator confirmations only.</p>
+  </div>
+  <div class="page-footer">Bato · Customer Journey · Summary</div>
+</div>
+
+<div class="max-w-[210mm] mx-auto mt-4 text-center text-xs text-gray-500 no-print">
+  ✦ End of Customer Journey — <a href="PRD2 - Copy.html" class="text-amber-600 underline">View Full PRD</a> · <a href="index.html" class="text-amber-600 underline">Executive Slideshow</a>
+</div>
+
+</body>
+</html>

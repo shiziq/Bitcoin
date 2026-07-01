@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRD — Bato · KCB Bank Stablecoin Payment System</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap');
+  :root { --accent: #D39F29; --primary: #08393D; --gold: #D4AF37; --gold-dark: #B8942E; --teal-deep: #0A2B2E; --teal-medium: #1A4A4F; --slate-dark: #0F172A; --slate-mid: #1E293B; --gray-light: #94A3B8; --bg-warm: #F8FAFC; }
+
+  body { font-family: 'DM Sans', system-ui, -apple-system, sans-serif; }
+
+  .heading-serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 800; letter-spacing: -0.02em; }
+
+  .proposal-page { width: 210mm; min-height: 297mm; margin: 0 auto; background: white; box-shadow: 0 25px 60px -15px rgb(0 0 0 / 0.15); position: relative; overflow: hidden; box-sizing: border-box; page-break-after: always; break-after: page; padding: 0; }
+  .proposal-page:last-of-type { page-break-after: avoid; break-after: avoid; }
+
+  @page { size: A4 portrait; margin: 0; }
+  @media print {
+    @page { size: A4; margin: 0; }
+    html, body { margin: 0 !important; padding: 0 !important; background: white !important; width: 210mm; }
+    .proposal-page { box-shadow: none !important; margin: 0 auto !important; width: 210mm !important; min-height: 297mm !important; page-break-after: always; break-after: page; }
+    .proposal-page:last-of-type { page-break-after: avoid; }
+    .no-print { display: none !important; }
+  }
+
+  .section-card { background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04); border: 1px solid #f1f1f0; }
+  .gold-accent { color: #D39F29; }
+  .teal-primary { color: #08393D; }
+  .elegant-divider { height: 1px; background: linear-gradient(to right, transparent, #D39F29, transparent); }
+  .infographic { border-radius: 12px; box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.1); border: 1px solid #f4f4f3; }
+
+  .clean-list li { padding-left: 1.75rem; position: relative; }
+  .clean-list li:before { content: "→"; position: absolute; left: 0; color: #D39F29; font-weight: 700; }
+
+  .page-footer { position: absolute; bottom: 14mm; left: 0; right: 0; text-align: center; font-size: 8.5px; color: #888; letter-spacing: 0.3px; padding: 0 12px; }
+
+  .bg-dot-pattern { background-image: radial-gradient(circle at 2px 2px, rgba(212, 175, 55, 0.08) 1.5px, transparent 1.5px); background-size: 24px 24px; }
+
+  .divider-gold { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+  .list-gold { list-style: none; padding-left: 0; }
+  .list-gold li { padding-left: 1.75rem; position: relative; margin-bottom: 0.5rem; }
+  .list-gold li::before { content: "▹"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+  .page-dark { background: linear-gradient(135deg, #0A2B2E 0%, #05181A 100%); color: #F8FAFC; }
+  .page-dark .card-premium { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(2px); border-color: rgba(212, 175, 55, 0.25); }
+  .page-dark .text-gray-600, .page-dark .text-gray-500 { color: #CBD5E1 !important; }
+  .page-dark .page-footer { color: #64748B; }
+
+  @media print { .page-dark { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+
+  table { width: 100%; border-collapse: collapse; }
+  th { background: var(--teal-deep); color: white; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 10px 14px; text-align: left; }
+  td { padding: 10px 14px; border-bottom: 1px solid #E2E8F0; font-size: 13px; color: #475569; }
+  tr:nth-child(even) td { background: #F8FAFC; }
+</style>
+</head>
+<body class="bg-[#E8ECEF] py-6">
+
+<div class="max-w-[210mm] mx-auto mb-4 text-center text-xs text-gray-500 no-print">
+  ✦ Product Requirements Document — Board Presentation Format • <a href="PRD2.html" class="text-amber-600 underline">Classic View</a>
+</div>
+
+<!-- ═══════ PAGE 1: COVER ═══════ -->
+<div class="proposal-page page-dark flex flex-col justify-between" style="padding:28mm 22mm;">
+  <div>
+    <div class="text-amber-400 text-xs tracking-[0.25em] uppercase font-bold mb-3">Product Requirements Document · v5.0</div>
+    <h1 class="heading-serif text-6xl leading-[1.04] max-w-[420px]" style="color:#F8FAFC;">Bank-Integrated<br><span class="text-amber-400 italic">Stablecoin Payment</span><br>System</h1>
+    <p class="text-slate-300 text-sm mt-4 max-w-[360px] leading-relaxed">Bato — a USDT stablecoin payment system embedded in the KCB Bank app. P2P transfers, POS merchant payments, dual-currency display on every screen, in-app authenticator, and a wearable NFC bracelet. KSh 0.15 flat fee per transfer — not M-Pesa's 1–3%.</p>
+  </div>
+  <div class="flex gap-6 mt-6">
+    <div class="text-amber-400"><span class="heading-serif text-3xl">KSh 0.15</span><br><span class="text-slate-400 text-[10px] uppercase tracking-widest">Flat TX Fee</span></div>
+    <div class="text-amber-400"><span class="heading-serif text-3xl">0 SMS</span><br><span class="text-slate-400 text-[10px] uppercase tracking-widest">In-App Auth Only</span></div>
+    <div class="text-amber-400"><span class="heading-serif text-3xl">2×</span><br><span class="text-slate-400 text-[10px] uppercase tracking-widest">Dual Currency</span></div>
+    <div class="text-amber-400"><span class="heading-serif text-3xl">MPesa Rival</span><br><span class="text-slate-400 text-[10px] uppercase tracking-widest">99.9% Fee Cut</span></div>
+  </div>
+  <div class="page-footer">Bato · KCB Bank · Polygon + Arbitrum · Multi-Chain EVM · June 2026</div>
+</div>
+
+<!-- ═══════ PAGE 2: VISION ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 1</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">Product <span class="italic text-amber-500">Vision</span></h2>
+  <div class="divider-gold mb-6"></div>
+  <p class="text-gray-600 text-sm leading-relaxed mb-4 max-w-[480px]">We are integrating USDT stablecoin capabilities into the KCB banking application. Users load value from their bank accounts, send it peer-to-peer, and pay merchants at point-of-sale — all on Polygon + Arbitrum blockchain networks with flat fees near KSh 0.15 and 2-second settlement.</p>
+
+  <div class="grid grid-cols-2 gap-5 mb-4">
+    <div class="section-card p-5 bg-red-50 border-red-100">
+      <div class="text-red-700 font-bold text-sm mb-2 uppercase tracking-wide">M-Pesa Today</div>
+      <ul class="list-none space-y-1 text-xs text-red-800 leading-relaxed">
+        <li>1–3% per transaction — KSh 100–300 on KSh 10,000</li>
+        <li>SMS-based 2FA vulnerable to SIM-swap</li>
+        <li>SMS payment trail on phone records</li>
+        <li>Non-interoperable across telcos</li>
+        <li>KES only — exposed to inflation</li>
+      </ul>
+    </div>
+    <div class="section-card p-5 bg-amber-50 border-amber-200">
+      <div class="text-amber-800 font-bold text-sm mb-2 uppercase tracking-wide">Bato Tomorrow</div>
+      <ul class="list-none space-y-1 text-xs text-amber-900 leading-relaxed">
+        <li>KSh 0.15 flat fee — same for KSh 500 or KSh 50,000</li>
+        <li>In-app authenticator + device key — zero SMS</li>
+        <li>All confirmations in-app — zero SMS trail</li>
+        <li>Cross-telco, cross-chain</li>
+        <li>Always shows KSh equivalent</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-4 gap-3 mb-4">
+    <div class="section-card p-4 text-center border-t-4 border-amber-400"><div class="heading-serif text-2xl">~KSh 0.15</div><div class="text-[10px] text-gray-500 uppercase tracking-wide mt-1">Bato Flat Fee</div></div>
+    <div class="section-card p-4 text-center"><div class="heading-serif text-2xl">KSh 100–300</div><div class="text-[10px] text-gray-500 uppercase tracking-wide mt-1">M-Pesa on KSh 10K</div></div>
+    <div class="section-card p-4 text-center border-t-4 border-emerald-500"><div class="heading-serif text-2xl">~99.9%</div><div class="text-[10px] text-gray-500 uppercase tracking-wide mt-1">Fee Reduction</div></div>
+    <div class="section-card p-4 text-center"><div class="heading-serif text-2xl" style="font-size:1.2rem;">Polygon+Arbitrum</div><div class="text-[10px] text-gray-500 uppercase tracking-wide mt-1">Phase 1 Chains</div></div>
+  </div>
+
+  <table class="mt-4">
+    <tr><th>Network</th><th>USDT Transfer Fee</th><th>Speed</th><th>Strategic Value for Kenya</th></tr>
+    <tr><td class="font-bold text-teal-900">Polygon POS</td><td>$0.001–0.01 (~KSh 0.15–1.45)</td><td>~2s</td><td>Primary chain. Best cost-to-speed ratio.</td></tr>
+    <tr><td class="font-bold text-teal-900">Arbitrum (L2)</td><td>&lt;$0.20 (~KSh 29)</td><td>Seconds</td><td>EVM-compatible. Ultra-low fees.</td></tr>
+    <tr><td class="font-bold text-teal-900">Solana</td><td>A few cents</td><td>&lt;1s</td><td>Phase 2. Fastest finality.</td></tr>
+    <tr><td class="font-bold text-teal-900">TRON (TRC20)</td><td>~$0.50 (~KSh 73)</td><td>1–3 min</td><td>Largest USDT liquidity. Phase 2.</td></tr>
+    <tr><td class="font-bold">Ethereum (ERC20)</td><td>$5–$30+</td><td>1–10+ min</td><td class="text-red-500">Excluded — too expensive for Kenya.</td></tr>
+  </table>
+  <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mt-3 text-xs text-amber-900">Executive Recommendation: Deploy on Polygon + Arbitrum Phase 1. Add Solana and TRON Phase 2. Multi-chain provider abstracts network from user.</div>
+  <div class="page-footer">Bato · PRD v5 · Section 1 — Product Vision</div>
+</div>
+
+<!-- ═══════ PAGE 3: PRINCIPLES ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 2</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">The Seven <span class="italic text-amber-500">Principles</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-gray-600 text-sm mb-4 max-w-[440px]">Every design decision, every code review, and every QA test must pass these seven gates. These are the constitutional foundation of the product.</p>
+
+  <div class="grid grid-cols-2 gap-3">
+    <div class="section-card p-4 border-l-4 border-amber-400"><div class="text-[9px] text-amber-500 uppercase tracking-[0.15em] font-bold mb-1">Principle 1</div><div class="text-sm font-bold text-teal-900 mb-1">KES is the Primary Reference</div><div class="text-xs text-gray-500 leading-relaxed">Kenyan users budget, price, and think in shillings. Every screen must present KES prominently.</div></div>
+    <div class="section-card p-4 border-l-4 border-amber-400"><div class="text-[9px] text-amber-500 uppercase tracking-[0.15em] font-bold mb-1">Principle 2</div><div class="text-sm font-bold text-teal-900 mb-1">USDT is the Settlement Currency</div><div class="text-xs text-gray-500 leading-relaxed">All on-chain transfers and value storage use USDT. Stability against KES fluctuation.</div></div>
+    <div class="section-card p-4 border-l-4 border-amber-400"><div class="text-[9px] text-amber-500 uppercase tracking-[0.15em] font-bold mb-1">Principle 3</div><div class="text-sm font-bold text-teal-900 mb-1">Every Amount Shows Both</div><div class="text-xs text-gray-500 leading-relaxed">Balance, transfers, fees, history, notifications, receipts — USDT + KES. No exception.</div></div>
+    <div class="section-card p-4 border-l-4 border-amber-400"><div class="text-[9px] text-amber-500 uppercase tracking-[0.15em] font-bold mb-1">Principle 4</div><div class="text-sm font-bold text-teal-900 mb-1">Rates Are Transparent</div><div class="text-xs text-gray-500 leading-relaxed">Show source (CBK, Binance P2P), spread %, and freshness indicator on every conversion.</div></div>
+    <div class="section-card p-4 border-l-4 border-amber-400"><div class="text-[9px] text-amber-500 uppercase tracking-[0.15em] font-bold mb-1">Principle 5</div><div class="text-sm font-bold text-teal-900 mb-1">Historical Rates Are Immutable</div><div class="text-xs text-gray-500 leading-relaxed">January's receipt shows January's rate — never today's. Rate column immutable after confirmation.</div></div>
+    <div class="section-card p-4 border-l-4 border-amber-400"><div class="text-[9px] text-amber-500 uppercase tracking-[0.15em] font-bold mb-1">Principle 6</div><div class="text-sm font-bold text-teal-900 mb-1">No SMS. Period.</div><div class="text-xs text-gray-500 leading-relaxed">Authentication: in-app authenticator + device key. Confirmation: in-app push. Zero SMS trail.</div></div>
+    <div class="section-card p-4 border-l-4 border-amber-400"><div class="text-[9px] text-amber-500 uppercase tracking-[0.15em] font-bold mb-1">Principle 7</div><div class="text-sm font-bold text-teal-900 mb-1">Built for Kenya, By Design</div><div class="text-xs text-gray-500 leading-relaxed">KES formatting: en-KE. Timezone: Africa/Nairobi. Rate feeds: Kenyan sources first. Phone: +254.</div></div>
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Section 2 — Seven Principles</div>
+</div>
+
+<!-- ═══════ PAGE 4: REGISTRATION ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 3 — Build This First</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">User <span class="italic text-amber-500">Registration</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-gray-600 text-sm mb-4 max-w-[480px]">One-time registration using the user's Kenyan phone number. No email. No SMS. The phone number links to the existing KCB customer profile. A device-bound key pair is generated in the Secure Enclave/TEE.</p>
+
+  <div class="grid grid-cols-2 gap-4 mb-4">
+    <div class="section-card p-4 border-l-4 border-teal-700">
+      <div class="text-sm font-bold text-teal-900 mb-2">Registration Rules</div>
+      <div class="text-xs space-y-1">
+        <div class="flex justify-between"><span class="text-gray-500">Phone format</span><span class="font-semibold">Kenyan numbers only (07XX)</span></div>
+        <div class="flex justify-between"><span class="text-gray-500">One wallet per phone</span><span class="font-semibold">One active wallet</span></div>
+        <div class="flex justify-between"><span class="text-gray-500">Bank account required</span><span class="font-semibold">KCB customer profile</span></div>
+        <div class="flex justify-between"><span class="text-gray-500">Device binding</span><span class="font-semibold">Key generated at registration</span></div>
+        <div class="flex justify-between"><span class="text-gray-500">No SMS · No Email</span><span class="font-semibold text-amber-600">In-app authenticator only</span></div>
+      </div>
+    </div>
+    <div class="section-card p-4">
+      <div class="text-sm font-bold text-teal-900 mb-2">Registration Flow</div>
+      <p class="text-xs text-gray-500 leading-relaxed">User enters phone → backend normalizes to +254 → links to KCB core banking profile → generates HD wallet address on Polygon → stores device public key. Wallet created. Authenticator enrolled. Zero SMS sent.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3">
+    <div class="text-center"><img src="assets/Registration — Phone Number Entry.png" alt="Phone" class="infographic w-full"><div class="text-[9px] text-gray-500 uppercase tracking-wide mt-1">Phone Entry</div></div>
+    <div class="text-center"><img src="assets/Registration — Confirmation.png" alt="Confirm" class="infographic w-full"><div class="text-[9px] text-gray-500 uppercase tracking-wide mt-1">Confirmation</div></div>
+    <div class="text-center"><img src="assets/Registration — Authenticator Enrollment.png" alt="Auth" class="infographic w-full"><div class="text-[9px] text-gray-500 uppercase tracking-wide mt-1">Authenticator</div></div>
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Section 3 — User Registration</div>
+</div>
+
+<!-- ═══════ PAGE 5: AUTHENTICATION ═══════ -->
+<div class="proposal-page page-dark" style="padding:22mm 24mm;">
+  <div class="text-amber-400 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 4 — Build This Second</div>
+  <h2 class="heading-serif text-4xl mb-2" style="color:#F8FAFC;">Authentication — <span class="italic text-amber-400">In-App Authenticator</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-slate-300 text-sm mb-5 max-w-[480px] leading-relaxed">The device key bound during registration authenticates every transaction. No SMS. No email. No biometric OS prompt. Two verification modes: Mode A (Tap to Approve) for standard transactions, Mode B (Shared Code Matching) for high-value transactions.</p>
+
+  <div class="grid grid-cols-2 gap-4 mb-5">
+    <div class="card-premium rounded-xl p-5" style="background:rgba(30,41,59,0.5);">
+      <div class="text-sm font-bold text-amber-400 mb-2">Mode A — Tap to Approve</div>
+      <p class="text-xs text-slate-300 leading-relaxed">Standard transactions. Authenticator shows dual-currency payment preview. User taps Approve. Authenticator signs challenge with device key from Secure Enclave. Backend verifies signature.</p>
+    </div>
+    <div class="card-premium rounded-xl p-5" style="background:rgba(30,41,59,0.5);">
+      <div class="text-sm font-bold text-amber-400 mb-2">Mode B — Shared Code</div>
+      <p class="text-xs text-slate-300 leading-relaxed">High-value transactions. Backend generates 6-char alpha-numeric code displayed on BOTH POS terminal and Authenticator. User verifies codes match, enters code. 60s TTL, max 3 attempts.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3">
+    <div class="text-center"><img src="assets/Auth — In-App Authenticator Dialog.png" alt="Dialog" class="infographic w-full"><div class="text-[9px] text-slate-400 uppercase tracking-wide mt-1">Authenticator Dialog</div></div>
+    <div class="text-center"><img src="assets/Auth — Challenge Signing.png" alt="Challenge" class="infographic w-full"><div class="text-[9px] text-slate-400 uppercase tracking-wide mt-1">Challenge Signing</div></div>
+    <div class="text-center"><img src="assets/Auth — In-App Confirmation (No SMS).png" alt="Confirm" class="infographic w-full"><div class="text-[9px] text-slate-400 uppercase tracking-wide mt-1">In-App Confirmation</div></div>
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Section 4 — Authentication</div>
+</div>
+
+<!-- ═══════ PAGE 6: ARCHITECTURE ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 5</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">System <span class="italic text-amber-500">Architecture</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-gray-600 text-sm mb-4 max-w-[480px]">Five layers: user's mobile device (KCB app + Bato SDK), bank's backend services, currency conversion engine, multi-chain provider abstraction, and blockchain networks. Every component passes dual-currency (USDT + KES) data end-to-end.</p>
+
+  <img src="assets/High-Level Component Diagram.png" alt="Architecture" class="infographic w-full mb-4" style="max-height:280px;object-fit:contain;">
+
+  <div class="grid grid-cols-4 gap-3">
+    <div class="section-card p-3 text-center border-t-4 border-amber-400"><div class="text-xs font-bold text-teal-900">Polygon + Arbitrum</div><div class="text-[9px] text-gray-500 uppercase mt-1">Phase 1 Chains</div></div>
+    <div class="section-card p-3 text-center"><div class="text-xs font-bold text-teal-900">~KSh 0.15</div><div class="text-[9px] text-gray-500 uppercase mt-1">Avg TX Fee</div></div>
+    <div class="section-card p-3 text-center border-t-4 border-emerald-500"><div class="text-xs font-bold text-teal-900">Multi-Chain</div><div class="text-[9px] text-gray-500 uppercase mt-1">Abstracted</div></div>
+    <div class="section-card p-3 text-center"><div class="text-xs font-bold text-teal-900">mTLS</div><div class="text-[9px] text-gray-500 uppercase mt-1">API Security</div></div>
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Section 5 — System Architecture</div>
+</div>
+
+<!-- ═══════ PAGE 7: RATE ENGINE + DISPLAY ═══════ -->
+<div class="proposal-page page-dark" style="padding:22mm 24mm;">
+  <div class="text-amber-400 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 6</div>
+  <h2 class="heading-serif text-4xl mb-2" style="color:#F8FAFC;">Rate Engine &amp; <span class="italic text-amber-400">Dual Currency Display</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <p class="text-slate-300 text-sm mb-4 max-w-[480px]">Three independent Kenyan market feeds (CBK, Binance P2P, Forex) feed a weighted average engine. A configurable bank spread is applied. Cached for 15 seconds and distributed to every display component via the DualCurrencyDisplay client-side SDK.</p>
+
+  <img src="assets/Dual Currency Display Architecture.png" alt="Currency Architecture" class="infographic w-full mb-3" style="max-height:180px;object-fit:contain;">
+  <img src="assets/Rate Engine — Multi-Feed Aggregation Diagram.png" alt="Rate Aggregation" class="infographic w-full" style="max-height:180px;object-fit:contain;">
+  <div class="page-footer">Bato · PRD v5 · Section 6 — Rate Engine &amp; Dual Currency Display</div>
+</div>
+
+<!-- ═══════ PAGE 8: DISPLAY RULES ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 7</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">Dual Currency Display — <span class="italic text-amber-500">The Golden Rule</span></h2>
+  <div class="divider-gold mb-5"></div>
+  <div class="bg-red-50 border border-red-200 rounded-xl p-4 text-xs text-red-800 font-semibold mb-4">Every screen, notification, receipt, and confirmation MUST show both USDT and KES. This is a non-negotiable system-wide invariant.</div>
+
+  <div class="grid grid-cols-2 gap-3 mb-4">
+    <div class="section-card p-4">
+      <div class="text-sm font-bold text-teal-900 mb-2">Display Rules</div>
+      <p class="text-xs text-gray-500 leading-relaxed">Primary: USDT amount. Secondary: KES with ≈ prefix. Rate line: current conversion. Freshness indicator: Live ● / Recent ○ / Stale ⚠.</p>
+    </div>
+    <div class="section-card p-4">
+      <div class="text-sm font-bold text-teal-900 mb-2">KES Rounding</div>
+      <p class="text-xs text-gray-500 leading-relaxed">Locale: en-KE (1,500,000.00). 2 fraction digits. Half-up rounding. Grouping: comma. Prefix: "KSh ".</p>
+    </div>
+    <div class="section-card p-4">
+      <div class="text-sm font-bold text-teal-900 mb-2">Rate Transparency</div>
+      <p class="text-xs text-gray-500 leading-relaxed">Source disclosed on every screen. Rate lock state: Estimated (orange) → Locked (green). Spread shown as percentage.</p>
+    </div>
+    <div class="section-card p-4">
+      <div class="text-sm font-bold text-teal-900 mb-2">Freshness Indicators</div>
+      <p class="text-xs text-gray-500 leading-relaxed">● Live (<30s) · ○ Recent (<2min) · ⚠ Stale (>2min). Auto-refresh every 15s.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3">
+    <img src="assets/Display Rules Visual Reference.png" alt="Display Rules" class="infographic w-full" style="max-height:150px;object-fit:contain;">
+    <img src="assets/KES Rounding Rules Visual Spec.png" alt="KES Rounding" class="infographic w-full" style="max-height:150px;object-fit:contain;">
+    <img src="assets/Dual Currency Display Contexts.png" alt="Contexts" class="infographic w-full" style="max-height:150px;object-fit:contain;">
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Section 7 — Dual Currency Display</div>
+</div>
+
+<!-- ═══════ PAGE 9: P2P WALLET ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 8</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">P2P Wallet — <span class="italic text-amber-500">Complete Specification</span></h2>
+  <div class="divider-gold mb-5"></div>
+
+  <div class="grid grid-cols-2 gap-4 mb-4">
+    <div class="section-card p-4">
+      <div class="text-sm font-bold text-teal-900 mb-2">Wallet Balance</div>
+      <img src="assets/2.2.1 Use Case User Views Wallet Balance.png" alt="Balance" class="infographic w-full" style="max-height:180px;object-fit:contain;">
+      <p class="text-xs text-gray-500 mt-2">Shows on-chain USDT balance + KES equivalent at live rate. Refresh indicator. Recent 3-transaction feed.</p>
+    </div>
+    <div class="section-card p-4">
+      <div class="text-sm font-bold text-teal-900 mb-2">P2P Transfer</div>
+      <img src="assets/P2P Transfer — Jane Sends to Sarah Confirmation.png" alt="Transfer" class="infographic w-full" style="max-height:180px;object-fit:contain;">
+      <p class="text-xs text-gray-500 mt-2">50 USDT → ≈ KSh 7,250. Fee: 0.50 USDT (KSh 72.50). ~2s confirmation. Recipient gets in-app notification — no SMS.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3">
+    <div class="text-center"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 1.png" alt="Load 1" class="infographic w-full"><div class="text-[9px] text-gray-500 uppercase mt-1">Step 1 — Enter Amount</div></div>
+    <div class="text-center"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 2.png" alt="Load 2" class="infographic w-full"><div class="text-[9px] text-gray-500 uppercase mt-1">Step 2 — Confirm</div></div>
+    <div class="text-center"><img src="assets/2.2.2 Use Case User Loads USDT from Bank Account Step 3.png" alt="Load 3" class="infographic w-full"><div class="text-[9px] text-gray-500 uppercase mt-1">Step 3 — Success</div></div>
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Section 8 — P2P Wallet</div>
+</div>
+
+<!-- ═══════ PAGE 10: POS MERCHANT ═══════ -->
+<div class="proposal-page page-dark" style="padding:22mm 24mm;">
+  <div class="text-amber-400 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 9</div>
+  <h2 class="heading-serif text-4xl mb-2" style="color:#F8FAFC;">POS Merchant — <span class="italic text-amber-400">Complete Specification</span></h2>
+  <div class="divider-gold mb-5"></div>
+
+  <div class="grid grid-cols-2 gap-4 mb-4">
+    <div><img src="assets/2.3.1 Use Case Scan-to-Pay at Merchant POS QR Code Specification 1.png" alt="QR Spec" class="infographic w-full" style="max-height:160px;object-fit:contain;"></div>
+    <div><img src="assets/POS — Merchant Payment Flow Overview.png" alt="POS Flow" class="infographic w-full" style="max-height:160px;object-fit:contain;"></div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3 mb-4">
+    <div class="text-center"><img src="assets/POS Payment — Blockchain Processing Screen.png" alt="Processing" class="infographic w-full"><div class="text-[9px] text-slate-400 uppercase mt-1">Processing</div></div>
+    <div class="text-center"><img src="assets/POS Payment — In-App Authenticator Confirmation.png" alt="Auth" class="infographic w-full"><div class="text-[9px] text-slate-400 uppercase mt-1">Authenticator</div></div>
+    <div class="text-center"><img src="assets/POS Payment — In-App Payment Success.png" alt="Success" class="infographic w-full"><div class="text-[9px] text-slate-400 uppercase mt-1">Payment Success</div></div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-3">
+    <div class="text-center"><img src="assets/2.3.3 POS Terminal Display (Merchant Side).png" alt="POS Terminal" class="infographic w-full"><div class="text-[9px] text-slate-400 uppercase mt-1">Merchant POS Terminal</div></div>
+    <div class="text-center"><img src="assets/2.3.2 Merchant Receipt Display (Client Side Payment Receipt).png" alt="Receipt" class="infographic w-full"><div class="text-[9px] text-slate-400 uppercase mt-1">Digital Receipt</div></div>
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Section 9 — POS Merchant</div>
+</div>
+
+<!-- ═══════ PAGE 11: WITHDRAWAL + BRACELET ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Sections 10–12</div>
+  <h2 class="heading-serif text-3xl text-teal-900 mb-2">Withdrawal · <span class="italic text-amber-500">PayBand Bracelet</span></h2>
+  <div class="divider-gold mb-5"></div>
+
+  <div class="grid grid-cols-2 gap-4 mb-4">
+    <div class="section-card p-4">
+      <div class="text-sm font-bold text-teal-900 mb-2">Withdrawal — USDT to KES</div>
+      <img src="assets/Authenticator — Withdrawal Cash Out Screen.svg" alt="Cash Out" class="infographic w-full" style="max-height:140px;object-fit:contain;">
+      <p class="text-xs text-gray-500 mt-1">Cash out 500 USDT → KSh 72,500. bridgeBurn() → KCB savings credited. In-app receipt.</p>
+    </div>
+    <div class="section-card p-4">
+      <div class="text-sm font-bold text-teal-900 mb-2">PayBand — NFC Bracelet</div>
+      <img src="assets/PayBand — NFC Wearable Bracelet Payment Flow.svg" alt="PayBand" class="infographic w-full" style="max-height:140px;object-fit:contain;">
+      <p class="text-xs text-gray-500 mt-1">NFC silicone bracelet. E-ink display. Load via KCB app QR + NFC. Tap at POS. Authenticator confirms.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-3">
+    <div class="text-center"><img src="assets/CJ — Load Bracelet Screen.svg" alt="Load" class="infographic w-full"><div class="text-[9px] text-gray-500 uppercase mt-1">Load Bracelet</div></div>
+    <div class="text-center"><img src="assets/CJ — Bracelet Tap at POS.svg" alt="Tap" class="infographic w-full"><div class="text-[9px] text-gray-500 uppercase mt-1">Tap at POS</div></div>
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Sections 10–12</div>
+</div>
+
+<!-- ═══════ PAGE 12: ERROR STATES + TRANSACTION HISTORY ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Sections 13–14</div>
+  <h2 class="heading-serif text-3xl text-teal-900 mb-2">Error States · <span class="italic text-amber-500">Transaction History</span></h2>
+  <div class="divider-gold mb-5"></div>
+
+  <table>
+    <tr><th>Error</th><th>Trigger</th><th>User Sees</th></tr>
+    <tr><td class="font-mono text-xs text-red-600">RateUnavailableError</td><td>All 3 feeds fail + cache expired</td><td>"Rate temporarily unavailable. Try again."</td></tr>
+    <tr><td class="font-mono text-xs text-red-600">RateExpiredError</td><td>30s rate lock expired</td><td>"Rate expired. Refreshing..."</td></tr>
+    <tr><td class="font-mono text-xs text-red-600">InsufficientFundsError</td><td>Balance < amount + fees</td><td>"Insufficient balance. Load more?"</td></tr>
+    <tr><td class="font-mono text-xs text-red-600">QRCodeExpiredError</td><td>5-min QR TTL passed</td><td>"QR expired. Ask cashier for new code."</td></tr>
+    <tr><td class="font-mono text-xs text-red-600">SecurityError</td><td>Invalid signature / device key</td><td>"Security check failed. Blocked."</td></tr>
+    <tr><td class="font-mono text-xs text-red-600">TransactionFailedError</td><td>Blockchain TX reverted</td><td>"Transaction failed. No funds lost."</td></tr>
+  </table>
+
+  <div class="section-card p-4 mt-4">
+    <div class="text-sm font-bold text-teal-900 mb-2">Transaction History — Immutable Dual Records</div>
+    <div class="flex gap-3">
+      <img src="assets/4.1 Transaction History UI.png" alt="History" class="infographic" style="max-height:120px;flex:1;object-fit:contain;">
+      <img src="assets/Notification Center — In-App Notifications.png" alt="Notifications" class="infographic" style="max-height:120px;flex:1;object-fit:contain;">
+    </div>
+    <p class="text-xs text-gray-500 mt-2">Every transaction stores USDT amount, KES equivalent, and the exact rate at transaction time. January's receipt shows January's rate — never today's. All notifications in-app — zero SMS trail.</p>
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Sections 13–14</div>
+</div>
+
+<!-- ═══════ PAGE 13: API + DB + CONTRACTS ═══════ -->
+<div class="proposal-page page-dark" style="padding:22mm 24mm;">
+  <div class="text-amber-400 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Sections 15–17</div>
+  <h2 class="heading-serif text-3xl mb-2" style="color:#F8FAFC;">Smart Contracts · Database · <span class="italic text-amber-400">API</span></h2>
+  <div class="divider-gold mb-5"></div>
+
+  <div class="grid grid-cols-3 gap-3 mb-4">
+    <div class="card-premium rounded-xl p-4" style="background:rgba(30,41,59,0.5);">
+      <div class="text-xs font-bold text-amber-400 mb-2 uppercase">Smart Contracts</div>
+      <img src="assets/Smart Contract Interface Specification.svg" alt="Contracts" class="w-full" style="max-height:120px;object-fit:contain;">
+      <p class="text-[10px] text-slate-400 mt-1">IUSDT + MerchantRegistry on Polygon+Arbitrum</p>
+    </div>
+    <div class="card-premium rounded-xl p-4" style="background:rgba(30,41,59,0.5);">
+      <div class="text-xs font-bold text-amber-400 mb-2 uppercase">Database</div>
+      <img src="assets/7.1 Key Tables for Dual Currency Support B6.png" alt="DB" class="w-full" style="max-height:120px;object-fit:contain;">
+      <p class="text-[10px] text-slate-400 mt-1">PostgreSQL 14+ — transactions, rates, registrations, receipts</p>
+    </div>
+    <div class="card-premium rounded-xl p-4" style="background:rgba(30,41,59,0.5);">
+      <div class="text-xs font-bold text-amber-400 mb-2 uppercase">API Endpoints</div>
+      <p class="text-[10px] text-slate-300 leading-relaxed">POST /register · GET /balance · POST /transfer/preview · POST /pos/scan · GET /transactions · POST /withdraw</p>
+      <p class="text-[9px] text-slate-500 mt-1">OpenAPI 3.0 · mTLS · Rate limited</p>
+    </div>
+  </div>
+
+  <div class="card-premium rounded-xl p-4 mt-2" style="background:rgba(30,41,59,0.5);">
+    <div class="text-xs font-bold text-amber-400 mb-2 uppercase">Technical Stack</div>
+    <div class="grid grid-cols-2 gap-2 text-[10px] text-slate-300">
+      <div>Mobile: React Native / Flutter / Native + Bato SDK</div>
+      <div>Backend: Node.js / TypeScript · REST API</div>
+      <div>Blockchain: Polygon POS + Arbitrum · ethers.js v6 / viem</div>
+      <div>Auth: In-App Authenticator + Device Key (Secure Enclave)</div>
+      <div>Database: PostgreSQL 14+ · Cache: Redis (15s TTL)</div>
+      <div>Notifications: FCM / APNs · Rate Feeds: CBK, Binance, Forex</div>
+    </div>
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Sections 15–17</div>
+</div>
+
+<!-- ═══════ PAGE 14: DEVELOPMENT PHASES ═══════ -->
+<div class="proposal-page" style="padding:22mm 24mm;">
+  <div class="text-amber-500 text-[10px] tracking-[0.25em] uppercase font-bold mb-2">Section 18</div>
+  <h2 class="heading-serif text-4xl text-teal-900 mb-2">Development <span class="italic text-amber-500">Phases</span></h2>
+  <div class="divider-gold mb-5"></div>
+
+  <div class="space-y-2">
+    <div class="section-card p-3 border-l-4 border-amber-400">
+      <div class="flex justify-between items-center"><span class="text-sm font-bold text-teal-900">Phase 1 — Registration + Authentication</span><span class="text-[10px] text-amber-500 font-bold">Weeks 1–3</span></div>
+      <p class="text-xs text-gray-500">Phone registration, device key generation, authenticator component, server-side verification.</p>
+    </div>
+    <div class="section-card p-3 border-l-4 border-amber-400">
+      <div class="flex justify-between items-center"><span class="text-sm font-bold text-teal-900">Phase 2 — Currency Infrastructure + Multi-Chain</span><span class="text-[10px] text-amber-500 font-bold">Weeks 2–4</span></div>
+      <p class="text-xs text-gray-500">Rate engine (CBK, Binance P2P, Forex), 15s TTL cache, multi-chain provider abstraction, DualCurrencyDisplay SDK.</p>
+    </div>
+    <div class="section-card p-3 border-l-4 border-amber-400">
+      <div class="flex justify-between items-center"><span class="text-sm font-bold text-teal-900">Phase 3 — Wallet Balance &amp; Display</span><span class="text-[10px] text-amber-500 font-bold">Weeks 4–6</span></div>
+      <p class="text-xs text-gray-500">On-chain balance querying, dual-currency wallet screen, rate freshness indicators.</p>
+    </div>
+    <div class="section-card p-3 border-l-4 border-amber-400">
+      <div class="flex justify-between items-center"><span class="text-sm font-bold text-teal-900">Phase 4 — P2P Transfers</span><span class="text-[10px] text-amber-500 font-bold">Weeks 6–10</span></div>
+      <p class="text-xs text-gray-500">Wallet load (KES → USDT), transfer preview + authenticator, immutable rates, digital receipts.</p>
+    </div>
+    <div class="section-card p-3 border-l-4 border-amber-400">
+      <div class="flex justify-between items-center"><span class="text-sm font-bold text-teal-900">Phase 5 — POS Integration</span><span class="text-[10px] text-amber-500 font-bold">Weeks 9–14</span></div>
+      <p class="text-xs text-gray-500">bankpay-ke-v1 QR protocol, shared code verification, merchant onboarding, POS terminal.</p>
+    </div>
+    <div class="section-card p-3 border-l-4 border-amber-400">
+      <div class="flex justify-between items-center"><span class="text-sm font-bold text-teal-900">Phase 5A — PayBand (Optional)</span><span class="text-[10px] text-amber-500 font-bold">Weeks 10–14</span></div>
+      <p class="text-xs text-gray-500">NFC chip integration, bracelet loading, tap-to-pay, authenticator confirmation.</p>
+    </div>
+    <div class="section-card p-3 border-l-4 border-amber-400">
+      <div class="flex justify-between items-center"><span class="text-sm font-bold text-teal-900">Phase 6 — Notifications, Testing, Compliance</span><span class="text-[10px] text-amber-500 font-bold">Weeks 12–16</span></div>
+      <p class="text-xs text-gray-500">FCM/APNs, in-app notification center, CBK regulatory review, UAT, security penetration testing.</p>
+    </div>
+  </div>
+  <div class="page-footer">Bato · PRD v5 · Section 18 — Development Phases</div>
+</div>
+
+<!-- ═══════ PAGE 15: LAST PAGE — CLOSING ═══════ -->
+<div class="proposal-page page-dark flex flex-col justify-center items-center" style="padding:22mm 24mm;">
+  <div class="text-amber-400 text-sm tracking-[0.3em] uppercase font-bold mb-6">Bato · Product Requirements Document v5.0</div>
+  <h2 class="heading-serif text-4xl text-center mb-4" style="color:#F8FAFC;">KCB's <span class="italic text-amber-400">Stablecoin</span> Payment System</h2>
+  <div class="divider-gold w-64 mb-6"></div>
+  <p class="text-slate-300 text-sm text-center max-w-[380px] mb-8">KSh 0.15 flat fee. Zero SMS. 2-second settlement. Multi-chain ready. In-app authenticator. Dual currency everywhere. PayBand bracelet. Built for Kenya.</p>
+  <div class="flex gap-6">
+    <img src="assets/KCB Logo.png" alt="KCB" style="height:40px;">
+    <img src="assets/Bato Logo.png" alt="Bato" style="height:40px;">
+  </div>
+  <p class="text-slate-500 text-xs mt-6">Polygon POS + Arbitrum · Multi-Chain EVM · June 2026</p>
+  <div class="page-footer">Bato · PRD v5 · End of Document</div>
+</div>
+
+<div class="max-w-[210mm] mx-auto mt-4 text-center text-xs text-gray-500 no-print">
+  ✦ End of Product Requirements Document — <a href="Customer Journey 2.html" class="text-amber-600 underline">In-Depth Customer Journey</a> · <a href="index.html" class="text-amber-600 underline">Executive Slideshow</a>
+</div>
+
+</body>
+</html>
